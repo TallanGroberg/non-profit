@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import {Route, Switch} from 'react-router-dom'
 import {Elements, StripeProvider, injectStripe} from 'react-stripe-elements';
 
-import {authContext} from './component/providers/AuthProvider'
 
 
 
