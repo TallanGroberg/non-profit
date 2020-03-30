@@ -37,7 +37,7 @@ console.log(inputs)
     <Container>
       <Switch>
         <Route exact path="/" render={rProps => <CommingSoon />} />
-        <Route exact path="/write-article" render={rProps => <MakeInputs />} />
+        {/* <Route exact path="/write-article" render={rProps => <MakeInputs />} /> */}
       
         
       </Switch>
