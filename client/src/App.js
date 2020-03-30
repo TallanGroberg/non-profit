@@ -8,7 +8,7 @@ import {authContext} from './component/providers/AuthProvider'
 
 
 
-import MakeInputs from './component/MakeInputs'
+// import MakeInputs from './component/MakeInputs'
 import CommingSoon from './component/CommingSoon';
 import Donate from './component/Donate'
 
