@@ -8,8 +8,8 @@ import {Elements, StripeProvider, injectStripe} from 'react-stripe-elements';
 
 
 // import MakeInputs from './component/MakeInputs'
-import CommingSoon from './component/CommingSoon';
-import Donate from './component/Donate'
+import CommingSoon from './components/CommingSoon';
+import Donate from './components/Donate'
 
 
 function App(props) {
