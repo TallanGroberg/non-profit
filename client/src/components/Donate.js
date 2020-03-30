@@ -44,32 +44,32 @@ const Donate = (props) => {
   return (<>
       {complete && <p>success! Thank you so much for your donation.</p>}
 
-    <CardStyle> 
+    <> 
       <p>donate 10.00$</p>
       <CardElement  id='card-element' />
       <button id="checkout-button" onClick={submit}>submit</button>
      
-    </CardStyle>
+    </>
   </>);
 };
 
-const CardStyle = styled.div`
+// const CardStyle = styled.div`
   
-  display: grid;
-    width: 80%;
-    grid-template-rows: 1fr 2fr 1fr;
-    grid-auto-flow: column;
-    grid-gap: 5pt;
-    margin: auto;
-    left: 0;
-    right: 0;
-    margin-bottom: 10pt;
-    box-shadow: 0px 0px 9px -6px rgba(0,0,0,0.75);
-    #checkout-button {
-    box-shadow: 0px 0px 9px -6px rgba(0,0,0,0.75);
+//   display: grid;
+//     width: 80%;
+//     grid-template-rows: 1fr 2fr 1fr;
+//     grid-auto-flow: column;
+//     grid-gap: 5pt;
+//     margin: auto;
+//     left: 0;
+//     right: 0;
+//     margin-bottom: 10pt;
+//     box-shadow: 0px 0px 9px -6px rgba(0,0,0,0.75);
+//     #checkout-button {
+//     box-shadow: 0px 0px 9px -6px rgba(0,0,0,0.75);
       
   
-`;
+// `
 
 
 export default injectStripe(Donate);
