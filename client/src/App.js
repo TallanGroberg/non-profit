@@ -1,62 +1,26 @@
-import React, {useEffect, useState, useContext} from 'react';
-import axios from 'axios'
-import styled from 'styled-components'
-import {Route, Switch} from 'react-router-dom'
-import {Elements, StripeProvider, injectStripe} from 'react-stripe-elements';
+import React from 'react';
+import logo from './logo.svg';
+import './App.css';
 
-
-
-
-// import MakeInputs from './component/MakeInputs'
-import CommingSoon from './components/CommingSoon';
-import Donate from './components/Donate'
-
-
-function App(props) {
-  const initState = {firstName: '', lastName: '', email: ''}
-  const [inputs, setInputs] = useState(initState)
-
-console.log(inputs)
-  useEffect( () => {
-    
-  }, [])
-
-  console.log(window.location)
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log('handleSumit')
-  }
-  const handleChange = e => {
-    const {name, value} = e.target;
-    setInputs(prev => ({...prev, [name]: value}))
-  }
-
-  return (<>
-    <Container>
-      <Switch>
-        <Route exact path="/" render={rProps => <CommingSoon />} />
-        {/* <Route exact path="/write-article" render={rProps => <MakeInputs />} /> */}
-      
-        
-      </Switch>
-      
-        <Donate />
-      
-    </Container>
-  </>);
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
 }
 
-const Container = styled.div`
-
-  text-align: center;
-  img {
-    height: 70%;
-    width: 60%;
-  }
-
-`;
-
-
 export default App;
-

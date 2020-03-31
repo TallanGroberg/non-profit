@@ -23,7 +23,7 @@ const cors = require('cors')
 
   app.use('/api', expressJwt({ secret: process.env.SECRET}))
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/store', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/justice', {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
@@ -31,14 +31,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/store', {
 
 }, console.log('db is connected...'))
 
-const coresOptions = {
-  origin: 'https://tallangroberg.com',
-  optionsSuccessStatus: 200,
-}
-const paymentOptions = {
-  origin: 'https://localhost:3000',
-  optionsSuccessStatus: 200,
-}
+
 
 //routes 
 app.use('/user', require('./routes/userRouter.js'))
