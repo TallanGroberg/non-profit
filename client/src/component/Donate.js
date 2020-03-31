@@ -67,7 +67,7 @@ const CardStyle = styled.div`
     box-shadow: 0px 0px 9px -6px rgba(0,0,0,0.75);
     #checkout-button {
     box-shadow: 0px 0px 9px -6px rgba(0,0,0,0.75);
-      
+    }
   
 `;
 
