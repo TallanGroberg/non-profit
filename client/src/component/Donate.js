@@ -24,7 +24,7 @@ const Donate = (props) => {
     await token !== undefined ? axios.post('/charge',{
       headers: {"Content-Type": "text/plain"},
       token: token.id,  
-      amount: 100,
+      amount: 51,
     })
     .then( async res => {
     res.status === 200 && setComplete(true)
