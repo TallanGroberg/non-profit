@@ -1,14 +1,11 @@
 const express = require('express')
 const path = require("path")
 const app = express()
-const bodyparser = require('body-parser')
 require('dotenv').config()
 const morgan = require('morgan')
 const mongoose = require('mongoose')
 const PORT = process.env.PORT || 4444
 const secret = process.env.SECRET || 'super secret sly stuffs'
-const fileUpload = require('express-fileupload');
-const multer = require('multer')
 const expressJwt = require('express-jwt')
 const cors = require('cors')
 
@@ -16,10 +13,8 @@ const cors = require('cors')
 
 
   app.use(express.static(path.join(__dirname, "client", "build")))
-  app.use(require("body-parser").text());
   app.use(express.json())
   app.use(morgan('dev'))
-  app.use(fileUpload());
 
   app.use('/api', expressJwt({ secret: process.env.SECRET}))
 
