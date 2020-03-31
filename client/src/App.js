@@ -1,4 +1,4 @@
-qimport React, {useEffect, useState, useContext} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import axios from 'axios'
 import styled from 'styled-components'
 import {Route, Switch} from 'react-router-dom'
