@@ -6,7 +6,7 @@ import {Elements, StripeProvider, injectStripe} from 'react-stripe-elements';
 
 import {authContext} from './component/providers/AuthProvider'
 
-
+import Signup from './component/authentication/Signup'
 
 import MakeInputs from './component/MakeInputs'
 import CommingSoon from './component/CommingSoon';
@@ -37,12 +37,13 @@ console.log(inputs)
     <Container>
       <Switch>
         <Route exact path="/" render={rProps => <CommingSoon />} />
+        <Route exact path="/signup" render={rProps => <Signup />} />
         <Route exact path="/write-article" render={rProps => <MakeInputs />} />
       
         
       </Switch>
       
-        <Donate />
+        {/* <Donate /> */}
       
     </Container>
   </>);

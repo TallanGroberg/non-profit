@@ -6,7 +6,11 @@
 .pnp.js
 .env
 
+
+
 # testing
+cypress.json
+/cypress
 /coverage
 
 # production
