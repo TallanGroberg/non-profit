@@ -45,7 +45,12 @@ const Donate = (props) => {
       {complete && <p>success! Thank you so much for your donation.</p>}
 
     <CardStyle> 
-      <p>donate 10.00$</p>
+      <p>donate 10.00$, 
+        <xmp>
+        please do not enter your actual credit card information,<br /> this is for testing purposes only.
+        </xmp>
+
+        </p>
       <CardElement  id='card-element' />
       <button id="checkout-button" onClick={submit}>submit</button>
      
