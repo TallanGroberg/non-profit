@@ -53,7 +53,6 @@ const Donate = (props) => {
         </p>
       <CardElement  id='card-element' />
       <button id="checkout-button" onClick={submit}>submit</button>
-     
     </CardStyle>
   </>);
 };
@@ -73,7 +72,6 @@ const CardStyle = styled.div`
     #checkout-button {
     box-shadow: 0px 0px 9px -6px rgba(0,0,0,0.75);
     }
-  
 `;
 
 
