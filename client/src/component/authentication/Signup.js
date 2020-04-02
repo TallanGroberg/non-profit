@@ -18,9 +18,9 @@ const Signup = () => {
 
   return (
     <form onSubmit={handleSubmit}> 
-      <input id='signup-name' type="text" name='name' value={inputs.name} onChange={handleChange}/>
-      <input id='signup-email' type="text" name='email' value={inputs.email} onChange={handleChange}/>
-      <input id='signup-password' type="password" name='password' value={inputs.password} onChange={handleChange}/>
+      <input id='signup-name' placeholder='name' type="text" name='name' value={inputs.name} onChange={handleChange}/>
+      <input id='signup-email' placeholder='email' type="text" name='email' value={inputs.email} onChange={handleChange}/>
+      <input id='signup-password' placeholder='password' type="password" name='password' value={inputs.password} onChange={handleChange}/>
       <button id="signup-submit-button">Signup</button>
     </form>
   );
