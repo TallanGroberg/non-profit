@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 
 const Input = (props) => {
   const [text, setText] = useState('')
-  console.log(text)
+  
 
   const {type} = props 
   

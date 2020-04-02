@@ -21,8 +21,8 @@ const AuthProvider = (props) => {
   const [imgUrl, setImgUrl] = useState('')
   const [token, setToken] = useState(localStorage.getItem('token') || '')
 
-  const {history,} = props
-  console.log(history)
+
+    const {history,} = props
 
     const signup = (user) => {
       axios.post('/user/signup', user)
@@ -54,6 +54,13 @@ const AuthProvider = (props) => {
         console.error(err.message)
       })
     }
+
+    const signout = async () => {
+        await localStorage.removeItem('token', token )
+        await setToken('')
+        await localStorage.removeItem('user')
+              setUser({})
+    }
     
   
   
@@ -62,7 +69,9 @@ const AuthProvider = (props) => {
     <authContext.Provider value={{
       signup,
       signin,
+      signout,
       token,
+      user,
     }}>
       {props.children}
     </authContext.Provider>

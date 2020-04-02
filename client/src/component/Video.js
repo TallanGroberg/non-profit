@@ -5,7 +5,7 @@ const Video = () => {
  
   const [videoAsFile, setVideoAsFile] = useState('')
   const [videoForm, setVideoForm] = useState(true)
-  console.log(videoForm, videoUrl)
+  
   const videoWidth = window.innerWidth - 32;
   const videoHeight = window.innerWidth - 160;
 

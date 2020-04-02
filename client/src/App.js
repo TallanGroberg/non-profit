@@ -29,7 +29,7 @@ function App(props) {
     document.title = pathname
   }, [])
 
-  console.log(window.location)
+
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -43,7 +43,7 @@ function App(props) {
   return (<>
     <Container>
       <Switch>
-        <Route exact path="/"> <CommingSoon /> </Route>
+        <ProtectedRoute exact path="/"> <CommingSoon /> </ProtectedRoute>
         <Route exact path="/signup"> <Signup /> </Route>
         <Route exact path="/signin"><Signin /> </Route>
         <Route exact path="/write-article"> <MakeInputs /> </Route>
