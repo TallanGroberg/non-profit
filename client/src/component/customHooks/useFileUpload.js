@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState,} from 'react';
+import {storage} from '../../firebase/index'
 
-const useFileUpoad = (props) => {
+const useFileUpload = (props) => {
   const initState = { imgUrl: ''}
-    const [imageAsFile, setImageAsFile] = useState('')
-    const [imageAsUrl, setImageAsUrl] = useState(initState)
-    const [isLoading, setIsLoading] = useState(false)
+  const [imageAsFile, setImageAsFile] = useState('')
+  const [imageAsUrl, setImageAsUrl] = useState(initState)
+  const [isLoading, setIsLoading] = useState(false)
     
 
    
@@ -46,9 +47,11 @@ const useFileUpoad = (props) => {
 
 
 
-  return (
-    
-  );
+  return {
+    handleImageAsFile,
+    imageAsUrl,
+    isLoading,
+  };
 };
 
-export default useFileUpoad;
+export default useFileUpload;
