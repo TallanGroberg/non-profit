@@ -4,11 +4,11 @@ import {authContext} from '../providers/AuthProvider'
 const Signup = () => {
   const initState = {name: '', email: '', password: '',}
     const [inputs, setInputs] = useState(initState)
-      const {signup} = useContext(authContext)
+      const {signin} = useContext(authContext)
   
       const handleSubmit = (e) => {
         e.preventDefault()
-        signup(inputs)
+        signin(inputs)
       }
 
       const handleChange = e => {
@@ -18,10 +18,10 @@ const Signup = () => {
 
   return (
     <form onSubmit={handleSubmit}> 
-      <input id='signup-name' type="text" name='name' value={inputs.name} onChange={handleChange}/>
-      <input id='signup-email' type="text" name='email' value={inputs.email} onChange={handleChange}/>
-      <input id='signup-password' type="password" name='password' value={inputs.password} onChange={handleChange}/>
-      <button id="signup-submit-button">Signup</button>
+      <input id='signin-name' type="text" name='name' value={inputs.name} onChange={handleChange}/>
+      <input id='signin-email' type="text" name='email' value={inputs.email} onChange={handleChange}/>
+      <input id='signin-password' type="password" name='password' value={inputs.password} onChange={handleChange}/>
+      <button id="signin-submit-button">Signup</button>
     </form>
   );
 };

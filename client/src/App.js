@@ -7,6 +7,7 @@ import {Elements, StripeProvider, injectStripe} from 'react-stripe-elements';
 import {authContext} from './component/providers/AuthProvider'
 
 import Signup from './component/authentication/Signup'
+import Signin from './component/authentication/Signin'
 
 import MakeInputs from './component/MakeInputs'
 import CommingSoon from './component/CommingSoon';
@@ -17,7 +18,7 @@ function App(props) {
   const initState = {firstName: '', lastName: '', email: ''}
   const [inputs, setInputs] = useState(initState)
 
-console.log(inputs)
+
   useEffect( () => {
     
   }, [])
@@ -38,6 +39,7 @@ console.log(inputs)
       <Switch>
         <Route exact path="/" render={rProps => <CommingSoon />} />
         <Route exact path="/signup" render={rProps => <Signup />} />
+        <Route exact path="/signin" render={rProps => <Signin />} />
         <Route exact path="/write-article" render={rProps => <MakeInputs />} />
       
         

@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios'
+import {withRouter} from 'react-router-dom'
 
 export const bearerAxios = axios.create()
 bearerAxios.interceptors.request.use((config) => {
@@ -13,20 +14,44 @@ export const authContext = React.createContext()
 const AuthProvider = (props) => {
   const [error, setError] = useState('')
   const [isSigningUp, setIsSigningUp] = useState(false)
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
+  const [user, setUser] = useState({} || JSON.parse(localStorage.getItem('user')))
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [imgUrl, setImgUrl] = useState('')
   const [token, setToken] = useState(localStorage.getItem('token') || '')
 
+  const {history,} = props
+  console.log(history)
+
     const signup = (user) => {
       axios.post('/user/signup', user)
-      .then(res => {
-        const {token, user} = res.data
-        delete user.password
-        localStorage.setItem('token', token )
-        localStorage.setItem('user', JSON.stringify(res.data))
+      .then( async res => {
+        const {token,} = res.data
+        await delete user.password
+        await localStorage.setItem('token', token )
+        await setToken(token)
+        await localStorage.setItem('user', JSON.stringify(res.data))
+        await setUser(res.data.user)
+        history.push('/')
+      })
+      .catch(err => {
+        console.error(err.message)
+      })
+    }
+    const signin = (user) => {
+      axios.post('/user/signin', user)
+      .then( async res => {
+        const {token,} = res.data
+        await delete user.password
+        await localStorage.setItem('token', token )
+        await setToken(token)
+        await localStorage.setItem('user', JSON.stringify(res.data))
+        await setUser(res.data.user)
+        history.push('/')
+      })
+      .catch(err => {
+        console.error(err.message)
       })
     }
     
@@ -36,10 +61,11 @@ const AuthProvider = (props) => {
   return (
     <authContext.Provider value={{
       signup,
+      signin,
     }}>
       {props.children}
     </authContext.Provider>
   );
 };
 
-export default AuthProvider;
+export default withRouter(AuthProvider);

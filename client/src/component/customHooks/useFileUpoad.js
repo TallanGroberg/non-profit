@@ -1,8 +1,6 @@
-import React, {useState} from 'react';
-import styled from 'styled-components'
-import {storage} from '../firebase/index'
+import React from 'react';
 
-function Image() {
+const useFileUpoad = (props) => {
   const initState = { imgUrl: ''}
     const [imageAsFile, setImageAsFile] = useState('')
     const [imageAsUrl, setImageAsUrl] = useState(initState)
@@ -47,30 +45,10 @@ function Image() {
     }
 
 
+
   return (
-    <>
-      {
-        imageAsUrl.imgUrl === '' ?
-        <>
-          <form onChange={handleImageAsFile}>
-          <input 
-          id='img-upload'
-          type="file"
-          />
-          </form>
-          {isLoading && <p>Loading</p>}
-        </>
-      :
-        
-      <img width={window.innerWidth / 8} height={window.innerWidth / 8} src={imageAsUrl.imgUrl} />
-      }
-
-
-
-    </>
+    
   );
-}
+};
 
-
-
-export default Image;
+export default useFileUpoad;

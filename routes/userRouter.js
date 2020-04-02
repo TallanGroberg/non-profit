@@ -58,7 +58,7 @@ userRouter.post('/signup', (req,res,next) => {
   })
 })
 
-userRouter.post('/login', (req,res,next) => {
+userRouter.post('/signin', (req,res,next) => {
   User.findOne({name: req.body.name.toLowerCase()}, (err, user) => {
     if(err) {return next(err)}
     if(!user) {
@@ -72,6 +72,7 @@ userRouter.post('/login', (req,res,next) => {
       
       
       const token = jwt.sign(user.withoutpassword(), secret)
+      
       return res.send({token: token, user: user.withoutpassword(), success: true})
     })
   })
