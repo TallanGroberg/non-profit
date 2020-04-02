@@ -5,6 +5,7 @@ import {Route, Switch} from 'react-router-dom'
 import {Elements, StripeProvider, injectStripe} from 'react-stripe-elements';
 
 import {authContext} from './component/providers/AuthProvider'
+import ProtectedRoute from './component/authentication/ProtectedRoute'
 
 import Signup from './component/authentication/Signup'
 import Signin from './component/authentication/Signin'
@@ -20,7 +21,12 @@ function App(props) {
 
 
   useEffect( () => {
-    
+    let pathname = window.location.pathname
+    if (pathname === '/') { pathname = 'home' } 
+    pathname = pathname.split('')
+    pathname = pathname.filter(letter => letter !== '/' )
+    pathname = pathname.join('')
+    document.title = pathname
   }, [])
 
   console.log(window.location)
@@ -37,10 +43,10 @@ function App(props) {
   return (<>
     <Container>
       <Switch>
-        <Route exact path="/" render={rProps => <CommingSoon />} />
-        <Route exact path="/signup" render={rProps => <Signup />} />
-        <Route exact path="/signin" render={rProps => <Signin />} />
-        <Route exact path="/write-article" render={rProps => <MakeInputs />} />
+        <Route exact path="/"> <CommingSoon /> </Route>
+        <Route exact path="/signup"> <Signup /> </Route>
+        <Route exact path="/signin"><Signin /> </Route>
+        <Route exact path="/write-article"> <MakeInputs /> </Route>
       
         
       </Switch>

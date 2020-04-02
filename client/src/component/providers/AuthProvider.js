@@ -62,6 +62,7 @@ const AuthProvider = (props) => {
     <authContext.Provider value={{
       signup,
       signin,
+      token,
     }}>
       {props.children}
     </authContext.Provider>
