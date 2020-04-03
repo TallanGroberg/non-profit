@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import App from './App';
 import AuthProvider from './component/providers/AuthProvider'
+import ArticleProvider from './component/providers/ArticleProvider'
 import {BrowserRouter as Router} from 'react-router-dom'
 import * as serviceWorker from './serviceWorker';
 import {Elements, StripeProvider,} from 'react-stripe-elements';
@@ -15,7 +16,9 @@ ReactDOM.render(
     <Elements>
       <Router>
         <AuthProvider>
-          <App />
+          <ArticleProvider>
+            <App />
+          </ArticleProvider>
         </AuthProvider>
       </Router>
     </Elements>

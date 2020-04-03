@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios'
 import {withRouter} from 'react-router-dom'
+import { log } from 'util';
 
 export const bearerAxios = axios.create()
 bearerAxios.interceptors.request.use((config) => {
@@ -14,7 +15,7 @@ export const authContext = React.createContext()
 const AuthProvider = (props) => {
   const [error, setError] = useState('')
   const [isSigningUp, setIsSigningUp] = useState(false)
-  const [user, setUser] = useState({} || JSON.parse(localStorage.getItem('user')))
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -24,15 +25,17 @@ const AuthProvider = (props) => {
 
     const {history,} = props
 
+    console.log(user)
+
     const signup = (user) => {
       axios.post('/user/signup', user)
       .then( async res => {
         const {token,} = res.data
         await delete user.password
         await localStorage.setItem('token', token )
-        await setToken(token)
-        await localStorage.setItem('user', JSON.stringify(res.data))
-        await setUser(res.data.user)
+        await localStorage.setItem('user', JSON.stringify(res.data.user))
+
+   
         history.push('/')
       })
       .catch(err => {
@@ -45,9 +48,9 @@ const AuthProvider = (props) => {
         const {token,} = res.data
         await delete user.password
         await localStorage.setItem('token', token )
-        await setToken(token)
-        await localStorage.setItem('user', JSON.stringify(res.data))
-        await setUser(res.data.user)
+
+        await localStorage.setItem('user', JSON.stringify(res.data.user))
+        setUser(res.data.user)
         history.push('/')
       })
       .catch(err => {
@@ -77,5 +80,11 @@ const AuthProvider = (props) => {
     </authContext.Provider>
   );
 };
+
+export const withAuth = C => props => (
+  <authContext.Consumer>
+    {value => <C {...value} {...props} />}
+  </authContext.Consumer>
+)
 
 export default withRouter(AuthProvider);

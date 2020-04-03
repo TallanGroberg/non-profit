@@ -10,9 +10,9 @@ import ProtectedRoute from './component/authentication/ProtectedRoute'
 import Signup from './component/authentication/Signup'
 import Signin from './component/authentication/Signin'
 
-import MakeInputs from './component/MakeInputs'
+import MakeInputs from './component/articleWriting/MakeInputs'
 import CommingSoon from './component/CommingSoon';
-import Home from './component/Home'
+
 import Donate from './component/Donate'
 
 

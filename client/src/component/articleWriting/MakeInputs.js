@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
-
+import React, {useState, useContext} from 'react';
+import {authContext} from '../providers/AuthProvider'
+import {articleContext} from '../providers/ArticleProvider'
 import WritersDisplay from './WritersDisplay'
 
 import TextArea from './TextArea'
@@ -9,10 +10,13 @@ import Video from './Video'
 
 const MakeInputs = () => {
   const [count, setCount] = useState(1)
-  const [article, setArticle] = useState([])
   
 
- 
+  const {user} = useContext(authContext)
+  const {article, setArticle, saveArticle} = useContext(articleContext)
+
+  console.log(user)
+  
     const addTextArea = async (arg) => {
       await setCount(prev => (prev + 1))
         setArticle(prev => ([...prev, <TextArea id={article.length} key={count}  />]))
@@ -34,13 +38,14 @@ const MakeInputs = () => {
             input={input}
               count={i} 
           />
-       )}
+          )}
       <br />
       
       <button id="video" onClick={() => addVideo()}>Add video</button>
       <button id="paragraph" onClick={() => addTextArea()}>Add paragraph</button>
       <button id="image-button" onClick={() => addImage()}>Add image</button>
-      
+        <br />
+          <button onClick={() => saveArticle()}>Save article</button>
       
       
     </div>

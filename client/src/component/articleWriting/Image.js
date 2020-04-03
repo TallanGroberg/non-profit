@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styled from 'styled-components'
-import {storage} from '../firebase/index'
-import useFileUpload from './customHooks/useFileUpload'
+import {storage} from '../../firebase/index'
+import useFileUpload from './../customHooks/useFileUpload'
 
 function Image() {
   
