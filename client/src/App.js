@@ -12,6 +12,7 @@ import Signin from './component/authentication/Signin'
 
 import MakeInputs from './component/MakeInputs'
 import CommingSoon from './component/CommingSoon';
+import Home from './component/Home'
 import Donate from './component/Donate'
 
 
@@ -43,15 +44,16 @@ function App(props) {
   return (<>
     <Container>
       <Switch>
-        <ProtectedRoute exact path="/"> <CommingSoon /> </ProtectedRoute>
-        <Route exact path="/signup"> <Signup /> </Route>
-        <Route exact path="/signin"><Signin /> </Route>
-        <Route exact path="/write-article"> <MakeInputs /> </Route>
-      
+        <Route exact path="/"> <CommingSoon /> </Route>
+        <Route exact path="/donate"> <Donate /> </Route>
+
         
+        <Route exact path="/signup"> <Signup /> </Route>
+        <Route exact path="/signin"> <Signin /> </Route>
+        <ProtectedRoute exact path="/write-article"> <MakeInputs /> </ProtectedRoute>
       </Switch>
       
-        {/* <Donate /> */}
+        
       
     </Container>
   </>);
