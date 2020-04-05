@@ -1,13 +1,17 @@
-import React, {useState,} from 'react';
+import React, {useState, useContext} from 'react';
 import {storage} from '../../firebase/index'
+import {articleContext} from '../providers/ArticleProvider'
 
 const useFileUpload = (props) => {
-  const initState = { imgUrl: ''}
-  const [imageAsFile, setImageAsFile] = useState('')
-  const [imageAsUrl, setImageAsUrl] = useState(initState)
-  const [isLoading, setIsLoading] = useState(false)
+  
     
-
+  const {imageAsFile,
+          setImageAsFile,
+          imageAsUrl, 
+          setImageAsUrl,
+          isLoading,
+          setIsLoading,
+          submitContent} = useContext(articleContext)
    
       const handleImageAsFile = async (e) => {
         e.preventDefault()
@@ -40,7 +44,9 @@ const useFileUpload = (props) => {
       storage.ref('images').child(image.name).getDownloadURL()
         .then(async fireBaseUrl => {
           await setIsLoading(false)
-          setImageAsUrl(prevObject => ({...prevObject, imgUrl: fireBaseUrl}))
+          await setImageAsUrl(prevObject => ({...prevObject, imgUrl: fireBaseUrl}))
+
+          submitContent({image: fireBaseUrl})
         })
     })
     }

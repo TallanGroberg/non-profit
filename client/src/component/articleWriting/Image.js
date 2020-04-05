@@ -1,32 +1,23 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import styled from 'styled-components'
 import {storage} from '../../firebase/index'
 import useFileUpload from './../customHooks/useFileUpload'
+import { articleContext } from '../providers/ArticleProvider';
 
-function Image() {
+import ImageDisplay from './ImageDisplay'
+
+function Image(props) {
   
-    const {handleImageAsFile,
-            imageAsUrl,
-              isLoading,
-            } = useFileUpload()
+  const [imageDeleted, setImageDelete] = useState(false)
+
 
   return (
     <>
-      {
-        imageAsUrl.imgUrl === '' ?
-        <>
-          <form onChange={handleImageAsFile}>
-          <input 
-          id='img-upload'
-          type="file"
-          />
-          </form>
-          {isLoading && <p>Loading</p>}
-        </>
+      {imageDeleted ? 
+      null
       :
-        
-      <img width={window.innerWidth / 8} height={window.innerWidth / 8} src={imageAsUrl.imgUrl} />
-      }
+      <ImageDisplay id={props.id} setImageDelete={setImageDelete} />
+    }
 
 
 

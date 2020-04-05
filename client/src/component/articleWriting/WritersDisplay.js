@@ -6,10 +6,7 @@ const WritersDisplay = (props) => {
   return (
     <>
     <div id={`article-piece${count}`}>
-      <div id='edit-piece'>
-        <button id={`delete-article-piece${count}`}>delete</button>
-        <button id={`delete-article-piece${count}`}>edit</button>
-      </div>
+      
       {props.input}
     </div>
       </>

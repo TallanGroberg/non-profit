@@ -15,5 +15,19 @@ articleRouter.get('/', (req,res,next) => {
   })
 })
 
+articleRouter.post('/', (req,res,next) => {
+  const newArticle = new Article(req.body)
+  console.log(req.body)
+  newArticle.user = req.body.user
+  newArticle.save( (err, article) => {
+    if(err) {
+      res.status(501)
+      next(err)
+    } else {
+      res.status(201).send(article)
+    }
+  })
+})
+
 
 module.exports = articleRouter

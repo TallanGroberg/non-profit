@@ -9,31 +9,52 @@ import Video from './Video'
 
 
 const MakeInputs = () => {
-  const [count, setCount] = useState(1)
+  
   
 
   const {user} = useContext(authContext)
-  const {article, setArticle, saveArticle} = useContext(articleContext)
+  const {count,
+          setCount,
+          content,
+          setContent,
+          videoUrl,
+          imageAsUrl,
+          text,
+          submitContent,
+          setArticleForWriter,
+          articleForWriter, 
+          saveArticle} = useContext(articleContext)
 
-  console.log(user)
+
+
+  const passContent = (arg, setTextForm) => {
+    submitContent(arg)
+    setTextForm(prev => (!prev))
+  }
   
-    const addTextArea = async (arg) => {
+    const addTextArea = async () => {
       await setCount(prev => (prev + 1))
-        setArticle(prev => ([...prev, <TextArea id={article.length} key={count}  />]))
-  }
-    const addImage = async (arg) => {
+      setArticleForWriter(prev => ([...prev, <TextArea passContent={passContent} id={articleForWriter.length} key={count}  />]))
+      
+    }
+
+    const addImage = async () => {
       await setCount(prev => (prev + 1))
-        setArticle(prev => ([...prev, <Image id={article.length} key={count}  />]))
-  }
-    const addVideo = async (arg) => {
+      
+      
+      setArticleForWriter(prev => ([...prev, <Image id={articleForWriter.length} key={count}  />]))
+    }
+    const addVideo = async () => {
       await setCount(prev => (prev + 1))
-        setArticle(prev => ([...prev, <Video id={article.length} key={count}  />]))
+        setArticleForWriter(prev => ([...prev, <Video id={articleForWriter.length} key={count}  />]))
   }
+
+  
   
 
   return (
     <div>
-      {article.map((input, i) => 
+      {articleForWriter.map((input, i) => 
           <WritersDisplay
             input={input}
               count={i} 

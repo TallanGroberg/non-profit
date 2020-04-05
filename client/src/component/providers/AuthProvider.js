@@ -34,7 +34,7 @@ const AuthProvider = (props) => {
         await delete user.password
         await localStorage.setItem('token', token )
         await localStorage.setItem('user', JSON.stringify(res.data.user))
-
+        setUser(res.data.user)
    
         history.push('/')
       })
@@ -48,7 +48,6 @@ const AuthProvider = (props) => {
         const {token,} = res.data
         await delete user.password
         await localStorage.setItem('token', token )
-
         await localStorage.setItem('user', JSON.stringify(res.data.user))
         setUser(res.data.user)
         history.push('/')
