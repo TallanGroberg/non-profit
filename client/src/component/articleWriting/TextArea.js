@@ -28,8 +28,6 @@ const TextArea = (props) => {
             })
             setContent(filteredContent)
               const filteredInputs = await articleForWriter.filter( (input,index) => {
-                console.log(input, index)
-                debugger
                 return input.props.id !== id
               })
               setArticleForWriter(filteredInputs)

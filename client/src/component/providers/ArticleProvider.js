@@ -20,8 +20,10 @@ const ArticleProvider = (props) => {
   const submitContent = (arg) => {
     
     const set = new Set([ ...content, arg])
-    const arr = [...set]
-    
+    let arr = [...set]
+    arr = arr.map(articlePiece => {
+      console.log(articlePiece, '||', arg.orderAppear)
+      return articlePiece.orderAppear === arg.orderAppear ? arg : articlePiece})
     setContent(prev => ([ ...arr]))
 
 
