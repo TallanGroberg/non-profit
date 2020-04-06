@@ -22,11 +22,8 @@ const ArticleProvider = (props) => {
     const set = new Set([ ...content, arg])
     let arr = [...set]
     arr = arr.map(articlePiece => {
-      console.log(articlePiece, '||', arg.orderAppear)
       return articlePiece.orderAppear === arg.orderAppear ? arg : articlePiece})
     setContent(prev => ([ ...arr]))
-
-
     
   }
 
