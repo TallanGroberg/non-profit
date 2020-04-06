@@ -19,10 +19,10 @@ const ArticleProvider = (props) => {
 
   const submitContent = (arg) => {
     
-    const set = new Set([ arg])
+    const set = new Set([ ...content, arg])
     const arr = [...set]
     
-    setContent(prev => ([...prev, ...arr]))
+    setContent(prev => ([ ...arr]))
 
 
     
@@ -49,10 +49,10 @@ const ArticleProvider = (props) => {
       
       count,
       setCount,
-      content, 
-      setContent,
       saveArticle,
       submitContent,
+      content, 
+      setContent,
       articleForWriter, 
       setArticleForWriter,
 

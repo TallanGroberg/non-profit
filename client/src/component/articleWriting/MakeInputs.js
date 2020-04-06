@@ -27,14 +27,11 @@ const MakeInputs = () => {
 
 
 
-  const passContent = (arg, setTextForm) => {
-    submitContent(arg)
-    setTextForm(prev => (!prev))
-  }
+  
   
     const addTextArea = async () => {
       await setCount(prev => (prev + 1))
-      setArticleForWriter(prev => ([...prev, <TextArea passContent={passContent} id={articleForWriter.length} key={count}  />]))
+      setArticleForWriter(prev => ([...prev, <TextArea  id={articleForWriter.length} key={count}  />]))
       
     }
 

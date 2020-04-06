@@ -1,56 +1,60 @@
 import React, {useState, useContext, useEffect} from 'react';
 import {articleContext} from  '../providers/ArticleProvider'
+import TextAreaDisplay from './TextAreaDisplay';
 
 const TextArea = (props) => {
-  const [text, setText] = useState({textarea: ''})
+  const [text, setText] = useState({textarea: '', orderAppear: props.id})
   const [textForm, setTextForm] = useState(false)
+  const [paragraphDeleted,setParagraphDeleted ] = useState(false)
+  
+  const {type, id,} = props 
+  
   const {content,
           count,
+          articleForWriter,
+          setArticleForWriter,
           setContent, 
           submitContent} = useContext(articleContext)
 
+          
+          
 
-  const {type, id,} = props 
   
   
-  useEffect( () => {
-    
-  },[])
+          const deleteTextArea = async() => {
+            setParagraphDeleted(prev => (!prev))
+            const filteredContent = await content.filter(input => {
+              return input.orderAppear !== id 
+            })
+            setContent(filteredContent)
+              const filteredInputs = await articleForWriter.filter( (input,index) => {
+                console.log(input, index)
+                debugger
+                return input.props.id !== id
+              })
+              setArticleForWriter(filteredInputs)
+          }
   
   
   
-  
-  const handleChange = (e) => {
-    const {name, value} = e.target;
-    setText(prev => ({...prev, [name]: value}))
-  }
 
   console.log(props.id, count, text)
   
-  return (
-    <>
-    
-    {textForm ? <>
-      <div id='edit-piece'>
-      <p>{text.textarea}</p>
-        <button id={`delete-article-piece${count}`}>delete</button>
-        <button id={`delete-article-piece${count}`} onClick={() => setTextForm(prev => (!prev))}>edit</button>
-      </div>
-
-      </>
+  return (<>
+    {paragraphDeleted ?
+    null
     :
-    <>
-    <textarea name="textarea" 
-    onChange={handleChange}
-     id={`textarea${props.id}`} cols={window.innerWidth / 8} rows="10">{text.textarea}</textarea>
-    <br />
-              <button onClick={() => props.passContent(text, setTextForm)}>save paragraph</button> 
-    </>
+    <TextAreaDisplay 
+      id={id}
+      text={text}
+      setText={setText}
+      setTextForm={setTextForm}
+      setParagraphDeleted={setParagraphDeleted}
+      deleteTextArea={deleteTextArea}
+    />
   }
-  
     
-    </>
-  );
+  </>);
 };
 
 export default TextArea
