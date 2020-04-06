@@ -3,6 +3,7 @@ import MailchimpSubscribe from 'react-mailchimp-subscribe'
 import logo from '../images/400dpiLogo.jpg'
 import Mailchimp from 'react-mailchimp-form'
 import {authContext} from './providers/AuthProvider'
+import {Link} from 'react-router-dom'
 
 const CommingSoon = () => {
 
@@ -20,6 +21,8 @@ const CommingSoon = () => {
       <MailchimpSubscribe id="news-letter" url={process.env.REACT_APP_MAILCHIMP_ACTION_URL}
         />
         {localStorage.getItem('token') !== null && <button id="signout-button" onClick={() => signout()}>sign out</button>}
+        <Link to='/write-article'>write an article</Link>
+        
     </>
   );
 };
