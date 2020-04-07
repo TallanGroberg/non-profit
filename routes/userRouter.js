@@ -61,7 +61,6 @@ userRouter.post('/signup', (req,res,next) => {
 
 userRouter.post('/signin', (req,res,next) => {
   User.findOne({name: req.body.name.toLowerCase()}, (err, user) => {
-    console.log(req.body)
     if(err) {return next(err)}
     if(!user) {
       res.status(403)
