@@ -44,8 +44,6 @@ const TextAreaDisplay = (props) => {
               <button onClick={saveParagraph}>save paragraph</button> 
     </>
   }
-  
-    
   </>);
 };
 

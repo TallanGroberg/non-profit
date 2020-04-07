@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom'
 
 const CommingSoon = () => {
 
-  const { signout} = useContext(authContext)
+  const { signout, token} = useContext(authContext)
   
   
   return (
@@ -20,7 +20,7 @@ const CommingSoon = () => {
 
       <MailchimpSubscribe id="news-letter" url={process.env.REACT_APP_MAILCHIMP_ACTION_URL}
         />
-        {localStorage.getItem('token') !== null && <button id="signout-button" onClick={() => signout()}>sign out</button>}
+        {token !== '' && <button id="signout-button" onClick={() => signout()}>sign out</button>}
         <Link to='/write-article'>write an article</Link>
         
     </>

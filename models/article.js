@@ -7,9 +7,13 @@ const articleSchema = new Schema({
   },
   user: {
     type: String,
-    
-    
 },
+  title: {
+    type: String,
+  },
+  description: {
+    type: String,
+  }
 })
 
 module.exports = mongoose.model('Article', articleSchema)

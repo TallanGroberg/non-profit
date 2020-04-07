@@ -14,6 +14,7 @@ import MakeInputs from './component/articleWriting/MakeInputs'
 import CommingSoon from './component/CommingSoon';
 
 import Donate from './component/Donate'
+import ArticleDisplay from './component/articleWriting/ArticleDisplay';
 
 
 function App(props) {
@@ -50,7 +51,7 @@ function App(props) {
         
         <Route exact path="/signup"> <Signup /> </Route>
         <Route exact path="/signin"> <Signin /> </Route>
-        <ProtectedRoute exact path="/write-article"> <MakeInputs /> </ProtectedRoute>
+        <ProtectedRoute exact path="/write-article"> <ArticleDisplay /> </ProtectedRoute>
       </Switch>
       
         

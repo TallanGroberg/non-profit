@@ -25,7 +25,7 @@ const AuthProvider = (props) => {
 
     const {history,} = props
 
-    console.log(user)
+    console.log(user, token)
 
     const signup = (user) => {
       axios.post('/user/signup', user)

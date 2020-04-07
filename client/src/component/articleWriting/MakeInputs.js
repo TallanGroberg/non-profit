@@ -23,7 +23,7 @@ const MakeInputs = () => {
           submitContent,
           setArticleForWriter,
           articleForWriter, 
-          saveArticle} = useContext(articleContext)
+          } = useContext(articleContext)
 
 
 
@@ -62,8 +62,7 @@ const MakeInputs = () => {
       <button id="video" onClick={() => addVideo()}>Add video</button>
       <button id="paragraph" onClick={() => addTextArea()}>Add paragraph</button>
       <button id="image-button" onClick={() => addImage()}>Add image</button>
-        <br />
-          <button onClick={() => saveArticle()}>Save article</button>
+        
       
       
     </div>
