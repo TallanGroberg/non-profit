@@ -13,7 +13,7 @@ bearerAxios.interceptors.request.use((config) => {
 export const authContext = React.createContext()
 
 const AuthProvider = (props) => {
-  const [error, setError] = useState('')
+  const [error, setError] = useState([])
   const [isSigningUp, setIsSigningUp] = useState(false)
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
   const [name, setName] = useState('')
@@ -25,7 +25,13 @@ const AuthProvider = (props) => {
 
     const {history,} = props
 
-    console.log(user, token)
+    const handleErrors = (arg) => {
+      
+      console.log(arg)
+      const set = new Set([ ...error, arg])
+    let arr = [...set]
+      setError(prev => ([...arr]))
+    }
 
     const signup = (user) => {
       axios.post('/user/signup', user)
@@ -33,13 +39,15 @@ const AuthProvider = (props) => {
         const {token,} = res.data
         await delete user.password
         await localStorage.setItem('token', token )
+        await setToken(token)
         await localStorage.setItem('user', JSON.stringify(res.data.user))
         setUser(res.data.user)
    
         history.push('/')
       })
       .catch(err => {
-        console.error(err.message)
+        console.log(err)
+        handleErrors(err.message)
       })
     }
     const signin = (user) => {
@@ -48,12 +56,13 @@ const AuthProvider = (props) => {
         const {token,} = res.data
         await delete user.password
         await localStorage.setItem('token', token )
+        setToken(token)
         await localStorage.setItem('user', JSON.stringify(res.data.user))
         setUser(res.data.user)
         history.push('/')
       })
       .catch(err => {
-        console.error(err.message)
+        handleErrors(err.message)
       })
     }
 
@@ -72,6 +81,8 @@ const AuthProvider = (props) => {
       signup,
       signin,
       signout,
+      error,
+      setError,
       token,
       user,
     }}>

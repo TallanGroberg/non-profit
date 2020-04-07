@@ -43,7 +43,7 @@ userRouter.delete('/:_id', (req,res,next) => {
 userRouter.post('/signup', (req,res,next) => {
   User.findOne({name: req.body.name}, (err,existingUser) => {
     if(err) {  res.status(400)
-    return next(err)
+      return next(err)
   }
       if(existingUser !== null) {
         res.status(400)
@@ -51,7 +51,8 @@ userRouter.post('/signup', (req,res,next) => {
       }
         const newUser = new User(req.body)
         newUser.save( (err,user) => {
-          if(err) {res.status(500).next(err)}
+          if(err) {res.status(500)
+            return next(err)}
           const token = jwt.sign(user.withoutpassword(), secret)
           return res.status(201).send({success: true, user: user.withoutpassword(), token})
     })
@@ -60,10 +61,11 @@ userRouter.post('/signup', (req,res,next) => {
 
 userRouter.post('/signin', (req,res,next) => {
   User.findOne({name: req.body.name.toLowerCase()}, (err, user) => {
+    console.log(req.body)
     if(err) {return next(err)}
     if(!user) {
       res.status(403)
-      return next( new Error('a piece of the information that you entered is incorrect check your name,email and password and try again.'))
+      return res.send( new Error('a piece of the information that you entered is incorrect check your name,email and password and try again.'))
     }
     user.checkpassword(req.body.password, (err,match) => {
       if(err) {return res.status(500).send(err)}
