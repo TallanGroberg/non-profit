@@ -19,13 +19,17 @@ const ArticleProvider = (props) => {
   
   console.log('content', content, 'articleForWriter',articleForWriter, aboutTheArticle )
 
+  
+
   const submitContent = (arg) => {
     const set = new Set([ ...content, arg])
       let arr = [...set]
         arr = arr.map(articlePiece => {
           return articlePiece.orderAppear === arg.orderAppear ? arg : articlePiece})
             setContent(prev => ([ ...arr]))
+            
   }
+
 
   
 

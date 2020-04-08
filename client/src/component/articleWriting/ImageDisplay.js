@@ -2,7 +2,7 @@ import React, {useState,useContext} from 'react';
 import {storage} from '../../firebase/index'
 import useFileUpload from './../customHooks/useFileUpload'
 import { articleContext } from '../providers/ArticleProvider';
-import Image from './Image'
+
 import EditImage from './EditImage';
 
 
@@ -16,7 +16,8 @@ const ImageDisplay = (props) => {
 
   const {id, count, setImageDelete} = props
   
-    const {submitContent, setArticleForWriter, articleForWriter, content, setContent}= useContext(articleContext)
+    const {submitContent,setAboutTheArticle, setArticleForWriter, articleForWriter, content, setContent}= useContext(articleContext)
+
 
     const handleImageAsFile = async (e) => {
       e.preventDefault()
@@ -50,7 +51,9 @@ const ImageDisplay = (props) => {
       .then(async fireBaseUrl => {
         await setIsLoading(false)
         await setImageAsUrl(prevObject => ({...prevObject, imgUrl: fireBaseUrl}))
-
+        if(props.id === undefined) { 
+          setAboutTheArticle(prev => ({...prev, displayImage: fireBaseUrl}) )
+        }
         submitContent({image: fireBaseUrl, orderAppear: id})
       })
   })

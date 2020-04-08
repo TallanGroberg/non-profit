@@ -26,6 +26,7 @@ const ArticleDisplay = () => {
       </form>
       <p>Display Image</p>
       <Image />
+      <MakeInputs />
       <br />
           <button onClick={() => saveArticle()}>Save article</button>
   </>);
