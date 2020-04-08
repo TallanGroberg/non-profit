@@ -23,6 +23,8 @@ const Signup = () => {
         return <p style={{color: 'red'}}>status 400: Username already taken.</p>
       } else if (err = 'Request failed with status code 500') {
         return <p style={{color: 'red'}}> Username or password have already been taken. </p>
+      } else if (err = 'Request failed with status code 401') {
+        return <p style={{color: 'red'}}> Username or password have already been taken. </p>
       }
     } )}
   </>);
