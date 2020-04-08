@@ -1,25 +1,31 @@
 import React, {useState, useContext} from 'react';
 import MakeInputs from './MakeInputs';
 import {articleContext} from '../providers/ArticleProvider'
-
+import Image from '../articleWriting/Image'
 const ArticleDisplay = () => {
-  const [inputs, setInputs] = useState({title: '', description: '', displayImage: ''})
+  
 
-  const{saveArticle} = useContext(articleContext)
+  const{saveArticle, setAboutTheArticle, aboutTheArticle} = useContext(articleContext)
 
   const handleChange = (e) => {
     const {name, value} = e.target;
-    setInputs(prev => ({...prev, [name]: value}))
+    setAboutTheArticle(prev => ({...prev, [name]: value}))
   }
 
   return (<>
-      <form >
-        <textarea placeholder='title' />
+      <form>
+        <textarea  placeholder='title' 
+        name='title' 
+        value={aboutTheArticle.title} 
+        onChange={handleChange} />
         <br />
-        <textarea  placeholder='description'/>
+        <textarea  placeholder='description'
+        name='description' 
+        value={aboutTheArticle.description} 
+        onChange={handleChange} />
       </form>
-      
-      <MakeInputs />
+      <p>Display Image</p>
+      <Image />
       <br />
           <button onClick={() => saveArticle()}>Save article</button>
   </>);
