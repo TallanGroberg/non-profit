@@ -11,6 +11,7 @@ change doc.title to be right name.
 
 add transitions
 
+if state is an object. 
 
 ```javascript
 import React, {useState} from 'react'
@@ -79,36 +80,7 @@ const App = () => {
 
 ```
 
-```javascript
-import React, {useState} from 'react'
 
-const App = () => {
-  //hook                      define data type here
-  const [inArray, setInArray] = useState([])
-
-  //how to set state 
-
-  const AddToArray = (e) => {
-   
-    //same as this.setState                     get everything off previous array                                                              
-    setInArray(prev => ([...prev, 'thing added' ]) )
-  }
-
-  const showArray = () => {
-    inArray.map(thing => {
-      return <p>thing</p>
-    })
-  }
-
-  return (<>
-
-    <button onClick={addToArray}>add a thing.</button>
-
-             {showArray()}{/*expect output thing added times button clicked */}
-          </>)
-}
-
-```
 
 for boolean's
 
@@ -140,7 +112,7 @@ const App = () => {
 ```
 
 
-
+for numbers...
 
 
 ```javascript
