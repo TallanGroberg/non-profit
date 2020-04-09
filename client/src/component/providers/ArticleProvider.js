@@ -35,7 +35,7 @@ const ArticleProvider = (props) => {
 
   const saveArticle = () => {
     
-    const wholeArticle = {user: user._id, article: content,}
+    const wholeArticle = {...aboutTheArticle, user: user._id, article: content }
   
     
     bearerAxios.post('/article', wholeArticle)
