@@ -65,6 +65,10 @@ const ImageDisplay = (props) => {
 
   const deleteImage = async() => {
     setImageDelete(prev => (!prev))
+      if(props.id === undefined) { 
+        setAboutTheArticle(prev => ({...prev, displayImage: ""}) )
+      }
+    
     const filtered = await content.filter(input => {
       return input.orderAppear !== id 
     })

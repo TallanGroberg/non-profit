@@ -13,7 +13,7 @@ const EditImage = (props) => {
                   setImageAsUrl,
                 setIsEditing} = props
 
-  const {submitContent, content, setContent,} = useContext(articleContext)
+  const {submitContent, content, setContent, setAboutTheArticle} = useContext(articleContext)
 
 
   const handleImageAsFile = async (e) => {
@@ -53,7 +53,9 @@ uploadTask.on('state_changed',
       })
       
       await setContent(filtered)
-      
+      if(props.id === undefined) { 
+        setAboutTheArticle(prev => ({...prev, displayImage: fireBaseUrl}) )
+      }
       await submitContent({image: fireBaseUrl, orderAppear: id})
       setIsEditing(prev => (!prev))
     })
