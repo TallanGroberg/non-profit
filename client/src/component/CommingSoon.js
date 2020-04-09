@@ -22,6 +22,8 @@ const CommingSoon = () => {
         />
         {token !== '' && <button id="signout-button" onClick={() => signout()}>sign out</button>}
         <Link to='/write-article'>write an article</Link>
+        <br />
+        <Link to='/articles'>Read articles </Link>
         
     </>
   );
