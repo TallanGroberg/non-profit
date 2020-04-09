@@ -4,42 +4,46 @@ import {withAuth, authContext, bearerAxios} from './AuthProvider'
 export const articleContext = React.createContext()
 
 const ArticleProvider = (props) => {
-  const {user,} = useContext(authContext)
-  
+  const initState = {title: '', description: '', displayImage: ''}
+  const {user, handleError} = useContext(authContext)
+  const [aboutTheArticle, setAboutTheArticle] = useState(initState)
   const [content, setContent] = useState([])
   const [articleForWriter, setArticleForWriter] = useState([])
   const [count, setCount] = useState(0)
-
   
 
   
 
   
-  console.log('content', content, 'articleForWriter',articleForWriter)
+
+  
+  console.log('content', content, 'articleForWriter',articleForWriter, aboutTheArticle )
+
+  
 
   const submitContent = (arg) => {
-    
     const set = new Set([ ...content, arg])
-    let arr = [...set]
-    arr = arr.map(articlePiece => {
-      return articlePiece.orderAppear === arg.orderAppear ? arg : articlePiece})
-    setContent(prev => ([ ...arr]))
-    
+      let arr = [...set]
+        arr = arr.map(articlePiece => {
+          return articlePiece.orderAppear === arg.orderAppear ? arg : articlePiece})
+            setContent(prev => ([ ...arr]))
+            
   }
+
 
   
 
   const saveArticle = () => {
     
-    const wholeArticle = {user: user._id, article: content}
+    const wholeArticle = {...aboutTheArticle, user: user._id, article: content }
   
-    console.log(user._id)
+    
     bearerAxios.post('/article', wholeArticle)
     .then(res => {
       console.log(res.data)
     })
     .catch(err => {
-      console.error(err)
+      handleError(err)
     })
   }
 
@@ -50,8 +54,11 @@ const ArticleProvider = (props) => {
       setCount,
       saveArticle,
       submitContent,
+      aboutTheArticle, 
+      setAboutTheArticle,
       content, 
       setContent,
+
       articleForWriter, 
       setArticleForWriter,
 
