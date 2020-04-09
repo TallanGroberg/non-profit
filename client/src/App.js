@@ -10,11 +10,11 @@ import ProtectedRoute from './component/authentication/ProtectedRoute'
 import Signup from './component/authentication/Signup'
 import Signin from './component/authentication/Signin'
 
-import MakeInputs from './component/articleWriting/MakeInputs'
-import CommingSoon from './component/CommingSoon';
-
-import Donate from './component/Donate'
 import ArticleDisplay from './component/articleWriting/ArticleDisplay';
+import CommingSoon from './component/CommingSoon';
+import Donate from './component/Donate'
+
+import AllArticles from './component/displayingArticles/AllArticles'
 
 
 function App(props) {
@@ -46,12 +46,13 @@ function App(props) {
     <Container>
       <Switch>
         <Route exact path="/"> <CommingSoon /> </Route>
-        <Route exact path="/donate"> <Donate /> </Route>
+        {/* <Route exact path="/donate"> <Donate /> </Route> */}
 
         
         <Route exact path="/signup"> <Signup /> </Route>
         <Route exact path="/signin"> <Signin /> </Route>
         <ProtectedRoute exact path="/write-article"> <ArticleDisplay /> </ProtectedRoute>
+        <Route exact path='/articles'> <AllArticles /> </Route>
       </Switch>
       
         

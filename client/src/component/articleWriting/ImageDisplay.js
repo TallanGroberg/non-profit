@@ -51,7 +51,7 @@ const ImageDisplay = (props) => {
       .then(async fireBaseUrl => {
         await setIsLoading(false)
         await setImageAsUrl(prevObject => ({...prevObject, imgUrl: fireBaseUrl}))
-        if(props.id === undefined) { 
+        if(props.id === "displayImage") { 
           setAboutTheArticle(prev => ({...prev, displayImage: fireBaseUrl}) )
         }
         submitContent({image: fireBaseUrl, orderAppear: id})
@@ -65,7 +65,7 @@ const ImageDisplay = (props) => {
 
   const deleteImage = async() => {
     setImageDelete(prev => (!prev))
-      if(props.id === undefined) { 
+      if(props.id === "displayImage") { 
         setAboutTheArticle(prev => ({...prev, displayImage: ""}) )
       }
     
