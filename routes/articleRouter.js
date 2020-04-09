@@ -2,7 +2,7 @@ const express = require('express')
 const articleRouter = express.Router()
 const Article = require('../models/article')
 
-console.log('article router ...')
+
 
 articleRouter.get('/', (req,res,next) => {
   Article.find( (err,article) => {

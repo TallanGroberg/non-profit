@@ -25,7 +25,7 @@ const ArticleDisplay = () => {
         onChange={handleChange} />
       </form>
       <p>Display Image</p>
-      <Image />
+      <Image id='displayImage' />
       <MakeInputs />
       <br />
           <button onClick={() => saveArticle()}>Save article</button>

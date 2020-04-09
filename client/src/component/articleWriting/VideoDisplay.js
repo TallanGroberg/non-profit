@@ -6,7 +6,7 @@ import { articleContext } from '../providers/ArticleProvider';
 const VideoDisplay = (props) => {
 
   const {id, count, setVideoDeleted} = props
-
+  const [isEditingVideo, setIsEditingVideo] = useState(false)
   const [videoForm, setVideoForm] = useState(true)
   const [videoUrl, setVideoUrl] = useState({video: '', orderAppear: props.id})
 
@@ -31,6 +31,12 @@ const VideoDisplay = (props) => {
     setVideoUrl(prev => ({...prev,[name]: value,}))
   } 
 
+  const handleVideoEdit = () => {
+    setIsEditingVideo(true)
+    setVideoForm(prev => (!prev))
+  }
+
+
   const deleteVideo = async () => {
     setVideoDeleted(prev => (!prev))
     const filteredContent = await content.filter(input => {
@@ -51,7 +57,7 @@ const VideoDisplay = (props) => {
             name='video'
             type="text"
             id='video-input-field'
-            placeholder='video url' 
+            placeholder={isEditingVideo ? 'Editing video' : 'video url' }
             onChange={handleChange}
             />
           <button
@@ -67,7 +73,7 @@ const VideoDisplay = (props) => {
           controls
             />
             <button id={`delete-article-piece${count}`} onClick={deleteVideo}>delete</button>
-            <button id={`delete-article-piece${count}`} onClick={() => setVideoForm(prev => (!prev))}>edit</button>
+            <button id={`delete-article-piece${count}`} onClick={handleVideoEdit}>edit</button>
       </> 
   }
   </>);
