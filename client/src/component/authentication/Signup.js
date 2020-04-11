@@ -7,7 +7,7 @@ const Signup = () => {
 
   const {inputs, handleSignup, handleChange} = useFormInput()
   const {error} = useContext(authContext)
-  console.log(error)
+  
   return (<>
     <form onSubmit={handleSignup}> 
       <input id='signup-name' placeholder='name' type="text" name='name' value={inputs.name} onChange={handleChange}/>

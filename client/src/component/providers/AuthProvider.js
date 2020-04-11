@@ -27,7 +27,7 @@ const AuthProvider = (props) => {
 
     const handleErrors = (arg) => {
       
-      console.log(arg)
+     
       const set = new Set([ ...error, arg])
     let arr = [...set]
       setError(prev => ([...arr]))
@@ -46,7 +46,7 @@ const AuthProvider = (props) => {
         history.push('/')
       })
       .catch(err => {
-        console.log(err)
+        
         handleErrors(err.message)
       })
     }

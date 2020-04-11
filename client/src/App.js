@@ -15,7 +15,7 @@ import CommingSoon from './component/CommingSoon';
 import Donate from './component/Donate'
 
 import AllArticles from './component/displayingArticles/AllArticles'
-
+import OneArticle from './component/displayingArticles/OneArticle'
 
 function App(props) {
   const initState = {firstName: '', lastName: '', email: ''}
@@ -53,6 +53,7 @@ function App(props) {
         <Route exact path="/signin"> <Signin /> </Route>
         <ProtectedRoute exact path="/write-article"> <ArticleDisplay /> </ProtectedRoute>
         <Route exact path='/articles'> <AllArticles /> </Route>
+        <Route exact path='/article/:_id'> <OneArticle /> </Route>
       </Switch>
       
         

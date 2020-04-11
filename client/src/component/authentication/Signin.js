@@ -8,7 +8,7 @@ const Signin = (props) => {
   
   const {inputs, handleSignin, handleChange, } = useFormInput()
   const {error} = useContext(authContext)
-  console.log(error)
+
 
   return (<>
     <form onSubmit={handleSignin}> 

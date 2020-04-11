@@ -15,9 +15,21 @@ articleRouter.get('/', (req,res,next) => {
   })
 })
 
+articleRouter.get('/:_id', (req,res,next) => {
+  Article.findById({_id: req.params._id}, (err,article) => {
+    
+    if(err) {
+      res.status(501)
+      next(err)
+    } else {
+      res.status(201).send(article)
+    }
+  })
+})
+
 articleRouter.post('/', (req,res,next) => {
   const newArticle = new Article(req.body)
-  console.log(req.body)
+  
   newArticle.user = req.body.user
   newArticle.save( (err, article) => {
     if(err) {
@@ -28,6 +40,8 @@ articleRouter.post('/', (req,res,next) => {
     }
   })
 })
+
+
 
 
 module.exports = articleRouter

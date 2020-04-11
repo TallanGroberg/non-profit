@@ -36,7 +36,7 @@ const TextArea = (props) => {
   
   
 
-  console.log(props.id, count, text)
+
   
   return (<>
     {paragraphDeleted ?

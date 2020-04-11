@@ -22,7 +22,7 @@ transporter.verify((error, success) => {
 });
 
 contactRouter.post("/", (req,res,next) => {
-  console.log(req.body);
+  
   const mail = {
     from: `${req.body.artHub}`,
     to: req.body.email,

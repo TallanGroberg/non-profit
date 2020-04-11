@@ -1,14 +1,18 @@
 import React, {useState,useEffect} from 'react';
 import axios from 'axios'
+import {Link } from 'react-router-dom'
 
 const AllArticles = (props) => {
   const [articles, setArticles] = useState([])
-  console.log(articles)
+  
 
   useEffect( () => {
     axios.get('/article')
     .then(res => {
       setArticles(prev => (res.data))
+    })
+    .catch(err => {
+      console.log(err)
     })
   }, [])
 
@@ -18,10 +22,13 @@ const AllArticles = (props) => {
       {articles.length > 0 && articles.map(article => 
       
       <>
-      
-      <h1>{article.title}</h1>
-        <h4>{article.description}</h4>
-        <img src={article.displayImage} />
+        <Link to={`/article/${article._id}`}>
+        
+          <h1>{article.title}</h1>
+            <h4>{article.description}</h4>
+              <img src={article.displayImage} />
+        </Link>
+
       </>
       )}
     </div>
