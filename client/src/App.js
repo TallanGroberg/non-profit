@@ -69,6 +69,10 @@ const Container = styled.div`
     height: 70%;
     width: 60%;
   }
+  iframe {
+    height: 70%;
+    width: 65%;
+  }
 
 `;
 

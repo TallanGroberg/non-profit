@@ -1,9 +1,17 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios'
+import {bearerAxios} from '../providers/AuthProvider'
 import {withRouter} from 'react-router-dom'
 import ReactPlayer from 'react-player'
+import Content from './Content'
+
 const OneArticle = (props) => {
   const [articleContent, setArticleContent] = useState([])
+  const [theLikes, setLikes] = useState()
+
+  console.log(theLikes)
+
+  
 
   const {_id } = props.match.params
   console.log(articleContent, _id)
@@ -12,11 +20,19 @@ const OneArticle = (props) => {
     axios.get(`/article/${_id}`)
     .then(res => {
       setArticleContent(prev => ([...prev, res.data]))
+      
     })
   }, [])
 
-  const videoWidth = window.innerWidth - 32;
-  const videoHeight = window.innerWidth - 160;
+  const handleLike = (_id) => {
+    bearerAxios.put(`/article/like/${_id}`)
+    .then(res => {
+      console.log(res)
+    })
+    .catch(err => console.log(err))
+  }
+
+  
 
   return (
     <>
@@ -27,21 +43,11 @@ const OneArticle = (props) => {
           <img src={article.displayImage} />
 
           {article.article.length > 0 && article.article.map(content => {
-            if(content.image && content.image !== article.displayImage) {
-              return <img src={content.image} />
-            } else if(content.video) {
-              return <ReactPlayer 
-              style={{margin: 'auto', left: 0, right: 0, }}
-              width={videoWidth}
-              height={videoHeight}
-              url={content.video} 
-              controls
-                />
-            } else if(content.textarea) {
-              return <p>{content.textarea}</p>
-            }
+            return <Content content={content} article={article} />
             
           })}
+          <button onClick={() => handleLike(article._id)}> like article</button>
+          <p>{theLikes}</p>
           </div>
       })}
     </>

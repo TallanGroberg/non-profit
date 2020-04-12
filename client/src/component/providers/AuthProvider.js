@@ -26,8 +26,6 @@ const AuthProvider = (props) => {
     const {history,} = props
 
     const handleErrors = (arg) => {
-      
-     
       const set = new Set([ ...error, arg])
     let arr = [...set]
       setError(prev => ([...arr]))
@@ -83,6 +81,7 @@ const AuthProvider = (props) => {
       signout,
       error,
       setError,
+      handleErrors,
       token,
       user,
     }}>

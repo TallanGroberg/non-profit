@@ -4,20 +4,22 @@ import {withAuth, authContext, bearerAxios} from './AuthProvider'
 export const articleContext = React.createContext()
 
 const ArticleProvider = (props) => {
-  const initState = {title: '', description: '', displayImage: ''}
-  const {user, handleError} = useContext(authContext)
+  const initState = {title: '', description: '', displayImage: '', catagory: '',}
+
+  const {user, handleErrors, setError} = useContext(authContext)
+
   const [aboutTheArticle, setAboutTheArticle] = useState(initState)
   const [content, setContent] = useState([])
   const [articleForWriter, setArticleForWriter] = useState([])
   const [count, setCount] = useState(0)
   
 
-  
+   
+
+
 
   
-
-  
-  console.log('content', content, 'articleForWriter',articleForWriter, aboutTheArticle )
+  console.log(handleErrors, aboutTheArticle.catagory)
 
   
 
@@ -37,15 +39,21 @@ const ArticleProvider = (props) => {
     
     const wholeArticle = {...aboutTheArticle, user: user._id, article: content }
   
-    
-    bearerAxios.post('/article', wholeArticle)
-    .then(res => {
-      console.log(res.data)
-    })
-    .catch(err => {
-      handleError(err)
-    })
-  }
+    if(aboutTheArticle.catagory !== 'Catagory' && aboutTheArticle.catagory !== ''){
+
+      bearerAxios.post('/article', wholeArticle)
+      .then(res => {
+       setError([])
+      })
+      .catch(err => {
+        handleErrors(err.message)
+      })
+    } else {
+
+      handleErrors('Articles require a catagory before they can be published.')
+    }
+  } 
+  
 
   return (
     <articleContext.Provider value={{
@@ -62,10 +70,6 @@ const ArticleProvider = (props) => {
       articleForWriter, 
       setArticleForWriter,
 
-          
-
-          
-        
     }}>
       {props.children}
     </articleContext.Provider>

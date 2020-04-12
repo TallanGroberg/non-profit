@@ -16,6 +16,14 @@ const articleSchema = new Schema({
   },
   displayImage: {
     type: String,
+  },
+  catagory: {
+    type: String,
+    enum: ['Art', 'Politics', 'Business', 'Trending', 'Recent']
+  },
+  likes: {
+    type: Number,
+    default: 0,
   }
 })
 

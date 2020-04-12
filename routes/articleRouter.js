@@ -41,6 +41,21 @@ articleRouter.post('/', (req,res,next) => {
   })
 })
 
+//Like article, 
+
+articleRouter.put('/like/:_id', (req,res,next) => {
+  Article.findByIdAndUpdate(req.params._id, 
+    {$inc: {likes: 1}},
+    {new: true},
+    (err, likedArticle) => {
+      if(err) {
+        res.status(500)
+        return next(err)
+      }
+      return res.status(201).send(likedArticle)
+  })
+})
+
 
 
 
