@@ -3,15 +3,32 @@ const articleRouter = express.Router()
 const Article = require('../models/article')
 
 
+// let query = Article.find({'catagory': 'Business' })
+// query.limit(2)
+
+// query.exec(  (err, art) => {
+//   if(err) return next(err)
+//   console.log(art)
+// })
+
+// business articles 
+articleRouter.get('/business', (req,res,next) => {
+  let query = Article.find({'catagory': 'Business' })
+
+      query.exec(  (err, art) => {
+        if(err) return next(err)
+        res.send(art)
+      })
+})
+
 
 articleRouter.get('/', (req,res,next) => {
-  Article.find( (err,article) => {
-    if(err) {
-      res.status(501)
-      next(err)
-    } else {
-      res.status(201).send(article)
-    }
+  let query = Article.find()
+  query.limit(20)
+  query.sort({likes: -1})
+  query.exec(function (err,art) {
+    if(err) return next(err)
+    res.send(art)
   })
 })
 
@@ -46,6 +63,18 @@ articleRouter.post('/', (req,res,next) => {
 articleRouter.put('/like/:_id', (req,res,next) => {
   Article.findByIdAndUpdate(req.params._id, 
     {$inc: {likes: 1}},
+    {new: true},
+    (err, likedArticle) => {
+      if(err) {
+        res.status(500)
+        return next(err)
+      }
+      return res.status(201).send(likedArticle)
+  })
+})
+articleRouter.put('/unlike/:_id', (req,res,next) => {
+  Article.findByIdAndUpdate(req.params._id, 
+    {$inc: {likes: -1}},
     {new: true},
     (err, likedArticle) => {
       if(err) {

@@ -7,9 +7,9 @@ import Content from './Content'
 
 const OneArticle = (props) => {
   const [articleContent, setArticleContent] = useState([])
-  const [theLikes, setLikes] = useState()
+  const [liked, setLiked] = useState(false)
 
-  console.log(theLikes)
+  console.log(liked)
 
   
 
@@ -25,7 +25,16 @@ const OneArticle = (props) => {
   }, [])
 
   const handleLike = (_id) => {
+    setLiked(prev => (!prev))
     bearerAxios.put(`/article/like/${_id}`)
+    .then(res => {
+      console.log(res)
+    })
+    .catch(err => console.log(err))
+  }
+  const handleUnlike = (_id) => {
+    setLiked(prev => (!prev))
+    bearerAxios.put(`/article/unlike/${_id}`)
     .then(res => {
       console.log(res)
     })
@@ -46,8 +55,13 @@ const OneArticle = (props) => {
             return <Content content={content} article={article} />
             
           })}
-          <button onClick={() => handleLike(article._id)}> like article</button>
-          <p>{theLikes}</p>
+          <button onClick={liked ?
+                () => handleUnlike(article._id)
+                : 
+                () => handleLike(article._id)
+                }>{liked ? 'article liked' : 'like article'}</button>
+
+            <p>{liked ? article.likes + 1 : article.likes }</p>
           </div>
       })}
     </>
