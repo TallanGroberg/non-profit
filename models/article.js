@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-
+const moment = require('moment')
 const articleSchema = new Schema({
   article: {
     type: Array,
@@ -26,7 +26,7 @@ const articleSchema = new Schema({
     default: 0,
   },
   date: {
-    type: Date,
+    type: Number,
     default: Date.now()
   }
 })

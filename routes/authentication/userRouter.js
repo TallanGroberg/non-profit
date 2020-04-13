@@ -1,6 +1,6 @@
 const express = require('express')
 const userRouter = express.Router()
-const User = require('../models/user.js')
+const User = require('../../models/user.js')
 const jwt = require('jsonwebtoken')
 const secret = process.env.SECRET || 'super secret sly stuffs'
 const bcrypt = require('bcrypt')

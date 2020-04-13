@@ -29,13 +29,13 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/justice',
 
 
 //routes 
-app.use('/user', require('./routes/userRouter.js'))
-app.use('/contactbuyer', require('./routes/contactRouter'))
-app.use('/contactseller', require('./routes/contactSellerRouter'))
-app.use('/feedback', require('./routes/contactFeedbackRouter'))
+app.use('/user', require('./routes/authentication/userRouter.js'))
+app.use('/contactbuyer', require('./routes/siteMailers/contactRouter'))
+app.use('/contactseller', require('./routes/siteMailers/contactSellerRouter'))
+app.use('/feedback', require('./routes/siteMailers/contactFeedbackRouter'))
 app.use('/charge', require('./routes/paymentRouter'))
 
-app.use('/article', require('./routes/articleRouter'))
+app.use('/article', require('./routes/articleQueries/articleRouter'))
 
 
 
