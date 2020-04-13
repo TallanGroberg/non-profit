@@ -3,6 +3,7 @@ import ReactDom from 'react-dom'
 import App2 from './components/App2'
 
 import './css/normalize.css'
+import './css/index.css'
 
 ReactDom.render(
   <App2 />, document.getElementById('root')

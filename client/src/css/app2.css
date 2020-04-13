@@ -1,3 +1,4 @@
 .app2-container {
-    background: dodgerblue;
+    width: 100%;
+    display: flex;
 }

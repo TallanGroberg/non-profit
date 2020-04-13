@@ -1,10 +1,15 @@
 import React from 'react'
-// import '../css/header.css'
+import HeaderSignIn from './HeaderSignIn'
+import '../css/header.css'
 
 function Header() {
     return (
         <div className='header-container'>
-            <h2>Goodbye</h2>
+            <div className='hamburger-menu-container'>
+                <p>Menu</p>
+            </div>
+            <div className='logo-container'></div>
+            <HeaderSignIn />
         </div>
     )
 }

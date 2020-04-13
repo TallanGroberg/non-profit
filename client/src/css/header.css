@@ -1,3 +1,38 @@
 .header-container {
+    width: 100%;
+    height: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0px;
     color: #FFF;
+    /* border: 1px solid lightcoral; */
+    background-image: url('../images/Hero-Image.png');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
+
+.hamburger-menu-container {
+    width: 100%;
+    height: 32px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    color: red;
+    /* border: 1px solid dodgerblue; */
+}
+
+.hamburger-menu-container p {
+    margin-right: 16px;
+    /* border: 1px solid green; */
+}
+
+.logo-container {
+    width: 200px;
+    height: 120px;
+    color: dodgerblue;
+    background-image: url('../images/header-logo.png');
+    /* border: 1px solid red; */
+}
+
+
