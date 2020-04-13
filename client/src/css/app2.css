@@ -1,4 +1,23 @@
 .app2-container {
     width: 100%;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.app2-container main {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 24px;
+    border: 1px solid lightcoral;
+}
+
+.category-p {
+    width: 72px;
+    height: 24px;
+    font-size: 18px;
+    color: #A55B44;
+    padding: 0px;
+    margin: 0px;
 }

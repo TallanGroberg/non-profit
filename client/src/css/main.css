@@ -1,0 +1,12 @@
+.main-container {
+    width: 90%;
+    margin-top: 24px;
+    /* background: lightgreen; */
+}
+
+.category-name {
+    margin: 0px;
+    font-size: 18px;
+    color: #A55B44;
+    /* background: red; */
+}
