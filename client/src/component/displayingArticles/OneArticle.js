@@ -11,17 +11,19 @@ const OneArticle = (props) => {
 
   console.log(liked)
 
-  
+  if(articleContent.length > 0) {
+    document.title = articleContent[0].title
+  }
 
   const {_id } = props.match.params
   console.log(articleContent, _id)
   
   useEffect( () => {
     axios.get(`/article/${_id}`)
-    .then(res => {
-      setArticleContent(prev => ([...prev, res.data]))
-      
+    .then(async res => {
+      await setArticleContent(prev => ([...prev, res.data]))
     })
+    
   }, [])
 
   const handleLike = (_id) => {

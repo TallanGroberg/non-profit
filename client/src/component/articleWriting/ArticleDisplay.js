@@ -25,7 +25,6 @@ const ArticleDisplay = () => {
             <option>Catagory</option>
             <option value="Art">Art</option>
             <option value="Business">Business</option>
-            <option value="Trending">Trending</option>
             <option value="Politics">Politics</option>
           </select>
           <br />

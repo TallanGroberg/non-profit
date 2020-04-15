@@ -19,7 +19,7 @@ const articleSchema = new Schema({
   },
   catagory: {
     type: String,
-    enum: ['Art', 'Politics', 'Business', 'Trending', 'Recent']
+    enum: ['Art', 'Politics', 'Business',]
   },
   likes: {
     type: Number,
