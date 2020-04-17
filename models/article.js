@@ -1,6 +1,14 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const moment = require('moment')
+
+let now = moment().format("l").split('/').reverse()
+    now = now.map(num => Number(num, 10))
+    let year = now[0]
+    let day = now[1]
+    let month = now[2]
+    now = [year,month,day].join('')
+
 const articleSchema = new Schema({
   article: {
     type: Array,
@@ -27,7 +35,7 @@ const articleSchema = new Schema({
   },
   date: {
     type: Number,
-    default: Date.now()
+    default: now
   }
 })
 

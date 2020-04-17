@@ -4,6 +4,8 @@ const Article = require('../../models/article')
 const moment = require('moment')
 
 
+
+//catagories
 articleRouter.get('/business', (req,res,next) => {
   let query = Article.find({'catagory': 'Business' })
 
@@ -29,6 +31,13 @@ articleRouter.get('/politics', (req,res,next) => {
       })
 })
 articleRouter.get('/recent', (req,res,next) => {
+  let now = moment().format("l").split('/').reverse()
+    now = now.map(num => Number(num, 10))
+    let year = now[0]
+    let day = now[1]
+    let month = now[2]
+    now = [year,day,month]
+  console.log(now, month) 
   let query = Article.find()
       query.sort({date: -1})
       query.limit(20)
@@ -49,6 +58,7 @@ articleRouter.get('/trending', (req,res,next) => {
   })
 })
 
+//get all. 
 articleRouter.get('/', (req,res,next) => {
   let query = Article.find()
   query.limit(20)
@@ -57,7 +67,7 @@ articleRouter.get('/', (req,res,next) => {
     res.send(art)
   })
 })
-
+//get one
 articleRouter.get('/:_id', (req,res,next) => {
   Article.findById({_id: req.params._id}, (err,article) => {
     
@@ -70,9 +80,21 @@ articleRouter.get('/:_id', (req,res,next) => {
   })
 })
 
+//get everything from user
+articleRouter.get('/user/:_id', (req,res,next) => {
+  Article.find({user: req.params._id}, (err,article) => {
+    
+    if(err) {
+      res.status(501)
+      next(err)
+    } else {
+      res.status(200).send(article)
+    }
+  })
+})
+//make article
 articleRouter.post('/', (req,res,next) => {
   const newArticle = new Article(req.body)
-  
   newArticle.user = req.body.user
   newArticle.save( (err, article) => {
     if(err) {
@@ -82,6 +104,17 @@ articleRouter.post('/', (req,res,next) => {
       res.status(201).send(article)
     }
   })
+})
+
+articleRouter.put('/:_id', (req,res,next) => {
+  let query = Article.findByIdAndUpdate(
+    {_id: req.params._id},
+      req.body,
+        {new: true})
+          query.exec( (err, article) => {
+            if(err) return  next(err)
+            res.status(201).send(article)
+          })
 })
 
 //Like article, 

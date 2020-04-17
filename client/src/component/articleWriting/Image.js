@@ -16,7 +16,9 @@ function Image(props) {
       {imageDeleted ? 
       null
       :
-      <ImageDisplay id={props.id} setImageDelete={setImageDelete} />
+      <ImageDisplay id={props.id}
+          setImageDelete={setImageDelete}
+             />
     }
 
 

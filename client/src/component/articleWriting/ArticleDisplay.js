@@ -3,10 +3,12 @@ import MakeInputs from './MakeInputs';
 import {articleContext} from '../providers/ArticleProvider'
 import {authContext} from '../providers/AuthProvider'
 import Image from '../articleWriting/Image'
-const ArticleDisplay = () => {
+
+const ArticleDisplay = (props) => {
   
   const {error} = useContext(authContext) 
-  console.log(error)
+
+  console.log(props)
 
   const{saveArticle,
         setAboutTheArticle, 
@@ -22,7 +24,7 @@ const ArticleDisplay = () => {
   return (<>
       <form>
           <select name="catagory" onChange={handleChange}>
-            <option>Catagory</option>
+            <option value={aboutTheArticle.catagory !== '' ? aboutTheArticle.catagory : null}>{aboutTheArticle.catagory !== '' ? aboutTheArticle.catagory : 'Catagory'}</option>
             <option value="Art">Art</option>
             <option value="Business">Business</option>
             <option value="Politics">Politics</option>

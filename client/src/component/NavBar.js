@@ -10,6 +10,7 @@ const NavBar = () => {
       <Link to="/recent" >Recent</Link>
       <Link to="/politics" >Politics</Link>
       <Link to="/trending" >Trending</Link>
+      <Link to='/profile'>profile</Link>
     </div>
   );
 };

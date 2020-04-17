@@ -1,5 +1,6 @@
 import React, {useState, useContext} from 'react';
 import {withAuth, authContext, bearerAxios} from './AuthProvider'
+import {withRouter} from 'react-router-dom'
 
 export const articleContext = React.createContext()
 
@@ -19,7 +20,7 @@ const ArticleProvider = (props) => {
 
 
   
-  console.log(handleErrors, aboutTheArticle.catagory)
+  console.log( aboutTheArticle.catagory)
 
   
 
@@ -44,10 +45,12 @@ const ArticleProvider = (props) => {
       bearerAxios.post('/article', wholeArticle)
       .then(res => {
        setError([])
+        props.history.push(`/article/${res.data._id}`)
       })
       .catch(err => {
         handleErrors(err.message)
       })
+      
     } else {
 
       handleErrors('Articles require a catagory before they can be published.')
@@ -76,4 +79,4 @@ const ArticleProvider = (props) => {
   );
 };
 
-export default ArticleProvider;
+export default withRouter(ArticleProvider);

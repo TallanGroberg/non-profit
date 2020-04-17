@@ -1,4 +1,4 @@
-import React, {useState,useContext} from 'react';
+import React, {useState,useContext, useEffect} from 'react';
 import {storage} from '../../firebase/index'
 import useFileUpload from './../customHooks/useFileUpload'
 import { articleContext } from '../providers/ArticleProvider';
@@ -8,7 +8,7 @@ import EditImage from './EditImage';
 
 const ImageDisplay = (props) => {
   const initState = { imgUrl: ''}
-  const [imageAsFile, setImageAsFile] = useState('')
+  const [imageAsFile, setImageAsFile] = useState( '')
   const [imageAsUrl, setImageAsUrl] = useState(initState)
   const [isLoading, setIsLoading] = useState(false)
   const [imageForm, setImageForm] = useState(false)
@@ -16,7 +16,16 @@ const ImageDisplay = (props) => {
 
   const {id, count, setImageDelete} = props
   
-    const {submitContent,setAboutTheArticle, setArticleForWriter, articleForWriter, content, setContent}= useContext(articleContext)
+    const {submitContent,setAboutTheArticle,aboutTheArticle, setArticleForWriter, articleForWriter, content, setContent}= useContext(articleContext)
+
+    console.log('image as file', imageAsUrl,'aboutTheArticle.displayImage',  )
+    useEffect( () => {
+      console.log(aboutTheArticle.displayImage)
+      // if(aboutTheArticle.displayImage !== '') {
+        setImageAsUrl({ imgUrl: aboutTheArticle.displayImage})
+        setImageForm(prev => (!prev))
+      // } 
+    }, [aboutTheArticle.displayImage])
 
 
     const handleImageAsFile = async (e) => {

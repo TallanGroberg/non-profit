@@ -10,6 +10,8 @@ import NavBar from './component/NavBar'
 
 import Signup from './component/authentication/Signup'
 import Signin from './component/authentication/Signin'
+import Profile from './component/authentication/userFeatures/Profile'
+import EditAfterPublished from './component/authentication/userFeatures/EditAfterPublished'
 
 import ArticleDisplay from './component/articleWriting/ArticleDisplay';
 import CommingSoon from './component/CommingSoon';
@@ -58,6 +60,9 @@ function App(props) {
         
         <Route exact path="/signup"> <Signup /> </Route>
         <Route exact path="/signin"> <Signin /> </Route>
+        <ProtectedRoute exact path="/profile"> <Profile /> </ProtectedRoute>
+        <ProtectedRoute exact path="/article/edit/:_id"> <EditAfterPublished /> </ProtectedRoute>
+
         <ProtectedRoute exact path="/write-article"> <ArticleDisplay /> </ProtectedRoute>
         <Route exact path='/articles'> <AllArticles /> </Route>
         <Route exact path='/business'> <BusinessArticles /> </Route>

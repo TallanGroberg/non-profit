@@ -84,6 +84,7 @@ const AuthProvider = (props) => {
       handleErrors,
       token,
       user,
+      
     }}>
       {props.children}
     </authContext.Provider>
