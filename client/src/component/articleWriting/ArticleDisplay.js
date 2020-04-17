@@ -13,6 +13,7 @@ const ArticleDisplay = (props) => {
   const{saveArticle,
         setAboutTheArticle, 
         aboutTheArticle,
+        editArticle
         } = useContext(articleContext)
         
 
@@ -43,9 +44,14 @@ const ArticleDisplay = (props) => {
       </form>
       <p>Display Image</p>
       <Image id='displayImage' />
-      <MakeInputs />
+      <MakeInputs isForEditing={props.isForEditing.article} />
       <br />
-          <button onClick={() => saveArticle()}>Save article</button>
+          <button onClick={props.isForEditing === undefined ? 
+              () => saveArticle() 
+              : 
+              () => editArticle(props.isForEditing._id)}>
+                {props.isForEditing === undefined ? 'Save article' : "Save Edits"}
+            </button>
           {error.length > 0 && error.map(err => <p>{err}</p>)}
   </>);
 };

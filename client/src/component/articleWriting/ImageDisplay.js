@@ -18,13 +18,14 @@ const ImageDisplay = (props) => {
   
     const {submitContent,setAboutTheArticle,aboutTheArticle, setArticleForWriter, articleForWriter, content, setContent}= useContext(articleContext)
 
-    console.log('image as file', imageAsUrl,'aboutTheArticle.displayImage',  )
     useEffect( () => {
-      console.log(aboutTheArticle.displayImage)
-      // if(aboutTheArticle.displayImage !== '') {
+      
+      if(aboutTheArticle.displayImage !== '' && id === 'displayImage') {
         setImageAsUrl({ imgUrl: aboutTheArticle.displayImage})
-        setImageForm(prev => (!prev))
-      // } 
+        setImageForm(prev => (false))
+      } else if(props.imgUrl !== undefined) {
+          setImageAsUrl({imgUrl: props.imgUrl})
+      }
     }, [aboutTheArticle.displayImage])
 
 

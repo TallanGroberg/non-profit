@@ -3,13 +3,7 @@ const articleRouter = express.Router()
 const Article = require('../models/article')
 
 
-// let query = Article.find({'catagory': 'Business' })
-// query.limit(2)
 
-// query.exec(  (err, art) => {
-//   if(err) return next(err)
-//   console.log(art)
-// })
 
 // business articles 
 articleRouter.get('/business', (req,res,next) => {

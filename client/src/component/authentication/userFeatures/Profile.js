@@ -8,13 +8,13 @@ const Profile = (props) => {
   const [articles, setArticles] = useState([])
   
   const {user} = useContext(authContext)
-  console.log(user._id, articles)
+  
   
 
   useEffect( () => {
     bearerAxios.get('/article/user/' + user._id)
     .then(res => {
-      console.log(res)
+ 
       setArticles(prev => (res.data))
     })
     .catch(err => {

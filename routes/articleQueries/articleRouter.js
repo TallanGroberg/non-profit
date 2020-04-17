@@ -31,13 +31,8 @@ articleRouter.get('/politics', (req,res,next) => {
       })
 })
 articleRouter.get('/recent', (req,res,next) => {
-  let now = moment().format("l").split('/').reverse()
-    now = now.map(num => Number(num, 10))
-    let year = now[0]
-    let day = now[1]
-    let month = now[2]
-    now = [year,day,month]
-  console.log(now, month) 
+  
+  
   let query = Article.find()
       query.sort({date: -1})
       query.limit(20)

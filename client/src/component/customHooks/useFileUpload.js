@@ -16,7 +16,7 @@ const useFileUpload = (props) => {
       const handleImageAsFile = async (e) => {
         e.preventDefault()
         const image = e.target.files[0]
-        console.log('image as file ',image)
+        
         await  setImageAsFile(image)
         await setIsLoading(true)
           handleFireBaseUpload(image)
@@ -24,7 +24,7 @@ const useFileUpload = (props) => {
 
     const handleFireBaseUpload = (image) => {
 
-    console.log('start of upload')
+    
    
     // async magic goes here...
     if(imageAsFile === '') {

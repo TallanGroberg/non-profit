@@ -20,7 +20,7 @@ const ArticleProvider = (props) => {
 
 
   
-  console.log( aboutTheArticle.catagory)
+  
 
   
 
@@ -41,7 +41,6 @@ const ArticleProvider = (props) => {
     const wholeArticle = {...aboutTheArticle, user: user._id, article: content }
   
     if(aboutTheArticle.catagory !== 'Catagory' && aboutTheArticle.catagory !== ''){
-
       bearerAxios.post('/article', wholeArticle)
       .then(res => {
        setError([])
@@ -50,11 +49,26 @@ const ArticleProvider = (props) => {
       .catch(err => {
         handleErrors(err.message)
       })
-      
-    } else {
-
-      handleErrors('Articles require a catagory before they can be published.')
-    }
+      } else {
+        handleErrors('Articles require a catagory before they can be published.')
+      }
+  } 
+  const editArticle = (argAs_id) => {
+    debugger
+    const wholeArticle = {...aboutTheArticle, user: user._id, article: content }
+  
+    if(aboutTheArticle.catagory !== 'Catagory' && aboutTheArticle.catagory !== ''){
+      bearerAxios.put('/article/' + argAs_id, wholeArticle)
+      .then(res => {
+       setError([])
+        props.history.push(`/article/${res.data._id}`)
+      })
+      .catch(err => {
+        handleErrors(err.message)
+      })
+        } else {
+          handleErrors('Articles require a catagory before they can be published.')
+        }
   } 
   
 
@@ -64,6 +78,7 @@ const ArticleProvider = (props) => {
       count,
       setCount,
       saveArticle,
+      editArticle,
       submitContent,
       aboutTheArticle, 
       setAboutTheArticle,

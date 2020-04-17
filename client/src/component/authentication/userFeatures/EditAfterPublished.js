@@ -14,7 +14,7 @@ const EditAfterPublished = (props) => {
   useEffect( () => {
     bearerAxios.get('/article/' + _id)
     .then(async res => {
-      console.log(res.data)
+      
       await setArticle(prev => (res.data))
         const {title, description, displayImage, catagory, article} = res.data
         await setAboutTheArticle(prev => ({title, description, displayImage, catagory}))

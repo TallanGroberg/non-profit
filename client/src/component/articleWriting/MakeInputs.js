@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState,useEffect, useContext} from 'react';
 import {authContext} from '../providers/AuthProvider'
 import {articleContext} from '../providers/ArticleProvider'
 import WritersDisplay from './WritersDisplay'
@@ -8,10 +8,10 @@ import Image from './Image'
 import Video from './Video'
 
 
-const MakeInputs = () => {
+const MakeInputs = (props) => {
   
   
-
+  const {isForEditing} = props
   const {user} = useContext(authContext)
   const {count,
           setCount,
@@ -24,6 +24,31 @@ const MakeInputs = () => {
           setArticleForWriter,
           articleForWriter, 
           } = useContext(articleContext)
+
+          
+
+          useEffect( () => {
+            if(isForEditing !== undefined){
+              isForEditing.map( async article => {
+                  const {image,video,textarea, orderAppear} = article
+                  if(image !== undefined){
+                    await setCount(orderAppear)
+                      setArticleForWriter(prev => ([...prev, 
+                      <Image imgUrl={image} id={articleForWriter.length} key={count}  
+                        />]))
+                    } else if(textarea !== undefined) {
+                      await setCount(orderAppear)
+                        setArticleForWriter(prev => ([...prev, 
+                        <TextArea id={articleForWriter.length} key={count}  
+                          />]))
+                      } else if(video !== undefined) {
+                        setArticleForWriter(prev => ([...prev, 
+                        <Video id={articleForWriter.length} key={count}  
+                          />]))
+                      }
+              })
+            }
+          },[props.isForEditing])
 
 
 
@@ -52,12 +77,12 @@ const MakeInputs = () => {
   return (
     <div>
       {articleForWriter.map((input, i) => 
-          <WritersDisplay
-            input={input}
-              count={i} 
-          />
-          )}
+        <WritersDisplay
+        input={input}
+        count={i} 
+        />)}
       <br />
+
       
       <button id="video" onClick={() => addVideo()}>Add video</button>
       <button id="paragraph" onClick={() => addTextArea()}>Add paragraph</button>

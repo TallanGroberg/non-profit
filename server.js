@@ -50,7 +50,7 @@ app.use( (err,req,res,next) => {
 
 
 app.get("*", (req, res) => {
-  console.log(res.data)
+  
   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
 

@@ -9,14 +9,14 @@ const OneArticle = (props) => {
   const [articleContent, setArticleContent] = useState([])
   const [liked, setLiked] = useState(false)
 
-  console.log(liked)
+  
 
   if(articleContent.length > 0) {
     document.title = articleContent[0].title
   }
 
   const {_id } = props.match.params
-  console.log(articleContent, _id)
+  
   
   useEffect( () => {
     axios.get(`/article/${_id}`)
@@ -30,7 +30,7 @@ const OneArticle = (props) => {
     setLiked(prev => (!prev))
     bearerAxios.put(`/article/like/${_id}`)
     .then(res => {
-      console.log(res)
+      
     })
     .catch(err => console.log(err))
   }
@@ -38,7 +38,7 @@ const OneArticle = (props) => {
     setLiked(prev => (!prev))
     bearerAxios.put(`/article/unlike/${_id}`)
     .then(res => {
-      console.log(res)
+      
     })
     .catch(err => console.log(err))
   }
