@@ -82,27 +82,40 @@ userRouter.post('/signin', (req,res,next) => {
 
 userRouter.put('/:_id', (req,res,next) => {
   const user = req.body
+  console.log(user)
  //1st promise
-
-  const hashPassword = new Promise((resolve, reject) => {
-    bcrypt.hash(user.password, 11, (err, hash) => {
-      if(err) return next(err);
-      user.password = hash;
-      resolve(user.password)
+  if(req.body.password !== undefined) {
+    console.log('hit password hashing promise')
+    const hashPassword = new Promise((resolve, reject) => {
+      bcrypt.hash(user.password, 11, (err, hash) => {
+        if(err) return next(err);
+        user.password = hash;
+        resolve(user.password)
+      })
     })
-  })
- 
-  .then(pass => {
     
-    User.findByIdAndUpdate(req.params._id, req.body, {new: true}, (err, user) => {
-      
-      if(err) {
-        res.status(500)
-        return next(err)
+    .then(pass => {
+      User.findByIdAndUpdate(req.params._id, req.body, {new: true}, (err, user) => {
+        if(err) {
+          res.status(500)
+          return next(err)
+        }
+        return res.status(201).send(user)
+      })
+    })
+  } else {
+    console.log('hit without password')
+    User.findOneAndUpdate({_id: req.params._id}, 
+      req.body, 
+        {new: true}, 
+          (err, user) => {
+          if(err) {
+            res.status(500)
+              return next(err)
       }
       return res.status(201).send(user)
     })
-  })
+  }
 })
 
 

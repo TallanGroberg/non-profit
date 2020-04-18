@@ -44,7 +44,11 @@ const ArticleDisplay = (props) => {
       </form>
       <p>Display Image</p>
       <Image id='displayImage' />
-      <MakeInputs isForEditing={props.isForEditing.article} />
+      {props.isForEditing === undefined ?
+          <MakeInputs />
+          :
+          <MakeInputs isForEditing={props.isForEditing.article} />
+      }
       <br />
           <button onClick={props.isForEditing === undefined ? 
               () => saveArticle() 

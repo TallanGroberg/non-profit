@@ -11,11 +11,14 @@ import NavBar from './component/NavBar'
 import Signup from './component/authentication/Signup'
 import Signin from './component/authentication/Signin'
 import Profile from './component/authentication/userFeatures/Profile'
+import UserInfo from './component/authentication/userFeatures/UserInfo'
+import ChangePassword from './component/authentication/userFeatures/ChangePassword'
+import SendEmailForPasswordChange from './component/authentication/userFeatures/SendEmailForPasswordChange'
 import EditAfterPublished from './component/authentication/userFeatures/EditAfterPublished'
 
 import ArticleDisplay from './component/articleWriting/ArticleDisplay';
 import CommingSoon from './component/CommingSoon';
-import Donate from './component/Donate'
+// import Donate from './component/Donate'
 
 import AllArticles from './component/displayingArticles/AllArticles'
 import OneArticle from './component/displayingArticles/OneArticle'
@@ -61,7 +64,10 @@ function App(props) {
         <Route exact path="/signup"> <Signup /> </Route>
         <Route exact path="/signin"> <Signin /> </Route>
         <ProtectedRoute exact path="/profile"> <Profile /> </ProtectedRoute>
+        <ProtectedRoute exact path='/profile-settings'> <UserInfo /> </ProtectedRoute>
         <ProtectedRoute exact path="/article/edit/:_id"> <EditAfterPublished /> </ProtectedRoute>
+        <Route exact path='/send-email'> <SendEmailForPasswordChange /> </Route>
+        <Route exact path='/change-password/:_id'> <ChangePassword /> </Route>
 
         <ProtectedRoute exact path="/write-article"> <ArticleDisplay /> </ProtectedRoute>
         <Route exact path='/articles'> <AllArticles /> </Route>

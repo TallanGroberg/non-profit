@@ -1,10 +1,9 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import { articleContext } from '../providers/ArticleProvider';
 
 const TextAreaDisplay = (props) => {
   const [textForm, setTextForm] = useState(false)
 
-  
   const {submitContent, } = useContext(articleContext)
 
   const {
@@ -13,6 +12,8 @@ const TextAreaDisplay = (props) => {
           setText,
           deleteTextArea
           } = props
+
+          
 
           const saveParagraph = () => {
             setTextForm(prev => (!prev))
@@ -39,7 +40,7 @@ const TextAreaDisplay = (props) => {
     <>
     <textarea name="textarea" 
     onChange={handleChange}
-     id={`textarea${props.id}`} cols={window.innerWidth / 8} rows="10">{text.textarea}</textarea>
+     id={`textarea${props.id}`} value={text.textarea} cols={window.innerWidth / 8} rows="10">{props.text.textarea}</textarea>
     <br />
               <button onClick={saveParagraph}>save paragraph</button> 
     </>

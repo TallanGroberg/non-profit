@@ -13,14 +13,14 @@ function Image(props) {
 
   return (
     <>
-      {imageDeleted ? 
-      null
-      :
+      {!imageDeleted &&
+      
       <ImageDisplay 
-        imgUrl={props.imgUrl} 
-          id={props.id}
-            setImageDelete={setImageDelete}
-             />
+        key={props.id}
+          imgUrl={props.imgUrl} 
+            id={props.id}
+              setImageDelete={setImageDelete}
+      />
     }
 
 

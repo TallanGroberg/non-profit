@@ -29,26 +29,37 @@ const MakeInputs = (props) => {
 
           useEffect( () => {
             if(isForEditing !== undefined){
+
               isForEditing.map( async article => {
                   const {image,video,textarea, orderAppear} = article
                   if(image !== undefined){
-                    await setCount(orderAppear)
+                    await article.orderAppear !== 'displayImage' && setCount(prev => (prev + 1))
+                      
                       setArticleForWriter(prev => ([...prev, 
-                      <Image imgUrl={image} id={articleForWriter.length} key={count}  
-                        />]))
+                      <Image 
+                        imgUrl={image} 
+                          id={articleForWriter.length} 
+                            key={count}  
+                        />
+                      ]))
                     } else if(textarea !== undefined) {
-                      await setCount(orderAppear)
+                      await setCount(prev => (prev + 1))
                         setArticleForWriter(prev => ([...prev, 
-                        <TextArea id={articleForWriter.length} key={count}  
+                        <TextArea 
+                          textarea={textarea} 
+                            id={articleForWriter.length} 
+                              key={count}  
                           />]))
                       } else if(video !== undefined) {
+                        await setCount(prev => (prev + 1))
                         setArticleForWriter(prev => ([...prev, 
                         <Video id={articleForWriter.length} key={count}  
                           />]))
                       }
               })
+              
             }
-          },[props.isForEditing])
+          },[])
 
 
 
@@ -80,6 +91,7 @@ const MakeInputs = (props) => {
         <WritersDisplay
         input={input}
         count={i} 
+        key={i}
         />)}
       <br />
 

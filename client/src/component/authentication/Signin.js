@@ -3,7 +3,6 @@ import {authContext} from '../providers/AuthProvider'
 import { useHistory, useLocation, Link } from 'react-router-dom';
 import useFormInput from '../customHooks/useFormInput'
 
-
 const Signin = (props) => {
   
   const {inputs, handleSignin, handleChange, } = useFormInput()
@@ -32,6 +31,7 @@ const Signin = (props) => {
         onChange={handleChange}/>
       <button id="signin-submit-button">Signin</button>
     </form>
+    <Link to='/send-email'>forgot your password?</Link>
     <Link id='link-to-signup' to='/signup'>Dont have an account?</Link>
     {error.length > 0 && error.map( err => {
       if(err === 'Request failed with status code 403') {

@@ -4,6 +4,7 @@ import {Link, Switch } from 'react-router-dom'
 import {authContext, bearerAxios} from '../../providers/AuthProvider'
 import ProtectedRoute from '../ProtectedRoute'
 import EditAfterPublished from './EditAfterPublished'
+import UserInfo from './UserInfo'
 const Profile = (props) => {
   const [articles, setArticles] = useState([])
   
@@ -25,9 +26,10 @@ const Profile = (props) => {
 
   return (
     <div>
-      {articles.length > 0 ? articles.map(article => 
+      <Link to='/profile-settings'>profile settings</Link>
+      {articles.length > 0 ? articles.map( (article,i) => 
       <>
-        <Link to={`/article/edit/${article._id}`}>
+        <Link key={i} to={`/article/edit/${article._id}`}>
         
           <h1>{article.title}</h1>
             <h4>{article.description}</h4>

@@ -29,6 +29,7 @@ const ArticleProvider = (props) => {
       let arr = [...set]
         arr = arr.map(articlePiece => {
           return articlePiece.orderAppear === arg.orderAppear ? arg : articlePiece})
+          arr.flat(Infinity)
             setContent(prev => ([ ...arr]))
             
   }
@@ -36,9 +37,9 @@ const ArticleProvider = (props) => {
 
   
 
-  const saveArticle = () => {
-    
-    const wholeArticle = {...aboutTheArticle, user: user._id, article: content }
+  const saveArticle = async () => {
+    await content.flat(Infinity)
+    const wholeArticle = await  {...aboutTheArticle, user: user._id, article: content }
   
     if(aboutTheArticle.catagory !== 'Catagory' && aboutTheArticle.catagory !== ''){
       bearerAxios.post('/article', wholeArticle)
@@ -53,8 +54,10 @@ const ArticleProvider = (props) => {
         handleErrors('Articles require a catagory before they can be published.')
       }
   } 
+
+
   const editArticle = (argAs_id) => {
-    debugger
+    submitContent(content)
     const wholeArticle = {...aboutTheArticle, user: user._id, article: content }
   
     if(aboutTheArticle.catagory !== 'Catagory' && aboutTheArticle.catagory !== ''){

@@ -15,7 +15,7 @@ export const authContext = React.createContext()
 const AuthProvider = (props) => {
   const [error, setError] = useState([])
   const [isSigningUp, setIsSigningUp] = useState(false)
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user'))|| {})
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -70,6 +70,20 @@ const AuthProvider = (props) => {
         await localStorage.removeItem('user')
               setUser({})
     }
+
+    const editUser = (inputs) => {
+      debugger
+      bearerAxios.put(`/user/${user._id}`, inputs)
+      .then(async res => {
+        console.log(res.data)
+        await delete res.data.password
+        await localStorage.setItem('user', JSON.stringify(res.data))
+        setUser(res.data)
+      })
+      .catch(err => {
+        handleErrors(err.message)
+      })
+    }
     
   
   
@@ -79,6 +93,7 @@ const AuthProvider = (props) => {
       signup,
       signin,
       signout,
+      editUser,
       error,
       setError,
       handleErrors,

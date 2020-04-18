@@ -16,7 +16,12 @@ const TextArea = (props) => {
           setContent, 
           submitContent} = useContext(articleContext)
 
-          
+          useEffect( () => {
+            console.log(text)
+            if(props.textarea !== undefined) {
+              setText({textarea: props.textarea, orderAppear: props.id})
+            }
+          },[])
           
 
   
@@ -44,6 +49,7 @@ const TextArea = (props) => {
     :
     <TextAreaDisplay 
       id={id}
+      
       text={text}
       setText={setText}
       setTextForm={setTextForm}

@@ -19,7 +19,6 @@ const ImageDisplay = (props) => {
     const {submitContent,setAboutTheArticle,aboutTheArticle, setArticleForWriter, articleForWriter, content, setContent}= useContext(articleContext)
 
     useEffect( () => {
-      
       if(aboutTheArticle.displayImage !== '' && id === 'displayImage') {
         setImageAsUrl({ imgUrl: aboutTheArticle.displayImage})
         setImageForm(prev => (false))
@@ -103,7 +102,7 @@ const ImageDisplay = (props) => {
         <>
       <img width={window.innerWidth / 8} height={window.innerWidth / 8} src={imageAsUrl.imgUrl} />
 
-        {isEditing ? <EditImage
+        {isEditing && <EditImage
                         imageAsFile={imageAsFile}
                           id={id} 
                           setImageAsFile={setImageAsFile}
@@ -111,7 +110,7 @@ const ImageDisplay = (props) => {
                           setImageAsUrl={setImageAsUrl}
                           isLoading={isLoading}
                           setIsEditing={setIsEditing}
-                           /> : null}
+                           />}
         <button id={`delete-article-piece${count}`} onClick={deleteImage}>delete</button>
           <button id={`delete-article-piece${count}`} onClick={editImage}>{isEditing ? 'hide' : 'edit'}</button>
         </>

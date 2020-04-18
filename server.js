@@ -30,6 +30,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/justice',
 
 //routes 
 app.use('/user', require('./routes/authentication/userRouter.js'))
+app.use('/users', require('./routes/withoutAuthRouter'))
 app.use('/contactbuyer', require('./routes/siteMailers/contactRouter'))
 app.use('/contactseller', require('./routes/siteMailers/contactSellerRouter'))
 app.use('/feedback', require('./routes/siteMailers/contactFeedbackRouter'))

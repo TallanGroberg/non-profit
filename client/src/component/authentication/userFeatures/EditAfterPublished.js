@@ -9,6 +9,8 @@ const EditAfterPublished = (props) => {
 
     const {_id} = props.match.params
 
+    console.log(article)
+
     const {setAboutTheArticle, setContent} = useContext(articleContext)
 
   useEffect( () => {
@@ -18,7 +20,7 @@ const EditAfterPublished = (props) => {
       await setArticle(prev => (res.data))
         const {title, description, displayImage, catagory, article} = res.data
         await setAboutTheArticle(prev => ({title, description, displayImage, catagory}))
-        setContent(prev => ([res.data.article]))
+        setContent(prev => ([...res.data.article.flat(Infinity)]))
     })
     .catch(err => {
       console.log(err)

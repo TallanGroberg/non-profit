@@ -31,7 +31,7 @@ const transporter = nodemailer.createTransport(transport);
     //make mailable object
     const mail = {
       from: process.env.THE_FEEDBACK,
-      to: 'tallan.taven@gmail.com',
+      to: req.body.email,
       subject: req.body.subject,
       text: `
       from:

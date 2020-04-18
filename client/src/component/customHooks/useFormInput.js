@@ -3,10 +3,12 @@ import {authContext} from '../providers/AuthProvider'
 
 
 const useFormInput = () => {
-  const initState = {name: '', email: '', password: '',}
+  const {signup, signin, setError, editUser, user, } = useContext(authContext)
+  
+  
+  const initState = {name: user.name, email: user.email, password: '',}
   const [inputs, setInputs] = useState(initState)
 
-    const {signup, signin, setError } = useContext(authContext)
     const handleSignup = (e) => {
       e.preventDefault()
       signup(inputs)
@@ -15,6 +17,13 @@ const useFormInput = () => {
       e.preventDefault()
       signin(inputs)
     }
+
+    const handleEdit = (e) => {
+      e.preventDefault()
+      console.log('handleEdit')
+      delete inputs.password
+      editUser(inputs)
+    } 
     
     const handleChange = e => {
       const {name, value} = e.target;
@@ -24,9 +33,11 @@ const useFormInput = () => {
 
   return {
       inputs,
+      setInputs,
       handleSignup,
       handleSignin,
       handleChange,
+      handleEdit,
   }
 
   ;
