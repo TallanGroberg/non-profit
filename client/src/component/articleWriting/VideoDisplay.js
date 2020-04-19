@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect,} from 'react';
 import ReactPlayer from 'react-player'
 import { articleContext } from '../providers/ArticleProvider';
 
@@ -18,6 +18,15 @@ const VideoDisplay = (props) => {
   
   const videoWidth = window.innerWidth - 32;
   const videoHeight = window.innerWidth - 160;
+
+    useEffect( () => {
+      console.log(props.videoUrl)
+      if(props.videoUrl !== undefined){
+        setVideoUrl({video: props.videoUrl})
+        setVideoForm(false)
+      }
+
+    },[props.videoUrl])
 
   const handleSubmit =  (e) => {
     e.preventDefault()

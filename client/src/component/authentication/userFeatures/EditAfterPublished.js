@@ -9,9 +9,9 @@ const EditAfterPublished = (props) => {
 
     const {_id} = props.match.params
 
-    console.log(article)
+    console.log(article.article)
 
-    const {setAboutTheArticle, setContent} = useContext(articleContext)
+    const {setAboutTheArticle, setContent, submitContent} = useContext(articleContext)
 
   useEffect( () => {
     bearerAxios.get('/article/' + _id)
@@ -20,7 +20,10 @@ const EditAfterPublished = (props) => {
       await setArticle(prev => (res.data))
         const {title, description, displayImage, catagory, article} = res.data
         await setAboutTheArticle(prev => ({title, description, displayImage, catagory}))
-        setContent(prev => ([...res.data.article.flat(Infinity)]))
+        
+        
+        res.data.article.map(articlePiece => submitContent(articlePiece))
+        
     })
     .catch(err => {
       console.log(err)
@@ -28,7 +31,7 @@ const EditAfterPublished = (props) => {
   }, [])
   return (
     <div>
-      <ArticleDisplay isForEditing={article} />
+      {article.length !== 0 ? <ArticleDisplay isForEditing={article} /> : null}
     </div>
   );
 };

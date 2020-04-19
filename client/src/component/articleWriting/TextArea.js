@@ -31,7 +31,7 @@ const TextArea = (props) => {
             const filteredContent = await content.filter(input => {
               return input.orderAppear !== id 
             })
-            setContent(filteredContent)
+            submitContent(filteredContent)
               const filteredInputs = await articleForWriter.filter( (input,index) => {
                 return input.props.id !== id
               })

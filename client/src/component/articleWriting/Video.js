@@ -14,7 +14,11 @@ const Video = (props) => {
     {videoDeleted ? 
     null
   :
-    <VideoDisplay count={count} setVideoDeleted={setVideoDeleted} id={id} /> 
+    <VideoDisplay count={count}
+       videoUrl={props.videoUrl} 
+        setVideoDeleted={setVideoDeleted} 
+            key={id}
+              id={id} /> 
   }
 
   </>);

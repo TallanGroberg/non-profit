@@ -52,7 +52,7 @@ uploadTask.on('state_changed',
         return input.orderAppear !== id 
       })
       
-      await setContent(filtered)
+      await submitContent(filtered)
       
       if(props.id === "displayImage") { 
         setAboutTheArticle(prev => ({...prev, displayImage: fireBaseUrl}) )

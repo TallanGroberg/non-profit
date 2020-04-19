@@ -25,42 +25,21 @@ const MakeInputs = (props) => {
           articleForWriter, 
           } = useContext(articleContext)
 
-          
+         
+            
+//             useEffect( () => {
+//               filterArticlesForWriter(articleForWriter)
+//             }, [articleForWriter])
 
-          useEffect( () => {
-            if(isForEditing !== undefined){
-
-              isForEditing.map( async article => {
-                  const {image,video,textarea, orderAppear} = article
-                  if(image !== undefined){
-                    await article.orderAppear !== 'displayImage' && setCount(prev => (prev + 1))
-                      
-                      setArticleForWriter(prev => ([...prev, 
-                      <Image 
-                        imgUrl={image} 
-                          id={articleForWriter.length} 
-                            key={count}  
-                        />
-                      ]))
-                    } else if(textarea !== undefined) {
-                      await setCount(prev => (prev + 1))
-                        setArticleForWriter(prev => ([...prev, 
-                        <TextArea 
-                          textarea={textarea} 
-                            id={articleForWriter.length} 
-                              key={count}  
-                          />]))
-                      } else if(video !== undefined) {
-                        await setCount(prev => (prev + 1))
-                        setArticleForWriter(prev => ([...prev, 
-                        <Video id={articleForWriter.length} key={count}  
-                          />]))
-                      }
-              })
-              
-            }
-          },[])
-
+// const filterArticlesForWriter = (arg) => {
+           
+//             const set = new Set([ ...arg])
+//               let arr = [...set]
+//                 arr = arr.map(articlePiece => {
+//                 return console.log(articlePiece)})
+//                 arr = arr.flat(Infinity)
+//                     setArticleForWriter(prev => ([ ...arr]))
+//           }
 
 
   

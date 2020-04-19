@@ -1,20 +1,93 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import MakeInputs from './MakeInputs';
 import {articleContext} from '../providers/ArticleProvider'
 import {authContext} from '../providers/AuthProvider'
 import Image from '../articleWriting/Image'
+import TextArea from '../articleWriting/TextArea'
+import Video from '../articleWriting/Video'
 
 const ArticleDisplay = (props) => {
   
   const {error} = useContext(authContext) 
 
-  console.log(props)
+  const {isForEditing} = props
+
+  
 
   const{saveArticle,
         setAboutTheArticle, 
         aboutTheArticle,
-        editArticle
+        setArticleForWriter,
+        setContent,
+        editArticle,
+        setCount,
+        submitContent,
+          content,
         } = useContext(articleContext)
+
+        const instanceOfContent = async () => {
+          
+          
+          isForEditing.article.map( async article => {
+            const {image,video,textarea, } = article
+           
+            if(image !== undefined && article.orderAppear !== 'displayImage'){
+                console.log('displayed image')
+               setCount(article.orderAppear) 
+                
+                setArticleForWriter(prev => ([...prev, 
+                <Image 
+                  imgUrl={image} 
+                    id={article.orderAppear} 
+                      key={article.orderAppear}  
+                  />
+                ])) 
+                submitContent(article)
+
+              } else if(textarea !== undefined) {
+                await setCount(article.orderAppear)
+                  setArticleForWriter(prev => ([...prev, 
+                  <TextArea 
+                    textarea={textarea} 
+                      id={article.orderAppear} 
+                        key={article.orderAppear}  
+                    />])) 
+                    submitContent(article)
+                    
+                } else if(video !== undefined) {
+                  await setCount(article.orderAppear)
+                  setArticleForWriter(prev => ([...prev, 
+                  <Video id={article.orderAppear} 
+                    key={article.orderAppear}
+                      videoUrl={video}
+                    />])) 
+                    submitContent(article)
+
+                }
+            })
+
+            
+
+        } 
+
+        
+        
+
+        useEffect( () => {
+              if(props.isForEditing !== undefined) {
+
+                instanceOfContent()
+                
+              }
+          },[props.isForEditing])
+
+            //component did unmount
+            useEffect(() => {
+              return () => {
+                setArticleForWriter([])
+                setContent([])
+              }
+            }, []);
         
 
   const handleChange = (e) => {
@@ -47,7 +120,7 @@ const ArticleDisplay = (props) => {
       {props.isForEditing === undefined ?
           <MakeInputs />
           :
-          <MakeInputs isForEditing={props.isForEditing.article} />
+          <MakeInputs isForEditing={props.isForEditing} />
       }
       <br />
           <button onClick={props.isForEditing === undefined ? 

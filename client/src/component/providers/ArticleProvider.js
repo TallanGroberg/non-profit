@@ -15,7 +15,7 @@ const ArticleProvider = (props) => {
   const [count, setCount] = useState(0)
   
 
-   
+   console.log('content',content, 'articleForWriter', articleForWriter)
 
 
 
@@ -27,11 +27,9 @@ const ArticleProvider = (props) => {
   const submitContent = (arg) => {
     const set = new Set([ ...content, arg])
       let arr = [...set]
-        arr = arr.map(articlePiece => {
-          return articlePiece.orderAppear === arg.orderAppear ? arg : articlePiece})
-          arr.flat(Infinity)
+        arr = arr.flat(Infinity)
+          console.log(content.length)
             setContent(prev => ([ ...arr]))
-            
   }
 
 
@@ -39,6 +37,7 @@ const ArticleProvider = (props) => {
 
   const saveArticle = async () => {
     await content.flat(Infinity)
+    submitContent(content)
     const wholeArticle = await  {...aboutTheArticle, user: user._id, article: content }
   
     if(aboutTheArticle.catagory !== 'Catagory' && aboutTheArticle.catagory !== ''){
@@ -56,18 +55,23 @@ const ArticleProvider = (props) => {
   } 
 
 
-  const editArticle = (argAs_id) => {
+  const editArticle = async (argAs_id) => {
     submitContent(content)
     const wholeArticle = {...aboutTheArticle, user: user._id, article: content }
   
     if(aboutTheArticle.catagory !== 'Catagory' && aboutTheArticle.catagory !== ''){
-      bearerAxios.put('/article/' + argAs_id, wholeArticle)
-      .then(res => {
-       setError([])
-        props.history.push(`/article/${res.data._id}`)
-      })
-      .catch(err => {
-        handleErrors(err.message)
+
+      await bearerAxios.put('/article/' + argAs_id, {article: []})
+      .then( res => {
+        debugger
+        bearerAxios.put('/article/' + argAs_id, wholeArticle)
+        .then(res => {
+          setError([])
+          props.history.push(`/article/${res.data._id}`)
+        })
+        .catch(err => {
+          handleErrors(err.message)
+        })
       })
         } else {
           handleErrors('Articles require a catagory before they can be published.')

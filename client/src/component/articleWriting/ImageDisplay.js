@@ -22,10 +22,17 @@ const ImageDisplay = (props) => {
       if(aboutTheArticle.displayImage !== '' && id === 'displayImage') {
         setImageAsUrl({ imgUrl: aboutTheArticle.displayImage})
         setImageForm(prev => (false))
-      } else if(props.imgUrl !== undefined) {
+      } 
+      if(props.imgUrl !== undefined) {
           setImageAsUrl({imgUrl: props.imgUrl})
       }
     }, [aboutTheArticle.displayImage])
+
+        useEffect( () => {
+          if(props.imgUrl !== undefined) {
+              setImageAsUrl({imgUrl: props.imgUrl})
+          }
+        }, [props.imgUrl])
 
 
     const handleImageAsFile = async (e) => {
@@ -81,7 +88,7 @@ const ImageDisplay = (props) => {
     const filtered = await content.filter(input => {
       return input.orderAppear !== id 
     })
-    setContent(filtered)
+    submitContent(filtered)
 
   }
   return (
