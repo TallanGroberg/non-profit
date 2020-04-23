@@ -69,7 +69,7 @@ const ArticleDisplay = (props) => {
             })
             
           
-            setCount(isForEditing.article.length - 1)
+            setCount(isForEditing.article.length )
         } 
 
         
@@ -78,7 +78,6 @@ const ArticleDisplay = (props) => {
         useEffect( () => {
               if(props.isForEditing !== undefined) {
                 const sorted = props.isForEditing.article.sort( (a,b) => a.orderAppear - b.orderAppear)
-                
 
                 instanceOfContent(sorted)
               }

@@ -15,7 +15,7 @@ const ArticleProvider = (props) => {
   const [count, setCount] = useState(0)
   
   
-  //  console.log('content',content, 'articleForWriter', articleForWriter, count)
+   console.log('content',content, content[count], 'articleForWriter', articleForWriter, articleForWriter[count] ,count)
   
   
   
@@ -28,13 +28,15 @@ const ArticleProvider = (props) => {
   const submitContent = (arg) => {
     
     setContent(prev => {
-      const set = new Set([ ...prev, arg])
+      const sorted = prev.sort( (a,b) => a.orderAppear - b.orderAppear)
+      const set = new Set([ ...sorted, arg])
       let arr = [...set]
       arr = arr.flat(Infinity)
       
       return [ ...arr]
       }
     )
+    
   }
 
   const submitArticleForWriter = (arg) => {
@@ -54,9 +56,9 @@ const ArticleProvider = (props) => {
   
 
   const saveArticle = async () => {
-    await content.flat(Infinity)
-    submitContent(content)
-    const wholeArticle = await  {...aboutTheArticle, user: user._id, article: content }
+    
+
+    const wholeArticle = await  {...aboutTheArticle, user: user._id, article: packageForDatabase() }
   
     if(aboutTheArticle.catagory !== 'Catagory' && aboutTheArticle.catagory !== ''){
       bearerAxios.post('/article', wholeArticle)
@@ -72,10 +74,24 @@ const ArticleProvider = (props) => {
       }
   } 
 
+  const packageForDatabase = () => {
+    let seen = new Set()
+    let reversedContent = content.reverse()
+    let filteredArr = reversedContent.filter(el => {
+      const duplicate = seen.has(el.orderAppear);
+      seen.add(el.orderAppear);
+      return !duplicate;
+    });
+      let sortedArr = filteredArr.sort( (a,b) => a.orderAppear - b.orderAppear)
+        return sortedArr
+  }
+
 
   const editArticle = async (argAs_id) => {
-    submitContent(content)
-    const wholeArticle = {...aboutTheArticle, user: user._id, article: content }
+    
+    
+
+    const wholeArticle = {...aboutTheArticle, user: user._id, article:  packageForDatabase()}
   
     if(aboutTheArticle.catagory !== 'Catagory' && aboutTheArticle.catagory !== ''){
 
