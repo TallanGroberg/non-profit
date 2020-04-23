@@ -97,7 +97,7 @@ const ArticleProvider = (props) => {
 
       await bearerAxios.put('/article/' + argAs_id, {article: []})
       .then( res => {
-        debugger
+      
         bearerAxios.put('/article/' + argAs_id, wholeArticle)
         .then(res => {
           setError([])
