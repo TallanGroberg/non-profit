@@ -18,24 +18,31 @@ const TextArea = (props) => {
 
           useEffect( () => {
             console.log(text)
-            if(props.textarea !== undefined) {
-              setText({textarea: props.textarea, orderAppear: props.id})
+            if(props.article !== undefined) {
+              setText({textarea: props.article.textarea, orderAppear: props.id})
+              setTextForm(true)
             }
-          },[])
+          },[props])
+          console.log(textForm,'textform')
           
 
   
   
           const deleteTextArea = async() => {
             setParagraphDeleted(prev => (!prev))
-            const filteredContent = await content.filter(input => {
-              return input.orderAppear !== id 
+              const filteredContent = await content.filter(input => {
+                return input.orderAppear !== id
             })
-            submitContent(filteredContent)
+            setContent(filteredContent)
               const filteredInputs = await articleForWriter.filter( (input,index) => {
                 return input.props.id !== id
               })
               setArticleForWriter(filteredInputs)
+          }
+
+          const saveParagraph = () => {
+            setTextForm(prev => (!prev))
+            submitContent(text)
           }
   
   
@@ -48,11 +55,13 @@ const TextArea = (props) => {
     null
     :
     <TextAreaDisplay 
+      key={id}
       id={id}
-      
       text={text}
+      textForm={textForm}
       setText={setText}
       setTextForm={setTextForm}
+      saveParagraph={saveParagraph}
       setParagraphDeleted={setParagraphDeleted}
       deleteTextArea={deleteTextArea}
     />

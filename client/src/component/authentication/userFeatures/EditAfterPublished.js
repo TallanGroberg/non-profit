@@ -9,7 +9,7 @@ const EditAfterPublished = (props) => {
 
     const {_id} = props.match.params
 
-    console.log(article.article)
+    
 
     const {setAboutTheArticle, setContent, submitContent} = useContext(articleContext)
 
@@ -22,7 +22,7 @@ const EditAfterPublished = (props) => {
         await setAboutTheArticle(prev => ({title, description, displayImage, catagory}))
         
         
-        res.data.article.map(articlePiece => submitContent(articlePiece))
+        
         
     })
     .catch(err => {

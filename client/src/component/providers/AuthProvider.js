@@ -72,7 +72,7 @@ const AuthProvider = (props) => {
     }
 
     const editUser = (inputs) => {
-      debugger
+      
       bearerAxios.put(`/user/${user._id}`, inputs)
       .then(async res => {
         console.log(res.data)

@@ -88,7 +88,7 @@ const ImageDisplay = (props) => {
     const filtered = await content.filter(input => {
       return input.orderAppear !== id 
     })
-    submitContent(filtered)
+    setContent(filtered)
 
   }
   return (

@@ -25,23 +25,6 @@ const MakeInputs = (props) => {
           articleForWriter, 
           } = useContext(articleContext)
 
-         
-            
-//             useEffect( () => {
-//               filterArticlesForWriter(articleForWriter)
-//             }, [articleForWriter])
-
-// const filterArticlesForWriter = (arg) => {
-           
-//             const set = new Set([ ...arg])
-//               let arr = [...set]
-//                 arr = arr.map(articlePiece => {
-//                 return console.log(articlePiece)})
-//                 arr = arr.flat(Infinity)
-//                     setArticleForWriter(prev => ([ ...arr]))
-//           }
-
-
   
   
     const addTextArea = async () => {

@@ -52,7 +52,7 @@ const VideoDisplay = (props) => {
       return input.orderAppear !== id 
     })
     setContent(filteredContent)
-      const filteredInputs = await articleForWriter.filter( (input,index) => {
+      const filteredInputs = await articleForWriter.filter( (input) => {
         return input.props.id !== id
       })
       setArticleForWriter(filteredInputs)

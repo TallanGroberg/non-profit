@@ -10,15 +10,14 @@ const TextAreaDisplay = (props) => {
           text,
           id,
           setText,
-          deleteTextArea
+          
+          deleteTextArea,
+          saveParagraph,
           } = props
 
           
 
-          const saveParagraph = () => {
-            setTextForm(prev => (!prev))
-            submitContent(text)
-          }
+          
 
           const handleChange = (e) => {
             const {name, value} = e.target;
@@ -28,11 +27,11 @@ const TextAreaDisplay = (props) => {
          
   return (<>
     
-    {textForm ? <>
+    {props.textForm === true ? <>
       <div id='edit-piece'>
       <p>{text.textarea}</p>
         <button id={`delete-article-piece${id}`} onClick={deleteTextArea} >delete</button>
-        <button id={`delete-article-piece${id}`} onClick={() => setTextForm(prev => (!prev))}>edit</button>
+        <button id={`delete-article-piece${id}`} onClick={() => props.setTextForm(prev => (!prev))}>edit</button>
       </div>
 
       </>

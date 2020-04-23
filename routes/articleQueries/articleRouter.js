@@ -112,6 +112,13 @@ articleRouter.put('/:_id', (req,res,next) => {
           })
 })
 
+articleRouter.delete('/:_id', (req,res,next) => {
+  Article.findByIdAndDelete(req.params._id, (err, article) => {
+    if(err) return next(err)
+    res.send(article)
+  })
+})
+
 //Like article, 
 
 articleRouter.put('/like/:_id', (req,res,next) => {

@@ -1,15 +1,16 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import axios from 'axios'
 import {bearerAxios} from '../providers/AuthProvider'
 import {withRouter} from 'react-router-dom'
 import ReactPlayer from 'react-player'
 import Content from './Content'
+import { articleContext } from '../providers/ArticleProvider';
 
 const OneArticle = (props) => {
   const [articleContent, setArticleContent] = useState([])
   const [liked, setLiked] = useState(false)
-
-  
+  const [article, setArticle] = useState([])
+    const {setContent} = useContext(articleContext)
 
   if(articleContent.length > 0) {
     document.title = articleContent[0].title
@@ -19,11 +20,20 @@ const OneArticle = (props) => {
   
   
   useEffect( () => {
+    setContent([])
+    
     axios.get(`/article/${_id}`)
     .then(async res => {
-      await setArticleContent(prev => ([...prev, res.data]))
+      console.log(res.data)
+       setArticle(article)
+            setArticleContent(prev => ([...prev, res.data]))
     })
-    
+  }, [])
+
+  useEffect( () => {
+    return () => {
+      setArticleContent([])
+    }
   }, [])
 
   const handleLike = (_id) => {
@@ -57,13 +67,13 @@ const OneArticle = (props) => {
             return <Content content={content} article={article} />
             
           })}
-          <button onClick={liked ?
+          <button data-testid='like-unlike-button' onClick={liked ?
                 () => handleUnlike(article._id)
                 : 
                 () => handleLike(article._id)
                 }>{liked ? 'article liked' : 'like article'}</button>
 
-            <p>{liked ? article.likes + 1 : article.likes }</p>
+            <p data-testid="counter">{liked ? article.likes + 1 : article.likes }</p>
           </div>
       })}
     </>

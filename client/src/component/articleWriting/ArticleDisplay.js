@@ -18,6 +18,7 @@ const ArticleDisplay = (props) => {
         setAboutTheArticle, 
         aboutTheArticle,
         setArticleForWriter,
+        submitArticleForWriter,
         setContent,
         editArticle,
         setCount,
@@ -25,49 +26,50 @@ const ArticleDisplay = (props) => {
           content,
         } = useContext(articleContext)
 
-        const instanceOfContent = async () => {
+        const instanceOfContent = async (sorted) => {
           
           
-          isForEditing.article.map( async article => {
+          await sorted.map( async article => {
             const {image,video,textarea, } = article
+            
            
-            if(image !== undefined && article.orderAppear !== 'displayImage'){
+            if(article.image !== undefined && article.orderAppear !== 'displayImage'){
                 console.log('displayed image')
-               setCount(article.orderAppear) 
+               await submitContent(article) 
                 
-                setArticleForWriter(prev => ([...prev, 
+               submitArticleForWriter(
                 <Image 
                   imgUrl={image} 
                     id={article.orderAppear} 
                       key={article.orderAppear}  
                   />
-                ])) 
-                submitContent(article)
+                ) 
+                
 
-              } else if(textarea !== undefined) {
-                await setCount(article.orderAppear)
-                  setArticleForWriter(prev => ([...prev, 
+              } else if(article.textarea !== undefined) {
+                
+                await submitContent(article)
+                submitArticleForWriter(
                   <TextArea 
-                    textarea={textarea} 
-                      id={article.orderAppear} 
-                        key={article.orderAppear}  
-                    />])) 
-                    submitContent(article)
+                    article={article}
+                      id={article.orderAppear}
+                        key={article.orderAppear}
+                    />) 
                     
-                } else if(video !== undefined) {
-                  await setCount(article.orderAppear)
-                  setArticleForWriter(prev => ([...prev, 
+                    
+                } else if(article.video !== undefined) {
+                  await submitContent(article)
+                  submitArticleForWriter(
                   <Video id={article.orderAppear} 
                     key={article.orderAppear}
                       videoUrl={video}
-                    />])) 
-                    submitContent(article)
-
+                    />) 
+                    
                 }
             })
-
             
-
+          
+            setCount(isForEditing.article.length - 1)
         } 
 
         
@@ -75,9 +77,10 @@ const ArticleDisplay = (props) => {
 
         useEffect( () => {
               if(props.isForEditing !== undefined) {
-
-                instanceOfContent()
+                const sorted = props.isForEditing.article.sort( (a,b) => a.orderAppear - b.orderAppear)
                 
+
+                instanceOfContent(sorted)
               }
           },[props.isForEditing])
 
@@ -86,6 +89,7 @@ const ArticleDisplay = (props) => {
               return () => {
                 setArticleForWriter([])
                 setContent([])
+                setCount(0)
               }
             }, []);
         

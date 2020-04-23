@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import {withAuth, authContext, bearerAxios} from './AuthProvider'
 import {withRouter} from 'react-router-dom'
 
@@ -14,22 +14,40 @@ const ArticleProvider = (props) => {
   const [articleForWriter, setArticleForWriter] = useState([])
   const [count, setCount] = useState(0)
   
-
-   console.log('content',content, 'articleForWriter', articleForWriter)
-
-
-
+  
+  //  console.log('content',content, 'articleForWriter', articleForWriter, count)
+  
   
   
 
   
-
+  
+  
+  
+  
   const submitContent = (arg) => {
-    const set = new Set([ ...content, arg])
+    
+    setContent(prev => {
+      const set = new Set([ ...prev, arg])
       let arr = [...set]
-        arr = arr.flat(Infinity)
-          console.log(content.length)
-            setContent(prev => ([ ...arr]))
+      arr = arr.flat(Infinity)
+      
+      return [ ...arr]
+      }
+    )
+  }
+
+  const submitArticleForWriter = (arg) => {
+    setArticleForWriter(prev => {
+      
+      const set = new Set([ ...prev, arg])
+      let arr = [...set]
+      arr = arr.flat(Infinity)
+      return [...arr]
+    }
+    )
+    
+    
   }
 
 
@@ -87,6 +105,7 @@ const ArticleProvider = (props) => {
       saveArticle,
       editArticle,
       submitContent,
+      submitArticleForWriter,
       aboutTheArticle, 
       setAboutTheArticle,
       content, 
