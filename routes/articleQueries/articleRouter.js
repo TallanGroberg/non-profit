@@ -5,6 +5,21 @@ const moment = require('moment')
 
 
 
+articleRouter.get('/search', (req,res,next) => {
+   
+  const { title } = req.query
+  const pattern = new RegExp(title.split(' ').join('/ ')) 
+  Article.find({title: {$regex: pattern, $options: 'i'}}, (err, article) => {
+    if(err){
+        res.status(500)
+        return next(err)
+    }
+    return res.status(200).send(article)
+})
+})
+
+
+
 //catagories
 articleRouter.get('/business', (req,res,next) => {
   let query = Article.find({'catagory': 'Business' })

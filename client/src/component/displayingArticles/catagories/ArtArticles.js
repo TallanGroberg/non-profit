@@ -17,6 +17,7 @@ const ArtArticles = () => {
   }, [])
   return (
     <div>
+      
       {articles.length > 0 && articles.map(article => 
       
       <>

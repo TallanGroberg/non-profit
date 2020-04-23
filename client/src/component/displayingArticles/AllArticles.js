@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from 'react';
 import axios from 'axios'
 import {Link } from 'react-router-dom'
-
+import SearchForm from '../authentication/userFeatures/SearchForm'
 const AllArticles = (props) => {
   const [articles, setArticles] = useState([])
   
@@ -19,6 +19,7 @@ const AllArticles = (props) => {
 
   return (
     <div>
+      <SearchForm setArticles={setArticles} />
       {articles.length > 0 && articles.map(article => 
       
       <>
