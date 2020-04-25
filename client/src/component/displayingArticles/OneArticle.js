@@ -22,7 +22,7 @@ const OneArticle = (props) => {
   useEffect( () => {
     // setContent([])
     
-    axios.get(`/article/${_id}`)
+    axios.get(`/article/${props.match.params._id}`)
     .then(async res => {
       console.log(res.data)
        setArticle(article)
@@ -59,7 +59,7 @@ const OneArticle = (props) => {
     <>
      {articleContent.length > 0 && articleContent.map(article => {
         return <div key={article._id}>
-        <h1 id="article-title" >{article.title}</h1>
+        <h1 data-testid="article-title" >{article.title}</h1>
         <h4>{article.description}</h4>
           <img src={article.displayImage} />
 

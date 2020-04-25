@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cd client && npm run test",
     "start": "node server.js",
     "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
@@ -25,7 +25,8 @@
     "mongoose": "^5.7.7",
     "morgan": "^1.9.1",
     "nodemailer": "^6.4.1",
-    "stripe": "^7.11.0"
+    "stripe": "^7.11.0",
+    "xhr-mock": "^2.5.1"
   },
   "engines": {
     "node": "10.16.3"

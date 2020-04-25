@@ -19,7 +19,7 @@ const AllArticles = (props) => {
 
   return (
     <div>
-      <SearchForm setArticles={setArticles} />
+      <SearchForm catagory='recent' setArticles={setArticles} />
       {articles.length > 0 && articles.map(article => 
       
       <>

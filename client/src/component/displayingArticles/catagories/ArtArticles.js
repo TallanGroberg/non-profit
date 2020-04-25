@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios'
 import {Link} from 'react-router-dom'
+import SearchForm from '../../authentication/userFeatures/SearchForm'
 const ArtArticles = () => {
 
   const [articles, setArticles] = useState([])
@@ -17,7 +18,7 @@ const ArtArticles = () => {
   }, [])
   return (
     <div>
-      
+      <SearchForm catagory='art' setArticles={setArticles} />
       {articles.length > 0 && articles.map(article => 
       
       <>

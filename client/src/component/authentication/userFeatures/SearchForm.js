@@ -15,9 +15,7 @@ const SearchForm = (props) => {
   const handleSubmit = e => {
     e.preventDefault()
     
-
-    
-    axios.get( `/article/search?title=${inputs.title}`)
+    axios.get( `/article/search/${props.catagory}?title=${inputs.title}`)
     .then(res => {
       props.setArticles(res.data)
     })

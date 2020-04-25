@@ -1,35 +1,45 @@
-import React from 'react';
-import { unmountComponentAtNode } from "react-dom";
-import { render, cleanup, fireEvent } from '@testing-library/react';
+import React from "react";
+import {  unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
-import OneArticle from '../component/displayingArticles/OneArticle'
-import {Router} from 'react-router-dom'
-import {createMemoryHistory } from 'history'
-import ArticleProvider ,{articleContext, } from '../component/providers/ArticleProvider'
-import AuthProvider, {authContext} from '../component/providers/AuthProvider'
-import axiosMock from 'axios'
-import '@testing-library/jest-dom/extend-expect'
+import {render, } from '@testing-library/react'
+import mock from 'xhr-mock';
+import axios from 'axios'
 import {renderWithContext} from '../component/testHelpers/renderWithContext'
-import {fakeArticle} from '../component/testHelpers/fakeArticle'
-
+import {fakeArticle} from '../component/testHelpers/FakeArticle'
+import OneArticle from '../component/displayingArticles/OneArticle'
 // jest.mock('axios')
 
 
+let container = null;
+beforeEach(() => {
+  // setup a DOM element as a render target
+  container = document.createElement("div");
+  document.body.appendChild(container);
+});
 
+afterEach(() => {
+  // cleanup on exiting
+  unmountComponentAtNode(container);
+  container.remove();
+  container = null;
+});
 
-
-
-afterEach(cleanup)
 
 describe('a single article', () => {
 
   it('renders an article', async () => {
+  //   await jest.spyOn(global, "fetch").mockImplementation(() =>
+  //   Promise.resolve({
+  //     json: () => Promise.resolve(fakeArticle)
+  //   })
+  // );
+  //   act( () => {
+  //     renderWithContext(<OneArticle match={{params: {_id: fakeArticle._id}}} />)
+  //   })
+    
+  //   const {getByTestId} = renderWithContext(<OneArticle match={{params: {_id: fakeArticle._id}}} />)
 
-    const {getByTestId, getByText, getByLabelText} = renderWithContext(<OneArticle /> )
-    
-    
-    
-    
+  //   expect(getByTestId('article-title')).toBeInDocument(fakeUser.email);
   })
 
 //   it('should add one', () => {
