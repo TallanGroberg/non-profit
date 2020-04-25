@@ -4,11 +4,11 @@ import {withRouter} from 'react-router-dom'
 import { log } from 'util';
 
 export const bearerAxios = axios.create()
-bearerAxios.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token')
-  config.headers.Authorization = `Bearer ${token}`
-  return config
-})
+// bearerAxios.interceptors.request.use((config) => {
+//   const token = localStorage.getItem('token')
+//   config.headers.Authorization = `Bearer ${token}`
+//   return config
+// })
 
 export const authContext = React.createContext()
 

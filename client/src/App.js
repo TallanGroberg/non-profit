@@ -29,9 +29,7 @@ import RecentArticles from './component/displayingArticles/catagories/RecentArti
 import TrendingArticles from './component/displayingArticles/catagories/TrendingArticles'
 
 function App(props) {
-  const initState = {firstName: '', lastName: '', email: ''}
-  const [inputs, setInputs] = useState(initState)
-
+ 
 
   useEffect( () => {
     let pathname = window.location.pathname
@@ -43,15 +41,6 @@ function App(props) {
   }, [])
 
 
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log('handleSumit')
-  }
-  const handleChange = e => {
-    const {name, value} = e.target;
-    setInputs(prev => ({...prev, [name]: value}))
-  }
 
   return (<>
     <Container>

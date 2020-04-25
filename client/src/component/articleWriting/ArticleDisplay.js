@@ -62,7 +62,7 @@ const ArticleDisplay = (props) => {
                   submitArticleForWriter(
                   <Video id={article.orderAppear} 
                     key={article.orderAppear}
-                      videoUrl={video}
+                      videoUrl={article}
                     />) 
                     
                 }
@@ -76,9 +76,8 @@ const ArticleDisplay = (props) => {
         
 
         useEffect( () => {
-              if(props.isForEditing !== undefined) {
+              if(props.isForEditing !== undefined ) {
                 const sorted = props.isForEditing.article.sort( (a,b) => a.orderAppear - b.orderAppear)
-
                 instanceOfContent(sorted)
               }
           },[props.isForEditing])
@@ -100,19 +99,23 @@ const ArticleDisplay = (props) => {
 
   return (<>
       <form>
-          <select name="catagory" onChange={handleChange}>
+          <select data-testid='catagory' name="catagory" onChange={handleChange}>
             <option value={aboutTheArticle.catagory !== '' ? aboutTheArticle.catagory : null}>{aboutTheArticle.catagory !== '' ? aboutTheArticle.catagory : 'Catagory'}</option>
             <option value="Art">Art</option>
             <option value="Business">Business</option>
             <option value="Politics">Politics</option>
           </select>
           <br />
-        <textarea  placeholder='title' 
+        <textarea 
+         id="title"
+        placeholder='title' 
         name='title' 
         value={aboutTheArticle.title} 
         onChange={handleChange} />
         <br />
-        <textarea  placeholder='description'
+        <textarea 
+          id="description"
+         placeholder='description'
         name='description' 
         value={aboutTheArticle.description} 
         onChange={handleChange} />
@@ -132,6 +135,8 @@ const ArticleDisplay = (props) => {
               () => editArticle(props.isForEditing._id)}>
                 {props.isForEditing === undefined ? 'Save article' : "Save Edits"}
             </button>
+            {props.isForEditing && <button>Delete Article</button>}
+
           {error.length > 0 && error.map(err => <p>{err}</p>)}
   </>);
 };

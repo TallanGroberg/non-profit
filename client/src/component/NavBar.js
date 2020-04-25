@@ -10,7 +10,8 @@ const NavBar = () => {
       <Link to="/recent" >Recent</Link>
       <Link to="/politics" >Politics</Link>
       <Link to="/trending" >Trending</Link>
-      <Link to='/profile'>profile</Link>
+      <Link to='/profile'>Profile</Link>
+      <Link to='/write-article'>Write an Article</Link>
     </div>
   );
 };

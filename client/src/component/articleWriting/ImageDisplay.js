@@ -44,6 +44,10 @@ const ImageDisplay = (props) => {
         handleFireBaseUpload(image)
   }
 
+      useEffect( () => {
+
+      },[])
+
   const handleFireBaseUpload = (image) => {
 
 

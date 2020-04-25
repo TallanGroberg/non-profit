@@ -20,7 +20,7 @@ const OneArticle = (props) => {
   
   
   useEffect( () => {
-    setContent([])
+    // setContent([])
     
     axios.get(`/article/${_id}`)
     .then(async res => {
@@ -59,7 +59,7 @@ const OneArticle = (props) => {
     <>
      {articleContent.length > 0 && articleContent.map(article => {
         return <div key={article._id}>
-        <h1>{article.title}</h1>
+        <h1 id="article-title" >{article.title}</h1>
         <h4>{article.description}</h4>
           <img src={article.displayImage} />
 
@@ -72,7 +72,7 @@ const OneArticle = (props) => {
                 : 
                 () => handleLike(article._id)
                 }>{liked ? 'article liked' : 'like article'}</button>
-
+            
             <p data-testid="counter">{liked ? article.likes + 1 : article.likes }</p>
           </div>
       })}

@@ -3,8 +3,6 @@ const articleRouter = express.Router()
 const Article = require('../../models/article')
 const moment = require('moment')
 
-
-
 articleRouter.get('/search', (req,res,next) => {
    
   const { title } = req.query
@@ -70,26 +68,7 @@ articleRouter.get('/trending', (req,res,next) => {
 })
 
 //get all. 
-articleRouter.get('/', (req,res,next) => {
-  let query = Article.find()
-  query.limit(20)
-  query.exec(function (err,art) {
-    if(err) return next(err)
-    res.send(art)
-  })
-})
-//get one
-articleRouter.get('/:_id', (req,res,next) => {
-  Article.findById({_id: req.params._id}, (err,article) => {
-    
-    if(err) {
-      res.status(501)
-      next(err)
-    } else {
-      res.status(201).send(article)
-    }
-  })
-})
+
 
 //get everything from user
 articleRouter.get('/user/:_id', (req,res,next) => {
@@ -103,37 +82,7 @@ articleRouter.get('/user/:_id', (req,res,next) => {
     }
   })
 })
-//make article
-articleRouter.post('/', (req,res,next) => {
-  const newArticle = new Article(req.body)
-  newArticle.user = req.body.user
-  newArticle.save( (err, article) => {
-    if(err) {
-      res.status(501)
-      next(err)
-    } else {
-      res.status(201).send(article)
-    }
-  })
-})
 
-articleRouter.put('/:_id', (req,res,next) => {
-  let query = Article.findByIdAndUpdate(
-    {_id: req.params._id},
-      req.body,
-        {new: true})
-          query.exec( (err, article) => {
-            if(err) return  next(err)
-            res.status(201).send(article)
-          })
-})
-
-articleRouter.delete('/:_id', (req,res,next) => {
-  Article.findByIdAndDelete(req.params._id, (err, article) => {
-    if(err) return next(err)
-    res.send(article)
-  })
-})
 
 //Like article, 
 

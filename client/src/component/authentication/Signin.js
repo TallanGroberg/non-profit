@@ -29,10 +29,10 @@ const Signin = (props) => {
         name='password' 
         value={inputs.password} 
         onChange={handleChange}/>
-      <button id="signin-submit-button">Signin</button>
+      <button data-testid="signin-submit-button">Signin</button>
     </form>
     <Link to='/send-email'>forgot your password?</Link>
-    <Link id='link-to-signup' to='/signup'>Dont have an account?</Link>
+    <Link data-testid='link-to-signup' to='/signup'>Dont have an account?</Link>
     {error.length > 0 && error.map( err => {
       if(err === 'Request failed with status code 403') {
         return <p style={{color: 'red'}}>status 403: Username or password is incorrect.</p>

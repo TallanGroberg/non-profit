@@ -15,7 +15,6 @@ const ArticleProvider = (props) => {
   const [count, setCount] = useState(0)
   
   
-   console.log('content',content, content[count], 'articleForWriter', articleForWriter, articleForWriter[count] ,count)
   
   
   

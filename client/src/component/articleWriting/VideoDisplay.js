@@ -20,9 +20,8 @@ const VideoDisplay = (props) => {
   const videoHeight = window.innerWidth - 160;
 
     useEffect( () => {
-      console.log(props.videoUrl)
       if(props.videoUrl !== undefined){
-        setVideoUrl({video: props.videoUrl})
+        setVideoUrl(prev => ({ video: props.videoUrl, orderAppear: props.id}))
         setVideoForm(false)
       }
 

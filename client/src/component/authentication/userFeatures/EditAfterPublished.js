@@ -20,14 +20,18 @@ const EditAfterPublished = (props) => {
       await setArticle(prev => (res.data))
         const {title, description, displayImage, catagory, article} = res.data
         await setAboutTheArticle(prev => ({title, description, displayImage, catagory}))
-        
-        
-        
-        
+
     })
     .catch(err => {
       console.log(err)
     })
+  }, [])
+
+  useEffect( () => {
+    return () => {
+      setArticle([])
+      setAboutTheArticle({title: '', description: '', displayImage: '', catagory: '',})
+    }
   }, [])
   return (
     <div>

@@ -2,13 +2,16 @@ import React, {useState,useEffect, useContext} from 'react';
 import axios from 'axios'
 import {Link, Switch } from 'react-router-dom'
 import {authContext, bearerAxios} from '../../providers/AuthProvider'
+import {articleContext} from '../../providers/ArticleProvider'
 import ProtectedRoute from '../ProtectedRoute'
 import EditAfterPublished from './EditAfterPublished'
 import UserInfo from './UserInfo'
+
 const Profile = (props) => {
   const [articles, setArticles] = useState([])
   
   const {user} = useContext(authContext)
+  const {setContent,setArticleForWriter} = useContext(articleContext)
   
   
 
@@ -23,10 +26,18 @@ const Profile = (props) => {
     })
   }, [])
 
+  useEffect( () => {
+    return () => {
+      console.log('component unmounted')
+      
+      setArticles([])
+    }
+  },[])
+
 
   return (
     <div>
-      <Link to='/profile-settings'>profile settings</Link>
+      <Link to='/profile-settings'>Profile Settings</Link>
       {articles.length > 0 ? articles.map( (article,i) => 
       <>
         <Link key={i} to={`/article/edit/${article._id}`}>
