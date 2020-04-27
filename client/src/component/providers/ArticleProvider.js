@@ -27,12 +27,10 @@ const ArticleProvider = (props) => {
   const submitContent = (arg) => {
     
     setContent(prev => {
-      const sorted = prev.sort( (a,b) => a.orderAppear - b.orderAppear)
-      const set = new Set([ ...sorted, arg])
-      let arr = [...set]
-      arr = arr.flat(Infinity)
-      
-      return [ ...arr]
+        const sorted = prev.sort( (a,b) => a.orderAppear - b.orderAppear)
+          const set = new Set([ ...sorted, arg])
+            const arr = [...set]
+              return [ ...arr]
       }
     )
     
@@ -40,10 +38,8 @@ const ArticleProvider = (props) => {
 
   const submitArticleForWriter = (arg) => {
     setArticleForWriter(prev => {
-      
       const set = new Set([ ...prev, arg])
-      let arr = [...set]
-      arr = arr.flat(Infinity)
+      const arr = [...set]
       return [...arr]
     }
     )

@@ -16,6 +16,19 @@ articleSearchRouter.get('/search/recent', (req,res,next) => {
             return res.status(200).send(article)
           })
 })
+articleSearchRouter.get('/search/trending', (req,res,next) => {
+  const { title } = req.query
+    const pattern = new RegExp(title) 
+      console.log(pattern)
+        let query = Article.find({title: {$regex: pattern, $options: 'b' }})
+          query.exec( (err, article) => {
+            if(err){
+              res.status(500)
+                return next(err)
+            }
+            return res.status(200).send(article)
+          })
+})
 
 articleSearchRouter.get('/search/art', (req,res,next) => {
    
@@ -60,5 +73,8 @@ articleSearchRouter.get('/search/politics', (req,res,next) => {
                 return res.status(200).send(article)
             })
 })
+
+
+//.populate will get the information from an _id
 
 module.exports = articleSearchRouter

@@ -18,7 +18,7 @@ const TrendingArticles = () => {
   }, [])
   return (
     <div>
-      <SearchForm setArticles={setArticles} />
+      <SearchForm catagory='trending' setArticles={setArticles} />
         {articles.length > 0 && articles.map(article => 
       
         <>

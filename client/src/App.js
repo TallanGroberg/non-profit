@@ -6,7 +6,7 @@ import {Elements, StripeProvider, injectStripe} from 'react-stripe-elements';
 
 import {authContext} from './component/providers/AuthProvider'
 import ProtectedRoute from './component/authentication/ProtectedRoute'
-import NavBar from './component/NavBar'
+import NavBar from './component/navBar/NavBar'
 
 import Signup from './component/authentication/Signup'
 import Signin from './component/authentication/Signin'

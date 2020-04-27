@@ -6,19 +6,16 @@ const Video = (props) => {
   const {count, id} = props
   const [videoDeleted, setVideoDeleted] = useState(false)
 
-
- 
- 
-
   return (<>
     {videoDeleted ? 
-    null
+      null
   :
-    <VideoDisplay count={count}
+    <VideoDisplay
        videoUrl={props.videoUrl} 
         setVideoDeleted={setVideoDeleted} 
-            key={id}
-              id={id} /> 
+          key={id}
+            id={id} 
+    /> 
   }
 
   </>);

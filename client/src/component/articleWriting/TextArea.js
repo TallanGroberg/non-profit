@@ -17,13 +17,12 @@ const TextArea = (props) => {
           submitContent} = useContext(articleContext)
 
           useEffect( () => {
-            console.log(text)
             if(props.article !== undefined) {
               setText({textarea: props.article.textarea, orderAppear: props.id})
-              setTextForm(true)
+                setTextForm(true)
             }
           },[props])
-          console.log(textForm,'textform')
+          
           
 
   
@@ -50,7 +49,7 @@ const TextArea = (props) => {
 
 
   
-  return (<>
+  return (<div data-testid='text-area-display'>
     {paragraphDeleted ?
     null
     :
@@ -67,7 +66,7 @@ const TextArea = (props) => {
     />
   }
     
-  </>);
+  </div>);
 };
 
 export default TextArea

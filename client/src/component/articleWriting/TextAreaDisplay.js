@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext} from 'react';
 import { articleContext } from '../providers/ArticleProvider';
 
 const TextAreaDisplay = (props) => {
-  const [textForm, setTextForm] = useState(false)
+  
 
   const {submitContent, } = useContext(articleContext)
 
@@ -10,7 +10,6 @@ const TextAreaDisplay = (props) => {
           text,
           id,
           setText,
-          
           deleteTextArea,
           saveParagraph,
           } = props
@@ -29,17 +28,21 @@ const TextAreaDisplay = (props) => {
     
     {props.textForm === true ? <>
       <div id='edit-piece'>
-      <p>{text.textarea}</p>
+      <p data-testid="paragraph-displayed" >{text.textarea}</p>
         <button id={`delete-article-piece${id}`} onClick={deleteTextArea} >delete</button>
-        <button id={`delete-article-piece${id}`} onClick={() => props.setTextForm(prev => (!prev))}>edit</button>
+          <button id={`delete-article-piece${id}`} onClick={() => props.setTextForm(prev => (!prev))}>edit</button>
       </div>
 
       </>
     :
     <>
     <textarea name="textarea" 
-    onChange={handleChange}
-     id={`textarea${props.id}`} value={text.textarea} cols={window.innerWidth / 8} rows="10">{props.text.textarea}</textarea>
+      onChange={handleChange}
+        id={`textarea${props.id}`} 
+          title='textarea'
+          value={text.textarea} 
+            cols={window.innerWidth / 8} 
+              rows="10">{props.text.textarea}</textarea>
     <br />
               <button onClick={saveParagraph}>save paragraph</button> 
     </>
