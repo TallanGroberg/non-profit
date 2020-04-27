@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup, fireEvent, getByTitle, } from '@testing-library/react';
+import { render, cleanup, fireEvent,  } from '@testing-library/react';
 import {Router} from 'react-router-dom'
 import {createMemoryHistory } from 'history'
 import ArticleProvider ,{articleContext} from '../component/providers/ArticleProvider'
@@ -37,6 +37,7 @@ describe('displays an import to embed a video', () => {
       
       fireEvent.click(getByText('edit'))
         getByPlaceholderText('Editing video')
+        
   })
   it('deletes video with videoUrl', () => {
     const {getByPlaceholderText, getByText, getByTestId, debug} = renderWithContext(

@@ -29,8 +29,8 @@ const VideoDisplay = (props) => {
 
   const handleSubmit =  (e) => {
     e.preventDefault()
-    setVideoForm(prev => (!prev))
-    submitContent(videoUrl)
+      setVideoForm(prev => (!prev))
+        submitContent(videoUrl)
   }
 
 
@@ -60,10 +60,12 @@ const VideoDisplay = (props) => {
 
   return (<>
     {videoForm ? 
-      <form onSubmit={handleSubmit}>
+      <form data-testid='video-form'
+      onSubmit={handleSubmit}>
           <input
             name='video'
             type="text"
+            data-testid='video-input'
             id='video-input-field'
             value={videoUrl.video}
             placeholder={isEditingVideo ? 'Editing video' : 'Video url' }
@@ -72,7 +74,7 @@ const VideoDisplay = (props) => {
             <button
               id="video-button">
                 Submit
-              </button>
+            </button>
         </form>
     :
     <>

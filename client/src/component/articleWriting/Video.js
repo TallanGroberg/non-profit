@@ -15,7 +15,7 @@ const Video = (props) => {
         setVideoDeleted={setVideoDeleted} 
           key={id}
             id={id} 
-    /> 
+    />
   }
 
   </>);

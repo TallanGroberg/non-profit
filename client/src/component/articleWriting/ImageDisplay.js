@@ -102,7 +102,8 @@ const ImageDisplay = (props) => {
         <>
           <form onChange={handleImageAsFile}>
           <input 
-          id='img-upload'
+
+          data-testid='img-upload'
           type="file"
           
           />
