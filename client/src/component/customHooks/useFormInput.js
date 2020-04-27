@@ -2,6 +2,10 @@ import React, {useContext, useState} from 'react';
 import {authContext} from '../providers/AuthProvider'
 
 
+const InputFormWrap = styled.form`
+
+`;
+
 const useFormInput = () => {
   const {signup, signin, setError, editUser, user, } = useContext(authContext)
   
