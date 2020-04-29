@@ -36,6 +36,14 @@ const articleSchema = new Schema({
   date: {
     type: Number,
     default: now
+  },
+  displayDate: {
+    type: String,
+    default: moment().format('MMMM Do YYYY, h:mm:ss a')
+  },
+  published: {
+    Type: Boolean,
+    default: false
   }
 })
 

@@ -57,7 +57,7 @@ const MakeInputs = (props) => {
         key={i}
         />})}
         
-      }
+      
     </div>
 
       <div data-testid='article-button-container'>
