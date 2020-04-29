@@ -14,16 +14,7 @@ const ArticleProvider = (props) => {
   const [articleForWriter, setArticleForWriter] = useState([])
   const [count, setCount] = useState(0)
   
-  
-  
-  
-  
 
-  
-  
-  
-  
-  
   const submitContent = (arg) => {
     
     setContent(prev => {
@@ -48,10 +39,7 @@ const ArticleProvider = (props) => {
   }
 
 
-  
-
   const saveArticle = async () => {
-    
 
     const wholeArticle = await  {...aboutTheArticle, user: user._id, article: packageForDatabase() }
   
@@ -83,8 +71,6 @@ const ArticleProvider = (props) => {
 
 
   const editArticle = async (argAs_id) => {
-    
-    
 
     const wholeArticle = {...aboutTheArticle, user: user._id, article:  packageForDatabase()}
   
@@ -106,6 +92,20 @@ const ArticleProvider = (props) => {
           handleErrors('Articles require a catagory before they can be published.')
         }
   } 
+
+  const deleteArticle = (article) => {
+    console.log('delete aritlce')
+    if(window.confirm('are you sure you would like to delete this article,\n it will be gone forever')) {
+
+      bearerAxios.delete('/article/' + article._id)
+      .then( res => {
+        alert(`${article.title} was successfully deleted.`)
+        props.history.push('/profile')
+      })
+    } else {
+      alert('article was saved')
+    }
+  }
   
 
   return (
@@ -121,7 +121,7 @@ const ArticleProvider = (props) => {
       setAboutTheArticle,
       content, 
       setContent,
-
+      deleteArticle,
       articleForWriter, 
       setArticleForWriter,
 

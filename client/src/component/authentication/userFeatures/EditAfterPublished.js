@@ -33,6 +33,7 @@ const EditAfterPublished = (props) => {
       setAboutTheArticle({title: '', description: '', displayImage: '', catagory: '',})
     }
   }, [])
+  console.log(article._id)
   return (
     <div>
       {article.length !== 0 ? <ArticleDisplay isForEditing={article} /> : null}

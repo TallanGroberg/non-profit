@@ -23,6 +23,7 @@ const ArticleDisplay = (props) => {
         editArticle,
         setCount,
         submitContent,
+        deleteArticle,
           content,
         } = useContext(articleContext)
 
@@ -67,8 +68,6 @@ const ArticleDisplay = (props) => {
                     
                 }
             })
-            
-          
             setCount(isForEditing.article.length )
         } 
 
@@ -135,7 +134,7 @@ const ArticleDisplay = (props) => {
               () => editArticle(props.isForEditing._id)}>
                 {props.isForEditing === undefined ? 'Save article' : "Save Edits"}
             </button>
-            {props.isForEditing && <button>Delete Article</button>}
+            {props.isForEditing && <button onClick={() => deleteArticle(props.isForEditing)}>Delete Article</button>}
 
           {error.length > 0 && error.map(err => <p>{err}</p>)}
   </>);

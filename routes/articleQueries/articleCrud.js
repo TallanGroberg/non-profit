@@ -5,6 +5,8 @@ const moment = require('moment')
 
 
 articleCrudRouter.get('/', (req,res,next) => {
+
+  console.log('testeindgaksdi')
   let query = Article.find()
   query.limit(20)
   query.exec(function (err,art) {
@@ -14,15 +16,17 @@ articleCrudRouter.get('/', (req,res,next) => {
 })
 //get one
 articleCrudRouter.get('/:_id', (req,res,next) => {
-  Article.findById({_id: req.params._id}, (err,article) => {
-      console.log(req.params.id)
-    if(err) {
-      res.status(501)
-      next(err)
-    } else {
-      res.status(201).send(article)
-    }
-  })
+  let query = Article.findById({_id: req.params._id})
+    query.exec( (err, article) => {
+      if(err) {
+        res.status(501)
+        next(err)
+      } else {
+        console.log(article)
+        res.status(201).send(article)
+      }
+    })
+  
 })
 
 //make article
