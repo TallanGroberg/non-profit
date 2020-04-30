@@ -8,7 +8,9 @@ const UserInfo = () => {
   const {user} = useContext(authContext)
   const {handleEdit, handleChange, inputs, setInputs} = useFormInput()
 
-  
+  useEffect( () => {
+    document.title = "Profile Settings"
+  }, [])
 
 
   return (

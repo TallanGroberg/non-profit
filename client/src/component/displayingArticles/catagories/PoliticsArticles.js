@@ -8,6 +8,7 @@ const PoliticsArticles = () => {
   const [articles, setArticles] = useState([])
 
   useEffect( () => {
+    document.title = 'Politics'
     axios.get('/article/politics')
     .then(res => {
       

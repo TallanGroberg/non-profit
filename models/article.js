@@ -9,8 +9,14 @@ let now = moment().format("l").split('/').reverse()
     let month = now[2]
     now = [year,month,day].join('')
 
-const articleSchema = new Schema({
-  article: {
+    let displayDate = moment().format('MMMM Do YYYY, h:mm:ss a')
+    
+    const articleSchema = new Schema({
+      published: {
+        type: Boolean,
+        default: false,
+      },
+      article: {
     type: Array,
   },
   user: {
@@ -35,16 +41,12 @@ const articleSchema = new Schema({
   },
   date: {
     type: Number,
-    default: now
+    default: now,
   },
   displayDate: {
     type: String,
-    default: moment().format('MMMM Do YYYY, h:mm:ss a')
+    default: displayDate,
   },
-  published: {
-    Type: Boolean,
-    default: false
-  }
 })
 
 

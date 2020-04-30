@@ -10,6 +10,7 @@ const ChangePassword = (props) => {
       const {_id} = props.match.params
 
       useEffect( () => {
+        document.title = 'profile settings'
         axios.get(`/user/${_id}`)
         .then(res => {
           setUser(res.data)

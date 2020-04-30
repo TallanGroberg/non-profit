@@ -18,8 +18,8 @@ const EditAfterPublished = (props) => {
     .then(async res => {
       
       await setArticle(prev => (res.data))
-        const {title, description, displayImage, catagory, article} = res.data
-        await setAboutTheArticle(prev => ({title, description, displayImage, catagory}))
+        const {title, description, published, displayImage, catagory, article} = res.data
+        await setAboutTheArticle(prev => ({title, description, displayImage, published, catagory}))
 
     })
     .catch(err => {
@@ -33,6 +33,7 @@ const EditAfterPublished = (props) => {
       setAboutTheArticle({title: '', description: '', displayImage: '', catagory: '',})
     }
   }, [])
+  console.log(article._id)
   return (
     <div>
       {article.length !== 0 ? <ArticleDisplay isForEditing={article} /> : null}

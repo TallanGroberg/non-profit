@@ -13,7 +13,7 @@ const Header = () => {
   return (<>
       <HeaderStyles>
         <div id='image-container'>
-            <img id='logo' src={Logo} />
+            {/* <img id='logo' src={Logo} />
               {token === localStorage.getItem('token') && token !== '' ?
               <img id='avatar' src={Avatar} />
               :
@@ -21,7 +21,7 @@ const Header = () => {
                 <p id='top-line'></p>
                   <p id='bottom-line'></p>
               </div>
-              }
+              } */}
         </div>
       </HeaderStyles>
   </>);

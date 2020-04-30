@@ -9,6 +9,7 @@ const RecentArticles = () => {
   
 
   useEffect( () => {
+    document.title = 'Recent'
     axios.get('/article/recent')
     .then(res => {
       setArticles(prev => (res.data))
