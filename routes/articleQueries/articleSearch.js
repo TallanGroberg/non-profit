@@ -7,7 +7,8 @@ articleSearchRouter.get('/search/recent', (req,res,next) => {
   const { title } = req.query
     const pattern = new RegExp(title) 
       console.log(pattern)
-        let query = Article.find({title: {$regex: pattern, $options: 'b' }})
+        let query = Article.find()
+        query.where({published: true, title: {$regex: pattern, $options: 'b' }})
           query.exec( (err, article) => {
             if(err){
               res.status(500)
@@ -20,7 +21,8 @@ articleSearchRouter.get('/search/trending', (req,res,next) => {
   const { title } = req.query
     const pattern = new RegExp(title) 
       console.log(pattern)
-        let query = Article.find({title: {$regex: pattern, $options: 'b' }})
+        let query = Article.find()
+        query.where({published: true, title: {$regex: pattern, $options: 'b' }})
           query.exec( (err, article) => {
             if(err){
               res.status(500)
@@ -35,8 +37,11 @@ articleSearchRouter.get('/search/art', (req,res,next) => {
   const { title } = req.query
     const pattern = new RegExp(title) 
       console.log(pattern)
-      let query = Article.find({title: {$regex: pattern, $options: 'b', }})
-        query.where({catagory: 'Art'})
+      let query = Article.find()
+      query.where({published: true, 
+                    title: {$regex: pattern, $options: 'b' }, 
+                      catagory: 'Art' })
+        
           query.exec( (err, article) => {
             if(err){
               res.status(500)
@@ -48,9 +53,12 @@ articleSearchRouter.get('/search/art', (req,res,next) => {
 articleSearchRouter.get('/search/business', (req,res,next) => {
   const { title } = req.query
     const pattern = new RegExp(title)
-      let query = Article.find({title: {$regex: pattern, $options: 'b', }})
+      let query = Article.find()
         console.log(pattern)
-          query.where({catagory: 'Business'})
+          query.where({published: true, 
+                        catagory: 'Business',
+                          title: {$regex: pattern, $options: 'b', }
+                        })
             query.exec( (err, article) => {
               if(err){
                 res.status(500)
@@ -62,9 +70,13 @@ articleSearchRouter.get('/search/business', (req,res,next) => {
 articleSearchRouter.get('/search/politics', (req,res,next) => {
   const { title } = req.query
     const pattern = new RegExp(title)
-      let query = Article.find({title: {$regex: pattern, $options: 'i', }})
+      let query = Article.find()
         console.log(pattern)
-          query.where({catagory: 'Politics'})
+          query.where({
+                      published: true,
+                        catagory: 'Politics',
+                          title: {$regex: pattern, $options: 'b', },
+                      })
             query.exec( (err, article) => {
               if(err){
                 res.status(500)

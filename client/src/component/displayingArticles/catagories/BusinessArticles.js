@@ -9,6 +9,7 @@ const BusinessArticles = () => {
   
 
   useEffect( () => {
+    document.title = 'Business'
     axios.get('/article/business')
     .then(res => {
       setArticles(prev => (res.data))

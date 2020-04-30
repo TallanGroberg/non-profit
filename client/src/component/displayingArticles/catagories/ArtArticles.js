@@ -8,6 +8,7 @@ const ArtArticles = () => {
   
 
   useEffect( () => {
+    document.title = 'Art'
     axios.get('/article/art')
     .then(res => {
       setArticles(prev => (res.data))

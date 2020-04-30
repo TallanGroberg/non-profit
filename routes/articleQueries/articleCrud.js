@@ -8,6 +8,7 @@ articleCrudRouter.get('/', (req,res,next) => {
 
   console.log('testeindgaksdi')
   let query = Article.find()
+  // query.where({published: true})
   query.limit(20)
   query.exec(function (err,art) {
     if(err) return next(err)
@@ -17,6 +18,7 @@ articleCrudRouter.get('/', (req,res,next) => {
 //get one
 articleCrudRouter.get('/:_id', (req,res,next) => {
   let query = Article.findById({_id: req.params._id})
+    // query.where({published: true})
     query.exec( (err, article) => {
       if(err) {
         res.status(501)

@@ -8,6 +8,7 @@ import Video from '../articleWriting/Video'
 
 const ArticleDisplay = (props) => {
   
+  
   const {error} = useContext(authContext) 
 
   const {isForEditing} = props
@@ -21,15 +22,16 @@ const ArticleDisplay = (props) => {
         submitArticleForWriter,
         setContent,
         editArticle,
+        publishArticle,
         setCount,
         submitContent,
         deleteArticle,
           content,
         } = useContext(articleContext)
 
+        let statusOf = aboutTheArticle.published ? 'published' : 'private'
+
         const instanceOfContent = async (sorted) => {
-          
-          
           await sorted.map( async article => {
             const {image,video,textarea, } = article
             
@@ -72,10 +74,10 @@ const ArticleDisplay = (props) => {
         } 
 
         
-        
-
         useEffect( () => {
+              document.title = `write article`
               if(props.isForEditing !== undefined ) {
+                document.title = `edit ${props.isForEditing.title}`
                 const sorted = props.isForEditing.article.sort( (a,b) => a.orderAppear - b.orderAppear)
                 instanceOfContent(sorted)
               }
@@ -99,7 +101,7 @@ const ArticleDisplay = (props) => {
   return (<>
       <form>
           <select data-testid='catagory' name="catagory" onChange={handleChange}>
-            <option value={aboutTheArticle.catagory !== '' ? aboutTheArticle.catagory : null}>{aboutTheArticle.catagory !== '' ? aboutTheArticle.catagory : 'Catagory'}</option>
+            <option value={aboutTheArticle.catagory !== '' ? aboutTheArticle.catagory : ''}>{aboutTheArticle.catagory !== '' ? aboutTheArticle.catagory : 'Catagory'}</option>
             <option value="Art">Art</option>
             <option value="Business">Business</option>
             <option value="Politics">Politics</option>
@@ -132,9 +134,11 @@ const ArticleDisplay = (props) => {
               () => saveArticle() 
               : 
               () => editArticle(props.isForEditing._id)}>
-                {props.isForEditing === undefined ? 'Save article' : "Save Edits"}
+                {props.isForEditing === undefined ? `Save article (${statusOf})` : `Save Edits (${statusOf})`}
             </button>
+            <button onClick={() => setAboutTheArticle( prev => ({...prev, published: !prev.published}))}>{aboutTheArticle.published === false ? 'Show public' : 'Make private'}</button>
             {props.isForEditing && <button onClick={() => deleteArticle(props.isForEditing)}>Delete Article</button>}
+
 
           {error.length > 0 && error.map(err => <p>{err}</p>)}
   </>);

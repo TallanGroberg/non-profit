@@ -8,6 +8,7 @@ const TrendingArticles = () => {
   
 
   useEffect( () => {
+    document.title = 'Trending'
     axios.get('/article/trending')
     .then(res => {
       setArticles(prev => (res.data))

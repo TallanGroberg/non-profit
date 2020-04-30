@@ -16,6 +16,7 @@ const Profile = (props) => {
   
 
   useEffect( () => {
+    document.title = ` welcome ${user.name}`
     bearerAxios.get('/article/user/' + user._id)
     .then(res => {
  
@@ -37,6 +38,7 @@ const Profile = (props) => {
 
   return (
     <div>
+      <h1 data-testid='welcome-user'>{document.title}</h1>
       <Link to='/profile-settings'>Profile Settings</Link>
       {articles.length > 0 ? articles.map( (article,i) => 
       <>

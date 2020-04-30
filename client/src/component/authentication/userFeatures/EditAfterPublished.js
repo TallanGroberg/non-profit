@@ -18,8 +18,8 @@ const EditAfterPublished = (props) => {
     .then(async res => {
       
       await setArticle(prev => (res.data))
-        const {title, description, displayImage, catagory, article} = res.data
-        await setAboutTheArticle(prev => ({title, description, displayImage, catagory}))
+        const {title, description, published, displayImage, catagory, article} = res.data
+        await setAboutTheArticle(prev => ({title, description, displayImage, published, catagory}))
 
     })
     .catch(err => {

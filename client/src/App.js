@@ -59,7 +59,6 @@ function App(props) {
         <Route exact path='/change-password/:_id'> <ChangePassword /> </Route>
 
         <ProtectedRoute exact path="/write-article"> <ArticleDisplay /> </ProtectedRoute>
-        <Route exact path='/articles'> <AllArticles /> </Route>
         <Route exact path='/business'> <BusinessArticles /> </Route>
         <Route exact path='/art'> <ArtArticles /> </Route>
         <Route exact path='/politics'> <PoliticsArticles /> </Route>
