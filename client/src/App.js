@@ -75,8 +75,12 @@ function App(props) {
 }
 
 const Container = styled.div`
-
+  @import url('https://fonts.googleapis.com/css?family=Roboto');
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
   text-align: center;
+  margin-bottom: 40px;
   img {
     height: 70%;
     width: 60%;
@@ -85,7 +89,68 @@ const Container = styled.div`
     height: 70%;
     width: 65%;
   }
-
+  button {
+    outline: 0;
+    background-color: white;
+    margin: 1px;
+    font-family: Roboto;
+    font-style: italic;
+    font-weight: normal;
+    border: none;
+    border-radius: 10%;
+    border-left: 1px solid #daede2;
+    border-bottom: 2px solid #34AF70;
+  }
+  input[type="file"] {
+    outline: none;
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: none;
+    border-bottom: 1px solid #34AF70;
+    font-family: Roboto;
+  }
+  input[type="file"]:hover {
+    border-top: 1px solid #daede2;
+    border-bottom: 1px solid #34AF70;
+    border-left: 1px solid #daede2;
+}
+  input {
+    outline: none;
+    padding: 12px 20px;
+    border: none;
+    border-bottom: 1px solid #34AF70;
+    ease-in: 0.1s;
+  }
+  input:focus {
+    border-top: 1px solid #daede2;
+    border-bottom: 1px solid #34AF70;
+    border-left: 1px solid #daede2;
+}
+  textarea {
+    outline: none;
+    padding: 12px 20px;
+    border: none;
+    border-bottom: 1px solid #34AF70;
+    ease-in: 0.1s;
+  }
+  textarea:focus {
+    border-top: 1px solid #daede2;
+    border-bottom: 1px solid #34AF70;
+    border-left: 1px solid #daede2;
+}
+a {
+  margin: 1px;
+  color: black;
+  text-decoration: none;
+  ease-in: 0.5s;
+}
+a:hover {
+  border-bottom: 1px solid #daede2;
+}
+select {
+  text-decoration: none;
+}
 `;
 
 

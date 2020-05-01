@@ -19,7 +19,9 @@ const UserInfo = () => {
       <input name='name' onChange={handleChange} type="text" value={inputs.name}/>
         <p>Email</p>
       <input name='email' onChange={handleChange} type="text" value={inputs.email}/>
+      <br />
       <button>Change name and email.</button>
+      <br />
       <Link to='/send-email'>Change your password</Link>
     </form>
   );

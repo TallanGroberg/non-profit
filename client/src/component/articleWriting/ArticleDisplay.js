@@ -1,4 +1,5 @@
 import React, {useState, useContext, useEffect} from 'react';
+import styled from 'styled-components'
 import MakeInputs from './MakeInputs';
 import {articleContext} from '../providers/ArticleProvider'
 import {authContext} from '../providers/AuthProvider'
@@ -99,6 +100,8 @@ const ArticleDisplay = (props) => {
   }
 
   return (<>
+    <DisplayStyle>
+
       <form>
           <select data-testid='catagory' name="catagory" onChange={handleChange}>
             <option value={aboutTheArticle.catagory !== '' ? aboutTheArticle.catagory : ''}>{aboutTheArticle.catagory !== '' ? aboutTheArticle.catagory : 'Catagory'}</option>
@@ -109,17 +112,17 @@ const ArticleDisplay = (props) => {
           <br />
         <textarea 
          id="title"
-        placeholder='title' 
+         placeholder='title' 
         name='title' 
         value={aboutTheArticle.title} 
         onChange={handleChange} />
         <br />
         <textarea 
           id="description"
-         placeholder='description'
-        name='description' 
-        value={aboutTheArticle.description} 
-        onChange={handleChange} />
+          placeholder='description'
+          name='description' 
+          value={aboutTheArticle.description} 
+          onChange={handleChange} />
         
       </form>
       <p>Display Image</p>
@@ -128,20 +131,56 @@ const ArticleDisplay = (props) => {
           <MakeInputs />
           :
           <MakeInputs isForEditing={props.isForEditing} />
-      }
+        }
       <br />
-          <button onClick={props.isForEditing === undefined ? 
-              () => saveArticle() 
-              : 
-              () => editArticle(props.isForEditing._id)}>
-                {props.isForEditing === undefined ? `Save article (${statusOf})` : `Save Edits (${statusOf})`}
-            </button>
-            <button onClick={() => setAboutTheArticle( prev => ({...prev, published: !prev.published}))}>{aboutTheArticle.published === false ? 'Show public' : 'Make private'}</button>
-            {props.isForEditing && <button onClick={() => deleteArticle(props.isForEditing)}>Delete Article</button>}
 
+      <div className="crud-buttons">
+            {error.length > 0 && error.map(err => <p>{err}</p>)}
 
-          {error.length > 0 && error.map(err => <p>{err}</p>)}
+              <button  id='edit-save'
+                onClick={props.isForEditing === undefined ? 
+                  () => saveArticle() 
+                  : 
+                  () => editArticle(props.isForEditing._id)}>
+              {props.isForEditing === undefined ? `Save article (${statusOf})` : `Save Edits (${statusOf})`}
+                </button>
+
+                <button  
+                  onClick={() => setAboutTheArticle( prev => ({...prev, published: !prev.published}))}>
+                    {aboutTheArticle.published === false ? 
+                      'Show public' 
+                        : 
+                      'Make private'
+                    }
+                </button>
+                {props.isForEditing && <button  
+                                          onClick={() => deleteArticle(props.isForEditing)}>
+                                            Delete Article
+                                        </button>}
+
+      </div>
+    </DisplayStyle>
   </>);
 };
+
+
+const DisplayStyle = styled.div`
+  align-content: right;
+  width: 100vw;
+.crud-buttons {
+  position: fixed;
+  bottom: 16px;
+    display: flex;
+    flex-direction: column;
+
+}
+.crud-buttons > #edit-save {
+  margin: 2px;
+  width: 72px;
+}
+
+`;
+
+
 
 export default ArticleDisplay;

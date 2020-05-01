@@ -36,7 +36,8 @@ const TextAreaDisplay = (props) => {
       </>
     :
     <>
-    <textarea name="textarea" 
+    <textarea name="textarea"
+      placeholder='New paragraph' 
       onChange={handleChange}
         id={`textarea${props.id}`} 
           title='textarea'

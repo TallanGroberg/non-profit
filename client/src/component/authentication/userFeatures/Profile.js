@@ -39,6 +39,7 @@ const Profile = (props) => {
   return (
     <div>
       <h1 data-testid='welcome-user'>{document.title}</h1>
+        {user.imgUrl !== '' && <><img style={{height: 32, width: 32}} src={user.imgUrl} /><br /></>}
       <Link to='/profile-settings'>Profile Settings</Link>
       {articles.length > 0 ? articles.map( (article,i) => 
       <>
