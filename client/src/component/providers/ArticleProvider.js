@@ -8,11 +8,14 @@ const ArticleProvider = (props) => {
   const initState = {title: '', description: '', displayImage: '', catagory: '', published: false}
 
   const {user, handleErrors, setError} = useContext(authContext)
-
+  const [articles, setArticles] = useState([])
+  const [catagory, setCatagory] = useState('')
   const [aboutTheArticle, setAboutTheArticle] = useState(initState)
   const [content, setContent] = useState([])
   const [articleForWriter, setArticleForWriter] = useState([])
   const [count, setCount] = useState(0)
+
+  console.log(catagory)
 
   
 
@@ -138,6 +141,10 @@ const ArticleProvider = (props) => {
       deleteArticle,
       articleForWriter, 
       setArticleForWriter,
+      articles, 
+      setArticles,
+      catagory, 
+      setCatagory,
 
     }}>
       {props.children}

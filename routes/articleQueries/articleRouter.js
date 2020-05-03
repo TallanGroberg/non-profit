@@ -40,9 +40,9 @@ articleRouter.get('/recent', (req,res,next) => {
   
   let query = Article.find()
       query.where({published: true})
-      query.sort({date: -1})
       query.limit(20)
       query.populate('user')
+      query.sort({'date': -1})
       query.exec(  (err, article) => {
         if(err) return next(err)
           res.send(article)

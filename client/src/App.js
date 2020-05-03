@@ -32,12 +32,7 @@ function App(props) {
  
 
   useEffect( () => {
-    let pathname = window.location.pathname
-    if (pathname === '/') { pathname = 'home' } 
-    pathname = pathname.split('')
-    pathname = pathname.filter(letter => letter !== '/' )
-    pathname = pathname.join('')
-    document.title = pathname
+    
   }, [])
 
 

@@ -6,9 +6,11 @@ const Article = require('../../models/article')
 articleSearchRouter.get('/search/recent', (req,res,next) => {
   const { title } = req.query
     const pattern = new RegExp(title) 
-      console.log(pattern)
-        let query = Article.find()
-        query.where({published: true, title: {$regex: pattern, $options: 'b' }})
+
+    let query = Article.find()
+    query.populate('user')
+      query.where({published: true, title: {$regex: pattern, $options: 'b' }})
+        query.sort({'date': -1})
           query.exec( (err, article) => {
             if(err){
               res.status(500)
@@ -20,8 +22,8 @@ articleSearchRouter.get('/search/recent', (req,res,next) => {
 articleSearchRouter.get('/search/trending', (req,res,next) => {
   const { title } = req.query
     const pattern = new RegExp(title) 
-      console.log(pattern)
-        let query = Article.find()
+    let query = Article.find()
+      query.populate('user')
         query.where({published: true, title: {$regex: pattern, $options: 'b' }})
           query.exec( (err, article) => {
             if(err){
@@ -36,8 +38,8 @@ articleSearchRouter.get('/search/art', (req,res,next) => {
    
   const { title } = req.query
     const pattern = new RegExp(title) 
-      console.log(pattern)
-      let query = Article.find()
+    let query = Article.find()
+    query.populate('user')
       query.where({published: true, 
                     title: {$regex: pattern, $options: 'b' }, 
                       catagory: 'Art' })
@@ -54,8 +56,8 @@ articleSearchRouter.get('/search/business', (req,res,next) => {
   const { title } = req.query
     const pattern = new RegExp(title)
       let query = Article.find()
-        console.log(pattern)
-          query.where({published: true, 
+      query.populate('user')
+      query.where({published: true, 
                         catagory: 'Business',
                           title: {$regex: pattern, $options: 'b', }
                         })
@@ -71,8 +73,8 @@ articleSearchRouter.get('/search/politics', (req,res,next) => {
   const { title } = req.query
     const pattern = new RegExp(title)
       let query = Article.find()
-        console.log(pattern)
-          query.where({
+      query.populate('user')
+      query.where({
                       published: true,
                         catagory: 'Politics',
                           title: {$regex: pattern, $options: 'b', },
@@ -86,7 +88,5 @@ articleSearchRouter.get('/search/politics', (req,res,next) => {
             })
 })
 
-
-//.populate will get the information from an _id
 
 module.exports = articleSearchRouter

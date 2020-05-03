@@ -1,85 +1,108 @@
 
-import React, {useContext} from 'react';
+import React, {useContext,useState, useEffect} from 'react';
 import styled from 'styled-components'
-import {Link } from 'react-router-dom'
-import Logo from '../../images/400dpiLogo.png'
+import {Link, useParams } from 'react-router-dom'
+import Logo from '../../images/MediumSquareLogo.png'
 import Avatar from '../../images/wireFrameImages/avatar.png'
 import {authContext} from '../providers/AuthProvider'
+import SearchForm from '../authentication/userFeatures/SearchForm'
+const Header = ({menu, setMenu}) => {
 
-const Header = () => {
 
   const {token} = useContext(authContext)
 
+
+  
+  
   return (<>
       <HeaderStyles>
-        <div id='image-container'>
-            {/* <img id='logo' src={Logo} />
-              {token === localStorage.getItem('token') && token !== '' ?
-              <img id='avatar' src={Avatar} />
-              :
-              <div id='line-container'>
-                <p id='top-line'></p>
-                  <p id='bottom-line'></p>
-              </div>
-              } */}
+        <img id='logo' src={Logo} />
+        <div id={menu ? 'hamburger-open' : 'hamburger-closed'}
+          onClick={() => setMenu(prev => (!prev))}
+          >
+            {menu ? 
+              <>
+              <p id='top-line'></p>
+              <p id='bottom-line'></p>
+              </>
+              : 
+              
+              <>
+              <p id='top-line'></p>
+              <p id='bottom-line'></p>
+              </>
+              
+              }
         </div>
+              <SearchForm  />
+        <br />
+        
       </HeaderStyles>
   </>);
 };
 
 const HeaderStyles = styled.div`
-display: flex
 
-#image-container {
-
-width: 100%;
-  position: fixed;
-  
-  background-color: white;
-  height: 39px;
+ > #logo {
+  position: absolute;
+  left: 8px;
   top: 0px;
-  left: -1px;
-}
-#logo {
-z-index: 1;
-object-fit: contain;
-  max-width: 55px;
-  position: fixed;
-  left: 2.45%;
-  top: -31.9%;
-}
-#avatar {
-  z-index: 1;
-  
-  object-fit: contain;
-  max-width: 55px;
-  position: fixed;
-  top: -205px;
-  right: 0;
+  height: 48px;
+  width: 48px;
+
 }
 
-#line-container {
-  height: 12px;
-  z-index: 1;
-  align-content: right;
-  max-width: 55px;
-  position: fixed;
-  top: 0px;
-  right: 0;
-}
-#top-line {
-  border: 1px solid;
-  border-radius: 8%;
-  
+#hamburger-open {
+  align-content: left;
+  position: absolute;
+  right: 8px;
   width: 24px;
-  right: 0;
+  height: 24px;
 }
-#bottom-line {
-  border-radius: 8%;
-  border: 1px solid;
-  width: 12px;
-  right: 0;
+#hamburger-closed {
+  position: absolute;
+  right: 8px;
+  width: 24px;
+  height: 24px;
 }
+#hamburger-closed > #top-line {
+  position: relative;
+  top: -12px;
+  width: 20px;
+  border-radius: 40px;
+  border: 2px solid black;
+}
+#hamburger-closed > #bottom-line {
+  position: relative;
+  top: -20px;
+  right: -12px;
+  width: 8px;
+  border-radius: 40px;
+  border: 2px solid black;
+}
+
+#hamburger-open > #top-line {
+  transform: rotate(45deg);
+    position: relative;
+    top: -6px;
+    right: 5px;
+    width: 30px;
+    border-radius: 40px;
+    border: 2px solid black;
+}
+#hamburger-open > #bottom-line {
+  transform: rotate(-45deg);
+    position: relative;
+    top: -26px;
+    right: 5px;
+    width: 30px;
+    border-radius: 40px;
+    border: 2px solid black;
+}
+
+
+
+
 `;
 
 export default Header;
