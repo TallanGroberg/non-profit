@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext,} from 'react';
 import styled from 'styled-components'
 import {Link } from 'react-router-dom'
 import Logo from '../../images/400dpiLogo.png'
@@ -7,17 +7,17 @@ import {authContext} from '../providers/AuthProvider'
 import Header from './Header'
 
 const NavBar = () => {
-
+  
   const {token} = useContext(authContext)
   return (<>
     <NavStyle>
       <Header />
       <div className="links">
-        <Link to="/business" >Business</Link>
-        <Link to="/art" >Art</Link>
-        <Link to="/recent" >Recent</Link>
-        <Link to="/politics" >Politics</Link>
-        <Link to="/trending" >Trending</Link>
+        <Link to="/articles/business" >Business</Link>
+        <Link to="/articles/art" >Art</Link>
+        <Link to="/articles/recent" >Recent</Link>
+        <Link to="/articles/politics" >Politics</Link>
+        <Link to="/articles/trending" >Trending</Link>
         <Link to='/profile'>Profile</Link>
         <Link to='/write-article'>Write an Article</Link>
       </div>

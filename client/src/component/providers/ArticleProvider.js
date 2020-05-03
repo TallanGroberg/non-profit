@@ -14,7 +14,6 @@ const ArticleProvider = (props) => {
   const [articleForWriter, setArticleForWriter] = useState([])
   const [count, setCount] = useState(0)
 
-  console.log(aboutTheArticle)
   
 
   const submitContent = (arg) => {

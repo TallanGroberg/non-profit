@@ -3,9 +3,8 @@ import axios from 'axios'
 import {bearerAxios} from '../providers/AuthProvider'
 import {withRouter} from 'react-router-dom'
 import ReactPlayer from 'react-player'
-import Content from './Content'
 import { articleContext } from '../providers/ArticleProvider';
-
+import Content from './Content'
 const OneArticle = (props) => {
   const [articleContent, setArticleContent] = useState([])
   const [liked, setLiked] = useState(false)
