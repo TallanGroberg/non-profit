@@ -1,17 +1,19 @@
-import React, {useState,useEffect} from 'react';
+import React, {useState,useEffect, useContext} from 'react';
 import axios from 'axios'
 import {Link, useParams, } from 'react-router-dom'
-import SearchForm from '../authentication/userFeatures/SearchForm'
+import {articleContext } from '../providers/ArticleProvider'
 import Likes from './Likes'
 import styled from 'styled-components'
 
 const AllArticles = (props) => {
-  const [articles, setArticles] = useState([])
+  const {articles, setArticles, setCatagory} = useContext(articleContext)
   
   const catagory = useParams().catagory
+  console.log(catagory)
 
-  useEffect( () => {
+  useEffect(() => {
     document.title = catagory
+    setCatagory(catagory)
     axios.get('/article/' + catagory)
     .then(res => {
       setArticles(prev => (res.data))
@@ -26,7 +28,6 @@ const AllArticles = (props) => {
 
 
   return (<>
-    <SearchForm catagory={catagory} setArticles={setArticles} />
 
       {articles.length > 0 && articles.map(article => 
       
@@ -34,7 +35,6 @@ const AllArticles = (props) => {
           <Link to={`/article/${article._id}`}>
           
         <ArticleStyles>
-          {console.log(article)}
           <div className="title-description">
             <h1>{article.title}</h1>
               <p id="author">{article.user.name}</p>

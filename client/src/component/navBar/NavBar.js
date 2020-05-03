@@ -1,17 +1,19 @@
-import React, {useContext,} from 'react';
+import React, {useContext, useEffect} from 'react';
 import styled from 'styled-components'
-import {Link } from 'react-router-dom'
+import {Link , useParams} from 'react-router-dom'
 import Logo from '../../images/400dpiLogo.png'
 import Avatar from '../../images/wireFrameImages/avatar.png'
 import {authContext} from '../providers/AuthProvider'
 import Header from './Header'
-
+import SearchForm from '../authentication/userFeatures/SearchForm'
 const NavBar = () => {
+  const {token,} = useContext(authContext)
+    
   
-  const {token} = useContext(authContext)
   return (<>
     <NavStyle>
       <Header />
+        <SearchForm  />
       <div className="links">
         <Link to="/articles/business" >Business</Link>
         <Link to="/articles/art" >Art</Link>
@@ -39,7 +41,7 @@ const NavStyle = styled.div`
     left: -1px;
 }
 #logo {
-  z-index: 1;
+
   object-fit: contain;
     max-width: 55px;
     position: fixed;
@@ -47,7 +49,7 @@ const NavStyle = styled.div`
     top: -31.9%;
   }
   #avatar {
-    z-index: 1;
+  
     object-fit: contain;
     max-width: 55px;
     position: fixed;
@@ -60,9 +62,7 @@ const NavStyle = styled.div`
 
     margin-top: 64px;
   }
-  a {
-    text-decoration: none;
-  }
+ 
 
 `;
 
