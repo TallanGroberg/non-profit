@@ -2,7 +2,7 @@
 import React, {useContext,useState, useEffect} from 'react';
 import styled from 'styled-components'
 import {Link, useParams } from 'react-router-dom'
-import Logo from '../../images/400dpiLogo.png'
+import Logo from '../../images/MediumSquareLogo.png'
 import Avatar from '../../images/wireFrameImages/avatar.png'
 import {authContext} from '../providers/AuthProvider'
 import SearchForm from '../authentication/userFeatures/SearchForm'
@@ -16,6 +16,7 @@ const Header = ({menu, setMenu}) => {
   
   return (<>
       <HeaderStyles>
+        <img id='logo' src={Logo} />
         <div id={menu ? 'hamburger-open' : 'hamburger-closed'}
           onClick={() => setMenu(prev => (!prev))}
           >
@@ -41,18 +42,26 @@ const Header = ({menu, setMenu}) => {
 };
 
 const HeaderStyles = styled.div`
+
+ > #logo {
+  position: absolute;
+  left: 8px;
+  top: 0px;
+  height: 48px;
+  width: 48px;
+
+}
+
 #hamburger-open {
   align-content: left;
   position: absolute;
   right: 8px;
-  border: 1px solid black;
   width: 24px;
   height: 24px;
 }
 #hamburger-closed {
   position: absolute;
   right: 8px;
-  
   width: 24px;
   height: 24px;
 }

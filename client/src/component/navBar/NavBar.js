@@ -12,8 +12,9 @@ const NavBar = () => {
     
   
   return (<>
-    <NavStyle>
       <Header setMenu={setMenu} menu={menu} />
+    <NavStyle>
+      {menu ? 
       <div className="links">
         <Link to="/articles/business" >Business</Link>
         <Link to="/articles/art" >Art</Link>
@@ -23,6 +24,9 @@ const NavBar = () => {
         <Link to='/profile'>Profile</Link>
         <Link to='/write-article'>Write an Article</Link>
       </div>
+      :
+      null
+    }
     </NavStyle>
   </>);
 };
@@ -58,7 +62,7 @@ const NavStyle = styled.div`
   }
 
   .links {
-    flex-direction: space-evenly;
+    flex-direction: column;
 
     margin-top: 64px;
   }
