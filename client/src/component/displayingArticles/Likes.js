@@ -23,7 +23,6 @@ const LikeStyles = styled.div`
   top: 21px;
   position: relative;
 }
-
 `;
 
 export default Likes;
