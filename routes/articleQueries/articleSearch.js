@@ -9,7 +9,7 @@ articleSearchRouter.get('/search/recent', (req,res,next) => {
 
     let query = Article.find()
     query.populate('user')
-        query.where({published: true, title: {$regex: pattern, $options: 'b' }})
+      query.where({published: true, title: {$regex: pattern, $options: 'b' }})
         query.sort({'date': -1})
           query.exec( (err, article) => {
             if(err){

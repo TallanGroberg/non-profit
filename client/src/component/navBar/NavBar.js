@@ -1,19 +1,19 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import styled from 'styled-components'
 import {Link , useParams} from 'react-router-dom'
 import Logo from '../../images/400dpiLogo.png'
 import Avatar from '../../images/wireFrameImages/avatar.png'
 import {authContext} from '../providers/AuthProvider'
 import Header from './Header'
-import SearchForm from '../authentication/userFeatures/SearchForm'
+
 const NavBar = () => {
+  const [menu, setMenu] = useState(false)
   const {token,} = useContext(authContext)
     
   
   return (<>
     <NavStyle>
-      <Header />
-        <SearchForm  />
+      <Header setMenu={setMenu} menu={menu} />
       <div className="links">
         <Link to="/articles/business" >Business</Link>
         <Link to="/articles/art" >Art</Link>
