@@ -41,7 +41,7 @@ let now = moment().format("l").split('/').reverse()
   },
   date: {
     type: Number,
-    default: now,
+    default: Date.now(),
   },
   displayDate: {
     type: String,

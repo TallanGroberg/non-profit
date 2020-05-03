@@ -10,6 +10,7 @@ articleSearchRouter.get('/search/recent', (req,res,next) => {
     let query = Article.find()
     query.populate('user')
         query.where({published: true, title: {$regex: pattern, $options: 'b' }})
+        query.sort({'date': -1})
           query.exec( (err, article) => {
             if(err){
               res.status(500)
@@ -87,7 +88,5 @@ articleSearchRouter.get('/search/politics', (req,res,next) => {
             })
 })
 
-
-//.populate will get the information from an _id
 
 module.exports = articleSearchRouter
