@@ -22,11 +22,11 @@ import CommingSoon from './component/CommingSoon';
 
 import AllArticles from './component/displayingArticles/AllArticles'
 import OneArticle from './component/displayingArticles/OneArticle'
-import BusinessArticles from './component/displayingArticles/catagories/BusinessArticles';
-import ArtArticles from './component/displayingArticles/catagories/ArtArticles'
-import PoliticsArticles from './component/displayingArticles/catagories/PoliticsArticles'
-import RecentArticles from './component/displayingArticles/catagories/RecentArticles'
-import TrendingArticles from './component/displayingArticles/catagories/TrendingArticles'
+// import BusinessArticles from './component/displayingArticles/catagories/BusinessArticles';
+// import ArtArticles from './component/displayingArticles/catagories/ArtArticles'
+// import PoliticsArticles from './component/displayingArticles/catagories/PoliticsArticles'
+// import RecentArticles from './component/displayingArticles/catagories/RecentArticles'
+// import TrendingArticles from './component/displayingArticles/catagories/TrendingArticles'
 
 function App(props) {
  
@@ -59,11 +59,8 @@ function App(props) {
         <Route exact path='/change-password/:_id'> <ChangePassword /> </Route>
 
         <ProtectedRoute exact path="/write-article"> <ArticleDisplay /> </ProtectedRoute>
-        <Route exact path='/business'> <BusinessArticles /> </Route>
-        <Route exact path='/art'> <ArtArticles /> </Route>
-        <Route exact path='/politics'> <PoliticsArticles /> </Route>
-        <Route exact path='/recent'> <RecentArticles /> </Route>
-        <Route exact path='/trending'> <TrendingArticles /> </Route>
+        <Route exact path='/articles/:catagory' > <AllArticles /></Route>
+        
 
         <Route exact path='/article/:_id'> <OneArticle /> </Route>
       </Switch>

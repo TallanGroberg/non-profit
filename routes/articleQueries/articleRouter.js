@@ -11,6 +11,7 @@ const moment = require('moment')
 articleRouter.get('/business', (req,res,next) => {
   let query = Article.find()
       query.where({published: true, catagory: 'Business' })
+      query.populate('user')
       query.exec(  (err, article) => {
         if(err) return next(err)
           res.send(article)
@@ -19,6 +20,7 @@ articleRouter.get('/business', (req,res,next) => {
 articleRouter.get('/art', (req,res,next) => {
   let query = Article.find()
       query.where({published: true, catagory: 'Art'})
+      query.populate('user')
       query.exec(  (err, article) => {
         if(err) return next(err)
           res.send(article)
@@ -27,6 +29,7 @@ articleRouter.get('/art', (req,res,next) => {
 articleRouter.get('/politics', (req,res,next) => {
   let query = Article.find()
   query.where({published: true, catagory: 'Politics' })
+  query.populate('user')
       query.exec(  (err, article) => {
         if(err) return next(err)
           res.send(article)
@@ -39,6 +42,7 @@ articleRouter.get('/recent', (req,res,next) => {
       query.where({published: true})
       query.sort({date: -1})
       query.limit(20)
+      query.populate('user')
       query.exec(  (err, article) => {
         if(err) return next(err)
           res.send(article)
@@ -50,6 +54,7 @@ articleRouter.get('/trending', (req,res,next) => {
   let query = Article.find()
   query.where({published: true})
   query.limit(20)
+  query.populate('user')
   query.sort({likes: -1})
   query.exec(function (err,art) {
     if(err) return next(err)

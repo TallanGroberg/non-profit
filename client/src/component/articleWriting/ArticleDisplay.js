@@ -145,7 +145,7 @@ const ArticleDisplay = (props) => {
               {props.isForEditing === undefined ? `Save article (${statusOf})` : `Save Edits (${statusOf})`}
                 </button>
 
-                <button  
+                <button id="toggle-published"
                   onClick={() => setAboutTheArticle( prev => ({...prev, published: !prev.published}))}>
                     {aboutTheArticle.published === false ? 
                       'Show public' 
@@ -153,7 +153,7 @@ const ArticleDisplay = (props) => {
                       'Make private'
                     }
                 </button>
-                {props.isForEditing && <button  
+                {props.isForEditing && <button id="delete" 
                                           onClick={() => deleteArticle(props.isForEditing)}>
                                             Delete Article
                                         </button>}
@@ -177,6 +177,18 @@ const DisplayStyle = styled.div`
 .crud-buttons > #edit-save {
   margin: 2px;
   width: 72px;
+}
+.crud-buttons > #toggle-published {
+  margin: 2px;
+  width: 72px;
+}
+
+.crud-buttons > #delete {
+  margin: 2px;
+  width: 64px;
+  border-bottom: 2px solid #f2bb96;
+  border-left: 1px solid #f2bb96;
+  color: #777676;
 }
 
 `;
