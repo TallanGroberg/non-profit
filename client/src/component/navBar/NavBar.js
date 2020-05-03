@@ -7,7 +7,7 @@ import {authContext} from '../providers/AuthProvider'
 import Header from './Header'
 
 const NavBar = () => {
-  const [menu, setMenu] = useState(false)
+  const [menu, setMenu] = useState(true)
   const {token,} = useContext(authContext)
     
   
@@ -34,35 +34,9 @@ const NavBar = () => {
 const NavStyle = styled.div`
   display: flex;
 
-#image-container {
-
-  width: 100%;
-    position: fixed;
-    
-    background-color: white;
-    height: 39px;
-    top: 0px;
-    left: -1px;
-}
-#logo {
-
-  object-fit: contain;
-    max-width: 55px;
-    position: fixed;
-    left: 2.45%;
-    top: -31.9%;
-  }
-  #avatar {
   
-    object-fit: contain;
-    max-width: 55px;
-    position: fixed;
-    top: -205px;
-    right: 0;
-  }
-
   .links {
-    flex-direction: column;
+    flex-direction: row;
 
     margin-top: 64px;
   }
