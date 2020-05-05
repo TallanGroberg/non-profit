@@ -19,6 +19,7 @@ articleCrudRouter.get('/', (req,res,next) => {
 articleCrudRouter.get('/:_id', (req,res,next) => {
   let query = Article.findById({_id: req.params._id})
     // query.where({published: true})
+    query.populate('user')
     query.exec( (err, article) => {
       if(err) {
         res.status(501)

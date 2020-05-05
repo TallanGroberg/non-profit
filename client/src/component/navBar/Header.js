@@ -49,6 +49,11 @@ const Header = ({menu, setMenu}) => {
 };
 
 const HeaderStyles = styled.div`
+    width: 100%;
+    top: 0;
+    right: 0;
+    position: fixed;
+    background-color: white;
 
  > #logo {
   position: absolute;
@@ -63,6 +68,7 @@ const HeaderStyles = styled.div`
   align-content: left;
   position: absolute;
   right: 8px;
+  top: 8px;
   width: 24px;
   height: 24px;
 }
@@ -70,7 +76,7 @@ const HeaderStyles = styled.div`
   position: absolute;
   right: 8px;
   width: 24px;
-  height: 24px;
+  height: 34px;
   top: -2px;
 }
 #hamburger-closed > #top-line {

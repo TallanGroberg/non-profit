@@ -6,43 +6,53 @@ import Avatar from '../../images/wireFrameImages/avatar.png'
 import {authContext} from '../providers/AuthProvider'
 import Header from './Header'
 import Fade from 'react-reveal'
+import { hideAll } from 'react-reveal/globals';
 
 
 const NavBar = () => {
-  const [menu, setMenu] = useState(true)
+  const [menu, setMenu] = useState(false)
   const {token,} = useContext(authContext)
     
   
   return (<>
       <Header setMenu={setMenu} menu={menu} />
     <NavStyle>
-     
+      <div className={menu ? 'full-screen' : 'hidden'} 
+       onClick={() => setMenu(false)}
+      >
 
-      <Fade right when={menu}>
-      <div onClick={() => setMenu(false)} className="links">
-        <Link  to="/articles/business" >Business</Link>
-        <Link  to="/articles/art" >Art</Link>
-        <Link  to="/articles/recent" >Recent</Link>
-        <Link  to="/articles/politics" >Politics</Link>
-        <Link  to="/articles/trending" >Trending</Link>
-        <Link  to='/profile'>Profile</Link>
-        <Link  to='/write-article'>Write an Article</Link>
-      </div>
-      </Fade>
+        <Fade right unmountOnExit when={menu}>
+          <div  className='links'>
+            <Link  to="/articles/business" >Business</Link>
+            <Link  to="/articles/art" >Art</Link>
+            <Link  to="/articles/recent" >Recent</Link>
+            <Link  to="/articles/politics" >Politics</Link>
+            <Link  to="/articles/trending" >Trending</Link>
+            <Link  to='/profile'>Profile</Link>
+            <Link  to='/write-article'>Write an Article</Link>
+          </div>
+        </Fade>
       
+      </div>
     </NavStyle>
   </>);
 };
 
 const NavStyle = styled.div`
+    margin-top: 72px;
+   .full-screen {
+    height: 100vh;
+  }
+   .hidden {
+    display: none;
+  }
   
-  
-  > .links {
+   .links {
     position: fixed;
     justify-content: space-evenly;
     align-content: center;
-    z-index: 2;
-    border: 1px solid black;
+    z-index: 1;
+    border: 2px solid #daede2;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -51,7 +61,7 @@ const NavStyle = styled.div`
     -ms-flex-direction: column;
     flex-direction: column;
     
-    margin-top: -36px;
+    
     width: 80%;
     right: 12px;
     background-color: white;
