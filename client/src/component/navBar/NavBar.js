@@ -18,9 +18,9 @@ const NavBar = () => {
       <Header setMenu={setMenu} menu={menu} />
     <NavStyle>
       
-
+      <div onClick={() => setMenu(false)} className={menu ? 'full-screen' : 'hidden'}>
         <Fade right unmountOnExit when={menu}>
-          <div onClick={() => setMenu(false)} className='links'>
+          <div  className='links'>
             <Link  to="/articles/business" >Business</Link>
             <Link  to="/articles/art" >Art</Link>
             <Link  to="/articles/recent" >Recent</Link>
@@ -30,7 +30,7 @@ const NavBar = () => {
             <Link  to='/write-article'>Write an Article</Link>
           </div>
         </Fade>
-      
+      </div>
       
     </NavStyle>
   </>);
@@ -38,8 +38,13 @@ const NavBar = () => {
 
 const NavStyle = styled.div`
     margin-top: 72px;
+    align-content: left;
    .full-screen {
+     position: fixed;
+     z-index: 1;
+     opacity: 9.0;
     height: 100vh;
+    width: 100vw;
   }
    .hidden {
     display: none;
@@ -47,30 +52,27 @@ const NavStyle = styled.div`
   
    .links {
     position: fixed;
-    justify-content: space-evenly;
-    align-content: center;
-    z-index: 1;
     
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
+    justify-content: unset;
+   
+    align-content: right;
+   
+    
     display: flex;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
+    
     flex-direction: column;
-    
-    
-    width: 20%;
+    width: 28%;
     right: 0;
     background-color: white;
-    height: 80%;
+    height: 93vh;
     -webkit-box-shadow: 0px 0px 34px -14px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 34px -14px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 34px -14px rgba(0,0,0,0.75);
+}
   }
   .links > a {
     border-bottom: 1px solid #34AF70;
-    width: 40%;
+    width: 70%;
     margin: auto;
   }
  
