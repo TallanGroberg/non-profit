@@ -37,8 +37,8 @@ const NavBar = () => {
 };
 
 const NavStyle = styled.div`
-    margin-top: 72px;
-    align-content: left;
+    margin-top: 48px;
+    
    .full-screen {
      position: fixed;
      z-index: 1;
@@ -52,12 +52,7 @@ const NavStyle = styled.div`
   
    .links {
     position: fixed;
-    
-    justify-content: unset;
-   
-    align-content: right;
-   
-    
+
     display: flex;
     
     flex-direction: column;
