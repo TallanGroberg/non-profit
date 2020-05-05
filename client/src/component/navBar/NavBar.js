@@ -17,12 +17,10 @@ const NavBar = () => {
   return (<>
       <Header setMenu={setMenu} menu={menu} />
     <NavStyle>
-      <div className={menu ? 'full-screen' : 'hidden'} 
-       onClick={() => setMenu(false)}
-      >
+      
 
         <Fade right unmountOnExit when={menu}>
-          <div  className='links'>
+          <div onClick={() => setMenu(false)} className='links'>
             <Link  to="/articles/business" >Business</Link>
             <Link  to="/articles/art" >Art</Link>
             <Link  to="/articles/recent" >Recent</Link>
@@ -33,7 +31,7 @@ const NavBar = () => {
           </div>
         </Fade>
       
-      </div>
+      
     </NavStyle>
   </>);
 };
@@ -52,7 +50,7 @@ const NavStyle = styled.div`
     justify-content: space-evenly;
     align-content: center;
     z-index: 1;
-    border: 2px solid #daede2;
+    
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -62,8 +60,8 @@ const NavStyle = styled.div`
     flex-direction: column;
     
     
-    width: 80%;
-    right: 12px;
+    width: 20%;
+    right: 0;
     background-color: white;
     height: 80%;
     -webkit-box-shadow: 0px 0px 34px -14px rgba(0,0,0,0.75);
