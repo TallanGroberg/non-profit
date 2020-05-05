@@ -16,12 +16,8 @@ const SearchForm = (props) => {
   const handleChange = e => {
     const {name, value} = e.target
     setInputs(inputs => ({...inputs, [name]: value}))
-  }
-
-  const handleSubmit = e => {
-    e.preventDefault()
-    
-    axios.get( `/article/search/${catagory}?title=${inputs.title}`)
+    if(inputs.title.length > 2) {
+      axios.get( `/article/search/${catagory}?title=${inputs.title}`)
     .then(res => {
       setArticles(res.data)
       history.push('/articles/' + catagory)
@@ -29,18 +25,20 @@ const SearchForm = (props) => {
     })
     .catch(err => console.error(err))
     
-
+    }
   }
+
+ 
+
+  
   return (
    
-    <form onSubmit={handleSubmit}>
+    <form>
      
         <input type="text" placeholder='search'
         name='title'
         value={inputs.title}
         onChange={handleChange} />
-      <br />
-          <button>search</button>
     </form>
       
   );

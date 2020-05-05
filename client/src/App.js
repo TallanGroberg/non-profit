@@ -101,15 +101,12 @@ const Container = styled.div`
     border: none;
     border-bottom: 1px solid #34AF70;
     font-family: Roboto;
-  }
-  input[type="file"]:hover {
-    border-top: 1px solid #daede2;
-    border-bottom: 1px solid #34AF70;
-    border-left: 1px solid #daede2;
+
+    
 }
   input {
     outline: none;
-    padding: 12px 20px;
+    padding: 8px 20px;
     border: none;
     border-bottom: 1px solid #34AF70;
     ease-in: 0.1s;
@@ -118,6 +115,7 @@ const Container = styled.div`
     border-top: 1px solid #daede2;
     border-bottom: 1px solid #34AF70;
     border-left: 1px solid #daede2;
+    border-right: 1px solid #daede2;
 }
   textarea {
     outline: none;
@@ -130,6 +128,7 @@ const Container = styled.div`
     border-top: 1px solid #daede2;
     border-bottom: 1px solid #34AF70;
     border-left: 1px solid #daede2;
+    border-right: 1px solid #daede2;
 }
 a {
   margin: 1px;
