@@ -6,7 +6,6 @@ import Avatar from '../../images/wireFrameImages/avatar.png'
 import {authContext} from '../providers/AuthProvider'
 import Header from './Header'
 import Fade from 'react-reveal'
-import { hideAll } from 'react-reveal/globals';
 
 
 const NavBar = () => {
@@ -21,25 +20,24 @@ const NavBar = () => {
       <div onClick={() => setMenu(false)} className={menu ? 'full-screen' : 'hidden'}>
         <Fade right unmountOnExit when={menu}>
           <div  className='links'>
-            <Link  to="/articles/business" >Business</Link>
-            <Link  to="/articles/art" >Art</Link>
-            <Link  to="/articles/recent" >Recent</Link>
-            <Link  to="/articles/politics" >Politics</Link>
-            <Link  to="/articles/trending" >Trending</Link>
-            <Link  to='/profile'>Profile</Link>
-            <Link  to='/write-article'>Write an Article</Link>
+            <Link to='/'>Home</Link>
+            <Link to="/articles/business" >Business</Link>
+            <Link to="/articles/art" >Art</Link>
+            <Link to="/articles/recent" >Recent</Link>
+            <Link to="/articles/politics" >Politics</Link>
+            <Link to="/articles/trending" >Trending</Link>
+            <Link to='/write-article'>Write an Article</Link>
+            <Link to='/profile'>Profile</Link>
             {token === localStorage.getItem('token') ? <button onClick={signout}>sign out</button> : <Link to='/signin'>Sign in</Link>}
           </div>
         </Fade>
       </div>
-      
     </NavStyle>
   </>);
 };
 
 const NavStyle = styled.div`
     margin-top: 48px;
-    
    .full-screen {
      position: fixed;
      z-index: 1;
@@ -53,7 +51,7 @@ const NavStyle = styled.div`
   
    .links {
     position: fixed;
-
+    
     display: flex;
     
     flex-direction: column;
@@ -71,8 +69,7 @@ const NavStyle = styled.div`
     width: 70%;
     margin: auto;
   }
- 
-
+  
 `;
 
 export default NavBar;

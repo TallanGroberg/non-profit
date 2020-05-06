@@ -36,7 +36,7 @@ function App(props) {
     <Container>
       <NavBar />
       <Switch>
-        <Route exact path="/"> <CommingSoon /> </Route>
+        <Route exact path="/"> <AllArticles /> </Route>
         {/* <Route exact path="/donate"> <Donate /> </Route> */}
 
         

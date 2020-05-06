@@ -9,6 +9,8 @@ const handleRequest = (err,req,res,next,arg) => err ? res.status(500).next(err) 
 const dataBaseChange = (err,req,res,next,arg) => err ? res.status(500).next(err) : res.status(201).send(arg)
 
 
+
+
 // withoutAuthRouter.get('/search', (req,res,next) => {
    
 //   const { title } = req.query
@@ -26,13 +28,13 @@ const dataBaseChange = (err,req,res,next,arg) => err ? res.status(500).next(err)
 //   Product.find({isIncart: false, isBought: false}, (err,products) => {
 //     handleRequest(err,req,res,next,products)
 //   })
-// })
+// })s
 
 // withoutAuthRouter.get('/:name/:_id', (req,res, next) => {
 //   Product.findOne({_id: req.params._id}, (err,products) => {
 //     handleRequest(err,req,res,next,products)
 //   })
-// })
+// })dd
 
 withoutAuthRouter.get('/email/:email', (req,res,next) => {
   console.log('MMMMade it')
