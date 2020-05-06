@@ -39,8 +39,9 @@ const Header = ({menu, setMenu}) => {
                 </div>
               </Fade>
         </div>
-
-              <SearchForm  />
+          
+            <SearchForm  />
+          
           
         <br />
         
@@ -49,11 +50,13 @@ const Header = ({menu, setMenu}) => {
 };
 
 const HeaderStyles = styled.div`
+    z-index: 1;
     width: 100%;
     top: 0;
     right: 0;
     position: fixed;
     background-color: white;
+
 
  > #logo {
   position: absolute;
@@ -72,12 +75,15 @@ const HeaderStyles = styled.div`
   width: 24px;
   height: 24px;
 }
+
+
 #hamburger-closed > #hamburger-closed {
+  z-index: 2;
   position: absolute;
   right: 8px;
   width: 24px;
   height: 34px;
-  top: -2px;
+  top: 6px;
 }
 #hamburger-closed > #top-line {
   position: relative;
@@ -112,6 +118,14 @@ const HeaderStyles = styled.div`
     width: 30px;
     border-radius: 40px;
     border: 2px solid black;
+}
+
+#search-form {
+  position: relative;
+    top: 8px;
+    right: 4px;
+    
+}
 }
 
 

@@ -11,7 +11,7 @@ import { hideAll } from 'react-reveal/globals';
 
 const NavBar = () => {
   const [menu, setMenu] = useState(false)
-  const {token,} = useContext(authContext)
+  const {token, signout} = useContext(authContext)
     
   
   return (<>
@@ -28,6 +28,7 @@ const NavBar = () => {
             <Link  to="/articles/trending" >Trending</Link>
             <Link  to='/profile'>Profile</Link>
             <Link  to='/write-article'>Write an Article</Link>
+            {token === localStorage.getItem('token') ? <button onClick={signout}>sign out</button> : <Link to='/signin'>Sign in</Link>}
           </div>
         </Fade>
       </div>
@@ -37,8 +38,8 @@ const NavBar = () => {
 };
 
 const NavStyle = styled.div`
-    margin-top: 72px;
-    align-content: left;
+    margin-top: 48px;
+    
    .full-screen {
      position: fixed;
      z-index: 1;
@@ -52,19 +53,14 @@ const NavStyle = styled.div`
   
    .links {
     position: fixed;
-    
-    justify-content: unset;
-   
-    align-content: right;
-   
-    
+
     display: flex;
     
     flex-direction: column;
     width: 28%;
     right: 0;
     background-color: white;
-    height: 93vh;
+    height: 82vh;
     -webkit-box-shadow: 0px 0px 34px -14px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 34px -14px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 34px -14px rgba(0,0,0,0.75);

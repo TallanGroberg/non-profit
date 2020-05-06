@@ -22,11 +22,6 @@ import CommingSoon from './component/CommingSoon';
 
 import AllArticles from './component/displayingArticles/AllArticles'
 import OneArticle from './component/displayingArticles/OneArticle'
-// import BusinessArticles from './component/displayingArticles/catagories/BusinessArticles';
-// import ArtArticles from './component/displayingArticles/catagories/ArtArticles'
-// import PoliticsArticles from './component/displayingArticles/catagories/PoliticsArticles'
-// import RecentArticles from './component/displayingArticles/catagories/RecentArticles'
-// import TrendingArticles from './component/displayingArticles/catagories/TrendingArticles'
 
 function App(props) {
  
@@ -58,6 +53,7 @@ function App(props) {
         
 
         <Route exact path='/article/:_id'> <OneArticle /> </Route>
+        <Route ><h1>Error 404</h1><p>page not found.</p></Route>
       </Switch>
       
         
