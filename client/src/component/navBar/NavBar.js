@@ -11,7 +11,7 @@ import { hideAll } from 'react-reveal/globals';
 
 const NavBar = () => {
   const [menu, setMenu] = useState(false)
-  const {token,} = useContext(authContext)
+  const {token, signout} = useContext(authContext)
     
   
   return (<>
@@ -28,6 +28,7 @@ const NavBar = () => {
             <Link  to="/articles/trending" >Trending</Link>
             <Link  to='/profile'>Profile</Link>
             <Link  to='/write-article'>Write an Article</Link>
+            {token === localStorage.getItem('token') ? <button onClick={signout}>sign out</button> : <Link to='/signin'>Sign in</Link>}
           </div>
         </Fade>
       </div>

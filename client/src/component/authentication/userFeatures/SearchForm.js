@@ -16,7 +16,6 @@ const SearchForm = (props) => {
   const handleChange = e => {
     const {name, value} = e.target
     setInputs(inputs => ({...inputs, [name]: value}))
-    if(inputs.title.length > 2) {
       axios.get( `/article/search/${catagory}?title=${inputs.title}`)
     .then(res => {
       setArticles(res.data)
@@ -25,7 +24,7 @@ const SearchForm = (props) => {
     })
     .catch(err => console.error(err))
     
-    }
+    
   }
 
  
@@ -33,13 +32,13 @@ const SearchForm = (props) => {
   
   return (
    
-    <form>
+    
      
-        <input type="text" placeholder='search'
+        <input id='search-form' type="text" placeholder='search'
         name='title'
         value={inputs.title}
         onChange={handleChange} />
-    </form>
+    
       
   );
 };
