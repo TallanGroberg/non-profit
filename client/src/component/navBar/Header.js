@@ -54,6 +54,7 @@ const HeaderStyles = styled.div`
     width: 100%;
     top: 0;
     right: 0;
+    height: 40px;
     position: fixed;
     background-color: white;
 

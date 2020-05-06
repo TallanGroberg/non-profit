@@ -64,7 +64,6 @@ justify-content: space-around;
   margin-top: 106px;
   top: 0;
 }
-
 `;
 
 export default Signin;

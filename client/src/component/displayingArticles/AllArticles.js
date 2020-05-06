@@ -7,9 +7,12 @@ import styled from 'styled-components'
 
 const AllArticles = (props) => {
   const {articles, setArticles, setCatagory} = useContext(articleContext)
-  
-  const catagory = useParams().catagory
-  console.log(catagory)
+  let catagory;
+  catagory = useParams().catagory
+  if(catagory === undefined) {
+    catagory = 'admin'
+    document.title = 'Home'
+  }
 
   useEffect(() => {
     document.title = catagory
