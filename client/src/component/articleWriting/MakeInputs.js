@@ -47,25 +47,28 @@ const MakeInputs = (props) => {
   
   
 
-  return (
-    <div>
-      {articleForWriter.map((input, i) => 
-        <WritersDisplay
+  return (<>
+    <div data-testid='article-container'>
+      {articleForWriter.map((input, i) => {
+        console.log(input)
+        return <WritersDisplay
         input={input}
         count={i} 
         key={i}
-        />)}
-      <br />
-
+        />})}
+        
       
-      <button id="video" onClick={() => addVideo()}>Add video</button>
-      <button id="paragraph" onClick={() => addTextArea()}>Add paragraph</button>
-      <button id="image-button" onClick={() => addImage()}>Add image</button>
+    </div>
+
+      <div data-testid='article-button-container'>
+        <button id="video" onClick={addVideo}>Add video</button>
+          <button id="paragraph" onClick={addTextArea}>Add paragraph</button>
+            <button id="image-button" onClick={addImage}>Add image</button>
+      </div>
         
       
       
-    </div>
-  );
+  </>);
 };
 
 export default MakeInputs;

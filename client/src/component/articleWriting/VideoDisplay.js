@@ -5,7 +5,7 @@ import { articleContext } from '../providers/ArticleProvider';
 
 const VideoDisplay = (props) => {
 
-  const {id, count, setVideoDeleted} = props
+  const {id,  setVideoDeleted} = props
   const [isEditingVideo, setIsEditingVideo] = useState(false)
   const [videoForm, setVideoForm] = useState(true)
   const [videoUrl, setVideoUrl] = useState({video: '', orderAppear: props.id})
@@ -29,8 +29,8 @@ const VideoDisplay = (props) => {
 
   const handleSubmit =  (e) => {
     e.preventDefault()
-    setVideoForm(prev => (!prev))
-    submitContent(videoUrl)
+      setVideoForm(prev => (!prev))
+        submitContent(videoUrl)
   }
 
 
@@ -60,28 +60,34 @@ const VideoDisplay = (props) => {
 
   return (<>
     {videoForm ? 
-      <form onSubmit={handleSubmit}>
+      <form data-testid='video-form'
+      onSubmit={handleSubmit}>
           <input
             name='video'
             type="text"
+            data-testid='video-input'
             id='video-input-field'
-            placeholder={isEditingVideo ? 'Editing video' : 'video url' }
+            value={videoUrl.video}
+            placeholder={isEditingVideo ? 'Editing video' : 'Video url' }
             onChange={handleChange}
             />
-          <button
-          id="video-button">Submit</button>
+            <button
+              id="video-button">
+                Submit
+            </button>
         </form>
     :
     <>
         <ReactPlayer 
+          data-testid='video-player'
           style={{margin: 'auto', left: 0, right: 0, }}
           width={videoWidth}
           height={videoHeight}
           url={videoUrl.video} 
           controls
             />
-            <button id={`delete-article-piece${count}`} onClick={deleteVideo}>delete</button>
-            <button id={`delete-article-piece${count}`} onClick={handleVideoEdit}>edit</button>
+            <button id={`delete-article-piece${id}`} onClick={deleteVideo}>delete</button>
+            <button id={`delete-article-piece${id}`} onClick={handleVideoEdit}>edit</button>
       </> 
   }
   </>);

@@ -9,12 +9,18 @@ let now = moment().format("l").split('/').reverse()
     let month = now[2]
     now = [year,month,day].join('')
 
-const articleSchema = new Schema({
-  article: {
+    let displayDate = moment().format('MMMM Do YYYY, h:mm:ss a')
+    
+    const articleSchema = new Schema({
+      published: {
+        type: Boolean,
+        default: false,
+      },
+      article: {
     type: Array,
   },
   user: {
-    type: String,
+    type: Schema.Types.ObjectId, ref: "User"
 },
   title: {
     type: String,
@@ -35,8 +41,14 @@ const articleSchema = new Schema({
   },
   date: {
     type: Number,
-    default: now
-  }
+    default: Date.now(),
+  },
+  displayDate: {
+    type: String,
+    default: displayDate,
+  },
 })
+
+
 
 module.exports = mongoose.model('Article', articleSchema)

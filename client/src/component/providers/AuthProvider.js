@@ -16,10 +16,11 @@ const AuthProvider = (props) => {
   const [error, setError] = useState([])
   const [isSigningUp, setIsSigningUp] = useState(false)
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user'))|| {})
+  const initState = { imgUrl: ''}
+  const [imageAsUrl, setImageAsUrl] = useState(initState)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [imgUrl, setImgUrl] = useState('')
   const [token, setToken] = useState(localStorage.getItem('token') || '')
 
 
@@ -32,6 +33,9 @@ const AuthProvider = (props) => {
     }
 
     const signup = (user) => {
+      
+      user['imgUrl'] = imageAsUrl.imgUrl
+
       axios.post('/user/signup', user)
       .then( async res => {
         const {token,} = res.data
@@ -99,6 +103,8 @@ const AuthProvider = (props) => {
       handleErrors,
       token,
       user,
+      imageAsUrl, 
+      setImageAsUrl,
       
     }}>
       {props.children}

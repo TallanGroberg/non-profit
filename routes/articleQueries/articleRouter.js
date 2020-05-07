@@ -3,42 +3,33 @@ const articleRouter = express.Router()
 const Article = require('../../models/article')
 const moment = require('moment')
 
-articleRouter.get('/search', (req,res,next) => {
-   
-  const { title } = req.query
-  const pattern = new RegExp(title) 
-  console.log(pattern)
-  Article.find({title: {$regex: pattern, $options: 'b'}}, (err, article) => {
-    if(err){
-        res.status(500)
-        return next(err)
-    }
-    return res.status(200).send(article)
-})
-})
+
 
 
 
 //catagories
 articleRouter.get('/business', (req,res,next) => {
-  let query = Article.find({'catagory': 'Business' })
-
+  let query = Article.find()
+      query.where({published: true, catagory: 'Business' })
+      query.populate('user')
       query.exec(  (err, article) => {
         if(err) return next(err)
           res.send(article)
       })
 })
 articleRouter.get('/art', (req,res,next) => {
-  let query = Article.find({'catagory': 'Art' })
-
+  let query = Article.find()
+      query.where({published: true, catagory: 'Art'})
+      query.populate('user')
       query.exec(  (err, article) => {
         if(err) return next(err)
           res.send(article)
       })
 })
 articleRouter.get('/politics', (req,res,next) => {
-  let query = Article.find({'catagory': 'Politics' })
-
+  let query = Article.find()
+  query.where({published: true, catagory: 'Politics' })
+  query.populate('user')
       query.exec(  (err, article) => {
         if(err) return next(err)
           res.send(article)
@@ -48,8 +39,10 @@ articleRouter.get('/recent', (req,res,next) => {
   
   
   let query = Article.find()
-      query.sort({date: -1})
+      query.where({published: true})
       query.limit(20)
+      query.populate('user')
+      query.sort({'date': -1})
       query.exec(  (err, article) => {
         if(err) return next(err)
           res.send(article)
@@ -59,7 +52,9 @@ articleRouter.get('/recent', (req,res,next) => {
 
 articleRouter.get('/trending', (req,res,next) => {
   let query = Article.find()
+  query.where({published: true})
   query.limit(20)
+  query.populate('user')
   query.sort({likes: -1})
   query.exec(function (err,art) {
     if(err) return next(err)
