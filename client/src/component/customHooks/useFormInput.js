@@ -2,9 +2,9 @@ import React, {useContext, useState} from 'react';
 import {authContext} from '../providers/AuthProvider'
 
 
+
 const useFormInput = () => {
   const {signup, signin, setError, editUser, user, } = useContext(authContext)
-  
   
   const initState = {name: user.name, email: user.email, password: '',}
   const [inputs, setInputs] = useState(initState)

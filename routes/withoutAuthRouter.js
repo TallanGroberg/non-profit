@@ -40,7 +40,7 @@ withoutAuthRouter.get('/email/:email', (req,res,next) => {
   console.log('MMMMade it')
   let query = User.findOne({'email': req.params.email})
 
-  console.log(query)
+  
   query.exec( (err, user) => {
     if(err) return next(err)
     res.send(user)
