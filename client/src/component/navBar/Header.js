@@ -9,7 +9,6 @@ import Avatar from '../../images/wireFrameImages/avatar.png'
 import {authContext} from '../providers/AuthProvider'
 import SearchForm from '../authentication/userFeatures/SearchForm'
 import cross from '../../images/wireFrameImages/cross.png'
-// import hamburger from '../../images/wireFrameImages/hamburger'
 
 const Header = ({menu, setMenu}) => {
 
@@ -27,7 +26,7 @@ const Header = ({menu, setMenu}) => {
           onClick={() => setMenu(prev => (!prev))}
           >
               <Roll
-               cascade right when={menu}>
+               right when={menu}>
               <div id='hamburger-open'>
                   <img src={cross} alt="" srcset=""/>
                 </div>

@@ -7,21 +7,38 @@ const Likes = (props) => {
   const {likes } = props
   return (
     <LikeStyles>
+      <div className="likes">
       <img id='thumbs-up' src={thumbsUp} style={{height: 10, width: 10}} alt='thumbs up' />
-        <p data-testid='likes'>{likes}</p>
+        <p id="number" data-testid='likes'>{likes}</p>
+      </div>
     </LikeStyles>
   );
 };
 
 const LikeStyles = styled.div`
   position: relative;
-  width: 50%;
+  width: 100%;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
+  bottom: 0;
+  justify-content: flex-end;
+  height: 20px;
 
-#thumbs-up {
-  top: 21px;
+.likes  {
   position: relative;
+  display: flex;
+    flex-direction: row;
+}
+#number {
+ position: relative;
+ top: -16px;
+    right: 4px;
+}
+#thumbs-up {
+  position: relative;
+  right: 4px;
+  top: 4px;
+
 }
 `;
 
