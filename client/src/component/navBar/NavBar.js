@@ -69,7 +69,12 @@ const NavStyle = styled.div`
     border-bottom: 1px solid #34AF70;
     width: 70%;
     margin: auto;
+    transition: 0.3s;
   }
+  .links > a:hover {
+    border-bottom: 1px solid #daede2;
+  }
+
   
 `;
 

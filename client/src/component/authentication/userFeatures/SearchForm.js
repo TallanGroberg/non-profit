@@ -23,21 +23,29 @@ const SearchForm = (props) => {
       
     })
     .catch(err => console.error(err))
-    
-    
   }
-
- 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    axios.get( `/article/search/${catagory}?title=${inputs.title}`)
+    .then(res => {
+      setArticles(res.data)
+      history.push('/articles/' + catagory)
+      
+    })
+    .catch(err => console.error(err))
+  }
 
   
   return (
    
     
-     
+      <form onSubmit={handleSubmit}>
         <input id='search-form' type="text" placeholder='search'
         name='title'
         value={inputs.title}
+        
         onChange={handleChange} />
+        </form>
     
       
   );

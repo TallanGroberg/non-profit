@@ -2,10 +2,11 @@ import React, {useState, useEffect, useContext} from 'react';
 import axios from 'axios'
 import styled from 'styled-components'
 import {bearerAxios} from '../providers/AuthProvider'
-import {withRouter} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 import ReactPlayer from 'react-player'
 import { articleContext } from '../providers/ArticleProvider';
 import Content from './Content'
+import Author from './Author'
 import thumbsup from '../../images//wireFrameImages/thumsup.png'
 
 const OneArticle = (props) => {
@@ -63,10 +64,7 @@ const OneArticle = (props) => {
         <h1 data-testid="article-title" >{article.title}</h1>
         {console.log(article.user)}
         {typeof article.user === 'object' && 
-        <div className="author-info">
-          <p id='author-name'>{article.user.name}</p> 
-            <img id='author-image' src={article.user.imgUrl}/> 
-        </div>
+        <Author article={article} />
       }
               <p id='date'>{article.displayDate}</p>
         <h4>{article.description}</h4>

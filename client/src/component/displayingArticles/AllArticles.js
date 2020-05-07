@@ -4,15 +4,23 @@ import {Link, useParams, } from 'react-router-dom'
 import {articleContext } from '../providers/ArticleProvider'
 import Likes from './Likes'
 import styled from 'styled-components'
-
+import Author from './Author'
 const AllArticles = (props) => {
   const {articles, setArticles, setCatagory} = useContext(articleContext)
   let catagory;
+  let user;
+  let _id
   catagory = useParams().catagory
-  if(catagory === undefined) {
+  user = useParams().user
+  _id = useParams()._id
+  if(catagory === undefined && user === undefined) {
     catagory = 'admin'
     document.title = 'Home'
+  } else if (user !== undefined) {
+    catagory = user + "/" + _id
+    console.log(catagory)
   }
+  
 
   useEffect(() => {
     document.title = catagory
@@ -40,12 +48,9 @@ const AllArticles = (props) => {
         <ArticleStyles>
           <div className="title-description">
             <h1 id='title'>{article.title}</h1>
-              <p id="author">{article.user.name}</p>
-              <p id='date'>{article.displayDate}</p>
-                
-                <Likes likes={article.likes} />
-                
-              
+              <Author article={article} />
+                <p id='date'>{article.displayDate}</p>
+                  <Likes likes={article.likes} />
           </div>
               
                 <img id='display-image' src={article.displayImage} />
@@ -73,28 +78,22 @@ border-bottom: 2px solid;
     
   .title-description {
     grid-area: 1 / 1 / 2 / 2;
-
-  
-
-
+    display: flex;
+    flex-direction: column;
   }
+
   .title-description > #title {
     font-size: 16px;
-   
     text-align: left;
     position: relative;
   }
-  .title-description > #author {
   
-    text-align: left;
-    position: relative;
-  }
   .title-description > #date {
- 
     font-size: 12px;
     text-align: left;
     position: relative;
   }
+
   #description-container {
     text-align: left;
     align-self: flex-start;
@@ -103,6 +102,7 @@ border-bottom: 2px solid;
     overflow: hidden;
     grid-area: 2 / 1 / 3 / 3;
   }
+
   #display-image {
     overflow: hidden;
     grid-area: 1 / 2 / 2 / 3; 

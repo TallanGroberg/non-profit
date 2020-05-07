@@ -26,8 +26,7 @@ const UserInfo = () => {
       <Link to='/send-email'>Change your password</Link>
     </form>
     <p>Enter your email to change news letter preference.</p>
-<MailchimpSubscribe id="news-letter" url={process.env.REACT_APP_MAILCHIMP_ACTION_URL}
-        />
+        <MailchimpSubscribe id="news-letter" url={process.env.REACT_APP_MAILCHIMP_ACTION_URL} />
   </>);
 };
 

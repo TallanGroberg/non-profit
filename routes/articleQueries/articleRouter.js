@@ -66,14 +66,17 @@ articleRouter.get('/trending', (req,res,next) => {
 
 
 //get everything from user
-articleRouter.get('/user/:_id', (req,res,next) => {
-  Article.find({user: req.params._id}, (err,article) => {
-    
+articleRouter.get('/:user/:_id', (req,res,next) => {
+  console.log('hit user', req.params._id)
+  let query = Article.find({user: req.params._id})
+  query.populate('user')
+  
+  query.exec( (err,article) => {
     if(err) {
       res.status(501)
       next(err)
     } else {
-      res.status(200).send(article)
+      res.status(201).send(article)
     }
   })
 })
