@@ -1,17 +1,14 @@
-import React, {useState, useContext} from 'react';
+import React, {useState,useEffect, useContext} from 'react';
 import {storage} from '../../firebase/index'
+import {authContext} from '../providers/AuthProvider'
 import {articleContext} from '../providers/ArticleProvider'
 
 const useFileUpload = (props) => {
-  
+  const {imageAsUrl, setImageAsUrl} = useContext(authContext)
+  const [isLoading, setIsLoading] = useState(false)
+  const [imageAsFile, setImageAsFile] = useState('')
     
-  const {imageAsFile,
-          setImageAsFile,
-          imageAsUrl, 
-          setImageAsUrl,
-          isLoading,
-          setIsLoading,
-          submitContent} = useContext(articleContext)
+    
    
       const handleImageAsFile = async (e) => {
         e.preventDefault()
@@ -24,8 +21,6 @@ const useFileUpload = (props) => {
 
     const handleFireBaseUpload = (image) => {
 
-    
-   
     // async magic goes here...
     if(imageAsFile === '') {
       console.error(`not an image, the image file is a ${typeof(imageAsFile)}`)
@@ -46,7 +41,7 @@ const useFileUpload = (props) => {
           await setIsLoading(false)
           await setImageAsUrl(prevObject => ({...prevObject, imgUrl: fireBaseUrl}))
 
-          submitContent({image: fireBaseUrl})
+          
         })
     })
     }
@@ -56,6 +51,8 @@ const useFileUpload = (props) => {
   return {
     handleImageAsFile,
     imageAsUrl,
+    imageAsFile,
+    setImageAsFile,
     isLoading,
   };
 };

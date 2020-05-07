@@ -5,34 +5,27 @@ import {withRouter} from 'react-router-dom'
 export const articleContext = React.createContext()
 
 const ArticleProvider = (props) => {
-  const initState = {title: '', description: '', displayImage: '', catagory: '',}
+  const initState = {title: '', description: '', displayImage: '', catagory: '', published: false}
 
   const {user, handleErrors, setError} = useContext(authContext)
-
+  const [articles, setArticles] = useState([])
+  const [catagory, setCatagory] = useState('')
   const [aboutTheArticle, setAboutTheArticle] = useState(initState)
   const [content, setContent] = useState([])
   const [articleForWriter, setArticleForWriter] = useState([])
   const [count, setCount] = useState(0)
-  
-  
-  
-  
-  
+
+  console.log(catagory)
 
   
-  
-  
-  
-  
+
   const submitContent = (arg) => {
     
     setContent(prev => {
-      const sorted = prev.sort( (a,b) => a.orderAppear - b.orderAppear)
-      const set = new Set([ ...sorted, arg])
-      let arr = [...set]
-      arr = arr.flat(Infinity)
-      
-      return [ ...arr]
+        const sorted = prev.sort( (a,b) => a.orderAppear - b.orderAppear)
+          const set = new Set([ ...sorted, arg])
+            const arr = [...set]
+              return [ ...arr]
       }
     )
     
@@ -40,10 +33,8 @@ const ArticleProvider = (props) => {
 
   const submitArticleForWriter = (arg) => {
     setArticleForWriter(prev => {
-      
       const set = new Set([ ...prev, arg])
-      let arr = [...set]
-      arr = arr.flat(Infinity)
+      const arr = [...set]
       return [...arr]
     }
     )
@@ -51,27 +42,35 @@ const ArticleProvider = (props) => {
     
   }
 
-
-  
-
   const saveArticle = async () => {
     
-
-    const wholeArticle = await  {...aboutTheArticle, user: user._id, article: packageForDatabase() }
+    
   
-    if(aboutTheArticle.catagory !== 'Catagory' && aboutTheArticle.catagory !== ''){
-      bearerAxios.post('/article', wholeArticle)
-      .then(res => {
-       setError([])
-        props.history.push(`/article/${res.data._id}`)
-      })
-      .catch(err => {
-        handleErrors(err.message)
-      })
-      } else {
-        handleErrors('Articles require a catagory before they can be published.')
-      }
-  } 
+    const wholeArticle = await  {...aboutTheArticle, user: user._id, article: packageForDatabase() }
+    
+      if(aboutTheArticle.catagory !== 'Catagory' && aboutTheArticle.catagory !== ''){
+        bearerAxios.post('/article', wholeArticle)
+        .then(res => {
+         setError([])
+          props.history.push(`/article/${res.data._id}`)
+          
+        })
+        .catch(err => {
+          handleErrors(err.message)
+        })
+        } else {
+          handleErrors('Articles require a catagory before they can be published.')
+        }
+    }
+    
+
+  
+      
+  
+
+  
+
+  
 
   const packageForDatabase = () => {
     let seen = new Set()
@@ -87,8 +86,6 @@ const ArticleProvider = (props) => {
 
 
   const editArticle = async (argAs_id) => {
-    
-    
 
     const wholeArticle = {...aboutTheArticle, user: user._id, article:  packageForDatabase()}
   
@@ -110,6 +107,22 @@ const ArticleProvider = (props) => {
           handleErrors('Articles require a catagory before they can be published.')
         }
   } 
+
+  const deleteArticle = (article) => {
+    console.log('delete aritlce')
+    if(window.confirm('are you sure you would like to delete this article,\n it will be gone forever')) {
+
+      bearerAxios.delete('/article/' + article._id)
+      .then( res => {
+        alert(`${article.title} was successfully deleted.`)
+        props.history.push('/profile')
+      })
+    } else {
+      alert('article was saved')
+    }
+  }
+
+  
   
 
   return (
@@ -125,9 +138,13 @@ const ArticleProvider = (props) => {
       setAboutTheArticle,
       content, 
       setContent,
-
+      deleteArticle,
       articleForWriter, 
       setArticleForWriter,
+      articles, 
+      setArticles,
+      catagory, 
+      setCatagory,
 
     }}>
       {props.children}

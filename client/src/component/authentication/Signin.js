@@ -2,6 +2,7 @@ import React, {useState, useContext} from 'react';
 import {authContext} from '../providers/AuthProvider'
 import { useHistory, useLocation, Link } from 'react-router-dom';
 import useFormInput from '../customHooks/useFormInput'
+import styled from 'styled-components'
 
 const Signin = (props) => {
   
@@ -10,7 +11,10 @@ const Signin = (props) => {
 
 
   return (<>
-    <form onSubmit={handleSignin}> 
+  <SigninStyle>
+
+  
+    <form className='sign-in' onSubmit={handleSignin}> 
       <input id='signin-name'
         placeholder='name'
         type="text" 
@@ -19,7 +23,7 @@ const Signin = (props) => {
         onChange={handleChange}/>
       <input id='signin-email'
         placeholder='email' 
-        type="text"
+        type="email"
         name='email' 
         value={inputs.email} 
         onChange={handleChange}/>
@@ -40,7 +44,26 @@ const Signin = (props) => {
         return <p style={{color: 'red'}}>status 500: server did not respond properly. if the proplem persists contact the site administator.</p>
       }
     } )}
+  </SigninStyle>
   </>);
 };
+
+const SigninStyle = styled.div`
+
+display: flex;
+flex-direction: column;
+height: 84vh;
+justify-content: space-around;
+
+> .sign-in  {
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 41vh;
+  margin-top: 106px;
+  top: 0;
+}
+`;
 
 export default Signin;

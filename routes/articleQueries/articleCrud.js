@@ -5,24 +5,44 @@ const moment = require('moment')
 
 
 articleCrudRouter.get('/', (req,res,next) => {
+
   let query = Article.find()
+  // query.where({published: true})
   query.limit(20)
   query.exec(function (err,art) {
     if(err) return next(err)
     res.send(art)
   })
 })
+articleCrudRouter.get('/admin', (req,res,next) => {
+
+  let query = Article.find()
+  query.populate('user')
+  query.where({published: true, })
+  query.limit(20)
+  query.sort({'date': -1})
+  query.exec(function (err,art) {
+    art = art.filter(article => {
+      return article.user.isAdmin === true
+    })
+    if(err) return next(err)
+    res.send(art)
+  })
+})
 //get one
 articleCrudRouter.get('/:_id', (req,res,next) => {
-  Article.findById({_id: req.params._id}, (err,article) => {
-      console.log(req.params.id)
-    if(err) {
-      res.status(501)
-      next(err)
-    } else {
-      res.status(201).send(article)
-    }
-  })
+  let query = Article.findById({_id: req.params._id})
+    // query.where({published: true})
+    query.populate('user')
+    query.exec( (err, article) => {
+      if(err) {
+        res.status(501)
+        next(err)
+      } else {
+        console.log(article)
+        res.status(201).send(article)
+      }
+    })
 })
 
 //make article

@@ -24,7 +24,8 @@ userRouter.get('/:_id', ( req,res,next) => {
 })
 
 userRouter.get('/admin', (req,res,next) => {
-  User.find({isAdmin: true}, (err,users) => {
+  User.find({isAdmin: true}, 
+    (err,users) => {
     handleRequest(err,req,res,next,users)
   })
 })
