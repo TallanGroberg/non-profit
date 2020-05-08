@@ -42,19 +42,24 @@ userRouter.delete('/:_id', (req,res,next) => {
 
 
 userRouter.post('/signup', (req,res,next) => {
+  console.log('made it')
   User.findOne({name: req.body.name}, (err,existingUser) => {
     if(err) {  res.status(400)
+      console.log('400 error')
       return next(err)
-  }
-      if(existingUser !== null) {
-        res.status(400)
-        return next(new Error("user already exists"))
-      }
-        const newUser = new User(req.body)
-        newUser.save( (err,user) => {
-          if(err) {res.status(500)
-            return next(err)}
-          const token = jwt.sign(user.withoutpassword(), secret)
+    }
+    if(existingUser !== null) {
+      res.status(400)
+      console.log('exiting user')
+      return next(new Error("user already exists"))
+    }
+    const newUser = new User(req.body)
+    newUser.save( (err,user) => {
+      if(err) {res.status(500)
+        console.log('made the user')
+        return next(err)}
+        const token = jwt.sign(user.withoutpassword(), secret)
+        console.log('got the token')
           return res.status(201).send({success: true, user: user.withoutpassword(), token})
     })
   })
