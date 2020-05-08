@@ -5,7 +5,8 @@ import Logo from '../../images/400dpiLogo.png'
 import Avatar from '../../images/wireFrameImages/avatar.png'
 import {authContext} from '../providers/AuthProvider'
 import Header from './Header'
-import Fade from 'react-reveal'
+import Fade from 'react-reveal/Fade'
+
 
 
 const NavBar = () => {
@@ -68,7 +69,12 @@ const NavStyle = styled.div`
     border-bottom: 1px solid #34AF70;
     width: 70%;
     margin: auto;
+    transition: 0.3s;
   }
+  .links > a:hover {
+    border-bottom: 1px solid #daede2;
+  }
+
   
 `;
 

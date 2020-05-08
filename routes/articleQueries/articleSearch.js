@@ -39,6 +39,22 @@ articleSearchRouter.get('/search/admin', (req,res,next) => {
             return res.status(200).send(art)
           })
 })
+articleSearchRouter.get('/search/:user/:_id', (req,res,next) => {
+  const { title } = req.query
+    const pattern = new RegExp(title) 
+    let query = Article.find()
+    query.where({user: req.params._id,})
+    query.populate('user')
+      query.where({published: true, title: {$regex: pattern, $options: 'b' }})
+        query.sort({'date': -1})
+          query.exec( (err, art) => {
+            if(err){
+              res.status(500)
+                return next(err)
+            }
+            return res.status(200).send(art)
+          })
+})
 
 
 articleSearchRouter.get('/search/trending', (req,res,next) => {

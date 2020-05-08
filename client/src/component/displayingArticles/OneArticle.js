@@ -2,72 +2,51 @@ import React, {useState, useEffect, useContext} from 'react';
 import axios from 'axios'
 import styled from 'styled-components'
 import {bearerAxios} from '../providers/AuthProvider'
-import {withRouter} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 import ReactPlayer from 'react-player'
 import { articleContext } from '../providers/ArticleProvider';
 import Content from './Content'
+import Author from './Author'
+import Likes from './Likes'
 import thumbsup from '../../images//wireFrameImages/thumsup.png'
 
 const OneArticle = (props) => {
   const [articleContent, setArticleContent] = useState({})
-  const [liked, setLiked] = useState(false)
   const [article, setArticle] = useState({})
     const {setContent} = useContext(articleContext)
 
 
 
   const {_id } = props.match.params
-  
+
+  let lowerCase;
+  if(article.catagory !== undefined) {
+    lowerCase = article.catagory.toLowerCase()
+  }
   
   useEffect( () => {
-    // setContent([])
-    
     axios.get(`/article/${props.match.params._id}`)
     .then(res => {
-      console.log(res.data)
-       setArticle(res.data)
-            setArticleContent(res.data.article)
-            document.title = articleContent.title
+      setArticle(res.data)
+      setArticleContent(res.data.article)
+      document.title = article.title
     })
-  }, [])
-
-  useEffect( () => {
     return () => {
       setArticleContent([])
     }
   }, [])
 
-  const handleLike = (_id) => {
-    setLiked(prev => (!prev))
-    bearerAxios.put(`/article/like/${_id}`)
-    .then(res => {
-      
-    })
-    .catch(err => console.log(err))
-  }
-  const handleUnlike = (_id) => {
-    setLiked(prev => (!prev))
-    bearerAxios.put(`/article/unlike/${_id}`)
-    .then(res => {
-      
-    })
-    .catch(err => console.log(err))
-  }
-
-  
 
   return (
     <>
       <ArticleStyle>
       <div key={article._id}>
+        <Link id='catagory-link' to={'/articles/' + lowerCase}>{article.catagory}</Link>
+        {typeof article.user === 'object' && 
+        <Author article={article} />
+      }
         <h1 data-testid="article-title" >{article.title}</h1>
         {console.log(article.user)}
-        {typeof article.user === 'object' && 
-        <div className="author-info">
-          <p id='author-name'>{article.user.name}</p> 
-            <img id='author-image' src={article.user.imgUrl}/> 
-        </div>
-      }
               <p id='date'>{article.displayDate}</p>
         <h4>{article.description}</h4>
           <img src={article.displayImage} />
@@ -76,23 +55,29 @@ const OneArticle = (props) => {
             return <Content content={content} article={article} />
             
           })}
-          <button data-testid='like-unlike-button' onClick={liked ?
-                () => handleUnlike(article._id)
-                : 
-                () => handleLike(article._id)
-                }>{liked ? 'article liked' : 'like article'}</button>
-            
-            <p data-testid="counter">{liked ? article.likes + 1 : article.likes }</p>
-            <img id='thumbs-up' src={thumbsup} />
+          
+          
+          </div>
+          <div id="likes" >
+
+            <Likes 
+              article={article}
+              likes={article.likes} 
+              />
           </div>
       
-
       </ArticleStyle>
     </>
   );
 };
 
 const ArticleStyle = styled.div`
+
+#catagory-link {
+  display: flex;
+  position: relative;
+  left: 0;
+}
 
 #thumbs-up {
   height: 16px;
@@ -107,7 +92,18 @@ const ArticleStyle = styled.div`
   height: 40px;
   width: 40px;
 }
-
+#date {
+  display: flex;
+  position: relative;
+  
+}
+#likes {
+  position: fixed;
+  background-color: white;
+  bottom: 4px;
+  width: fit-content;
+  border-bottom: 1px solid #34AF70;
+}
 `;
 
 export default withRouter(OneArticle);

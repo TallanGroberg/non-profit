@@ -4,15 +4,23 @@ import {Link, useParams, } from 'react-router-dom'
 import {articleContext } from '../providers/ArticleProvider'
 import Likes from './Likes'
 import styled from 'styled-components'
-
+import Author from './Author'
 const AllArticles = (props) => {
   const {articles, setArticles, setCatagory} = useContext(articleContext)
   let catagory;
+  let user;
+  let _id
   catagory = useParams().catagory
-  if(catagory === undefined) {
+  user = useParams().user
+  _id = useParams()._id
+  if(catagory === undefined && user === undefined) {
     catagory = 'admin'
     document.title = 'Home'
+  } else if (user !== undefined) {
+    catagory = user + "/" + _id
+    console.log(catagory)
   }
+  
 
   useEffect(() => {
     document.title = catagory
@@ -39,15 +47,16 @@ const AllArticles = (props) => {
           
         <ArticleStyles>
           <div className="title-description">
-            <h1>{article.title}</h1>
-              <p id="author">{article.user.name}</p>
-              <p id='date'>{article.displayDate}</p>
-              <h4>{article.description}</h4>
-                
-                <Likes likes={article.likes} />
-                
+            <h1 id='title'>{article.title}</h1>
+              <Author article={article} />
+                <p id='date'>{article.displayDate}</p>
+                  <Likes article={article} likes={article.likes} />
           </div>
+              
                 <img id='display-image' src={article.displayImage} />
+            <div id="description-container">
+              <h4 >{article.description}</h4>
+            </div>
         </ArticleStyles>
           </Link>
 
@@ -57,35 +66,49 @@ const AllArticles = (props) => {
 };
 
 const ArticleStyles = styled.div`
-  display: flex;
-  border-bottom: 1px solid black;
-  margin: 2px;
-  > div {
-    align-items: right;
-  }
+
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+grid-template-rows: repeat(2, 1fr);
+grid-column-gap: 0px;
+grid-row-gap: 0px;
+border-bottom: 2px solid;
+
+
+    
   .title-description {
-    text-align: left;
-    margin: 4px;
-    width: 160px;
+    grid-area: 1 / 1 / 2 / 2;
+    display: flex;
+    flex-direction: column;
   }
-  h1 {
+
+  .title-description > #title {
     font-size: 16px;
-  }
-  h4 {
-    font-size: 12px;
-  }
-  #display-image {
-    width: 48%;
-    margin: 4px;
-    align-content: center;
-  }
-  #date {
-    font-size: 8px;
-  }
-  #author {
-    font-size: 8px;
+    text-align: left;
+    position: relative;
   }
   
+  .title-description > #date {
+    font-size: 12px;
+    text-align: left;
+    position: relative;
+  }
+
+  #description-container {
+    text-align: left;
+    align-self: flex-start;
+    position: relative;
+    word-wrap: break-word;
+    overflow: hidden;
+    grid-area: 2 / 1 / 3 / 3;
+  }
+
+  #display-image {
+    overflow: hidden;
+    grid-area: 1 / 2 / 2 / 3; 
+    height: 100%;
+    width: 100%;
+  }
 
 `;
 

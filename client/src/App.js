@@ -50,6 +50,7 @@ function App(props) {
 
         <ProtectedRoute exact path="/write-article"> <ArticleDisplay /> </ProtectedRoute>
         <Route exact path='/articles/:catagory' > <AllArticles /></Route>
+        <Route exact path='/articles/user/:user/:_id' > <AllArticles /></Route>
         
 
         <Route exact path='/article/:_id'> <OneArticle /> </Route>
@@ -103,9 +104,9 @@ const Container = styled.div`
   input {
     outline: none;
     padding: 8px 20px;
-    border: none;
+    border: 1px solid white;
     border-bottom: 1px solid #34AF70;
-    ease-in: 0.1s;
+    transition: 0.2s;
   }
   input:focus {
     border-top: 1px solid #daede2;
@@ -116,9 +117,9 @@ const Container = styled.div`
   textarea {
     outline: none;
     padding: 12px 20px;
-    border: none;
+    border: 1px solid white;
     border-bottom: 1px solid #34AF70;
-    ease-in: 0.1s;
+    transition: 0.2s;
   }
   textarea:focus {
     border-top: 1px solid #daede2;
@@ -130,7 +131,9 @@ a {
   margin: 1px;
   color: black;
   text-decoration: none;
-  ease-in: 0.5s;
+  width: fit-content;
+  border-bottom: 1px solid #34AF70;
+  transition: 0.3s;
 }
 a:hover {
   border-bottom: 1px solid #daede2;
