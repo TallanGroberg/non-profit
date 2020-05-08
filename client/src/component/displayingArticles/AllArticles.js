@@ -50,7 +50,7 @@ const AllArticles = (props) => {
             <h1 id='title'>{article.title}</h1>
               <Author article={article} />
                 <p id='date'>{article.displayDate}</p>
-                  <Likes likes={article.likes} />
+                  <Likes article={article} likes={article.likes} />
           </div>
               
                 <img id='display-image' src={article.displayImage} />
