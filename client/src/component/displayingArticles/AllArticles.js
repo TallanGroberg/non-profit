@@ -69,7 +69,7 @@ const ArticleStyles = styled.div`
 
 display: grid;
 grid-template-columns: repeat(2, 1fr);
-grid-template-rows: repeat(2, 1fr);
+grid-template-rows: repeat(5, 1fr);
 grid-column-gap: 0px;
 grid-row-gap: 0px;
 border-bottom: 2px solid;
@@ -77,7 +77,7 @@ border-bottom: 2px solid;
 
     
   .title-description {
-    grid-area: 1 / 1 / 2 / 2;
+    grid-area: 1 / 1 / 4 / 2;
     display: flex;
     flex-direction: column;
   }
@@ -86,6 +86,7 @@ border-bottom: 2px solid;
     font-size: 16px;
     text-align: left;
     position: relative;
+    top: -14px;
   }
   
   .title-description > #date {
@@ -100,13 +101,13 @@ border-bottom: 2px solid;
     position: relative;
     word-wrap: break-word;
     overflow: hidden;
-    grid-area: 2 / 1 / 3 / 3;
+    grid-area: 4 / 1 / 6 / 3; 
   }
 
   #display-image {
     overflow: hidden;
-    grid-area: 1 / 2 / 2 / 3; 
-    height: 100%;
+    height: auto;
+    grid-area: 1 / 2 / 4 / 3; 
     width: 100%;
   }
 

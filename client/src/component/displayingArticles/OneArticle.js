@@ -48,7 +48,7 @@ const OneArticle = (props) => {
         <h1 data-testid="article-title" >{article.title}</h1>
         {console.log(article.user)}
               <p id='date'>{article.displayDate}</p>
-        <h4>{article.description}</h4>
+        <h4 id="description">{article.description}</h4>
           <img src={article.displayImage} />
 
           {articleContent.length > 0 && articleContent.map(content => {
@@ -104,6 +104,11 @@ const ArticleStyle = styled.div`
   width: fit-content;
   border-bottom: 1px solid #34AF70;
 }
+
+#description {
+  word-wrap: break-word;
+}
+
 `;
 
 export default withRouter(OneArticle);
