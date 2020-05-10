@@ -72,6 +72,7 @@ articleRouter.get('/:user/:_id', (req,res,next) => {
   query.populate('user')
   
   query.exec( (err,article) => {
+    console.log(article)
     if(err) {
       res.status(501)
       next(err)

@@ -5,45 +5,59 @@ import {articleContext } from '../providers/ArticleProvider'
 import Likes from './Likes'
 import styled from 'styled-components'
 import Author from './Author'
+import OneArticle from './OneArticle'
 const AllArticles = (props) => {
-  const {articles, setArticles, setCatagory} = useContext(articleContext)
-  let catagory;
-  let user;
-  let _id
-  catagory = useParams().catagory
-  user = useParams().user
-  _id = useParams()._id
-  if(catagory === undefined && user === undefined) {
-    catagory = 'admin'
-    document.title = 'Home'
-  } else if (user !== undefined) {
-    catagory = user + "/" + _id
-    console.log(catagory)
-  }
-  
+  const [desktopPreview, setDesktopPreview] = useState(undefined)
+      const {articles, setArticles, setCatagory} = useContext(articleContext)
+      let catagory;
+      let user;
+      let _id
+      catagory = useParams().catagory
+      user = useParams().user
+      _id = useParams()._id
+      if(catagory === undefined && user === undefined) {
+        catagory = 'admin'
+        document.title = 'Home'
+      } else if (user !== undefined) {
+        catagory = user + "/" + _id
+        console.log(catagory)
+      }
 
+  
   useEffect(() => {
     document.title = catagory
     setCatagory(catagory)
     axios.get('/article/' + catagory)
-    .then(res => {
-      setArticles(prev => (res.data))
+    .then(async res => {
+      await setArticles(prev => (res.data))
+      setDesktopPreview(res.data[0])
     })
     .catch(err => {
       console.log(err)
     })
     return () => {
       setArticles([])
+      setDesktopPreview({})
     }
   }, [catagory])
 
+  
+
 
   return (<>
+  <DesktopStyle>
+            <div id="one-article">
+            <OneArticle 
+              setDesktopPreview={setDesktopPreview} 
+                desktopPreview={desktopPreview}
+            />
+            </div>
+
+    <ArticleListStyle>
 
       {articles.length > 0 && articles.map(article => 
-      
       <>
-          <Link to={`/article/${article._id}`}>
+          <Link onMouseOver={() => setDesktopPreview(article)} to={`/article/${article._id}`}>
           
         <ArticleStyles>
           <div className="title-description">
@@ -62,8 +76,62 @@ const AllArticles = (props) => {
 
       </>
       )}
+      </ArticleListStyle>
+
+
+
+
+  </DesktopStyle>
   </>);
 };
+
+const DesktopStyle = styled.div`
+
+
+#one-article {
+  position: fixed;
+    display: none;
+    margin: 4px;
+  }
+
+  #one-article > #article {
+    width: 200px;
+    position: relative;
+  }
+
+@media screen and (min-width: 768px) {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-template-rows: 1fr;
+grid-column-gap: 0px;
+grid-row-gap: 0px;
+  
+  #one-article {
+    display: flex;
+    grid-area: 1 / 2 / 2 / 4;
+    position: relative;
+    
+    height: 90vh;
+    overflow-y: auto;
+    overflow-x: none;
+  }
+}
+`
+
+
+const ArticleListStyle = styled.div`
+
+
+    height: 91vh;
+
+@media screen and (min-width: 768px) {
+    grid-area: 1 / 1 / 2 / 2;
+    overflow-y: auto;
+  }
+
+`;
+
+
 
 const ArticleStyles = styled.div`
 
@@ -73,7 +141,6 @@ grid-template-rows: repeat(5, 1fr);
 grid-column-gap: 0px;
 grid-row-gap: 0px;
 border-bottom: 2px solid;
-
 
     
   .title-description {
@@ -110,7 +177,19 @@ border-bottom: 2px solid;
     grid-area: 1 / 2 / 4 / 3; 
     width: 100%;
   }
+  
+
+  
+ 
+
+  
+
 
 `;
+
+
+
+
+
 
 export default AllArticles;
