@@ -11,42 +11,67 @@ import Likes from './Likes'
 import thumbsup from '../../images//wireFrameImages/thumsup.png'
 
 const OneArticle = (props) => {
-  const [articleContent, setArticleContent] = useState({})
+  const [articleContent, setArticleContent] = useState([])
   const [article, setArticle] = useState({})
     const {setContent} = useContext(articleContext)
+    
+    console.log( 'article',article, 'desktopPreview', props.desktopPreview)
+    
+    
+    
+    const {_id } = props.match.params
+    let lowerCase;
+    
+    
+    
+    
+      const getArticle = () => {
+        if(props.desktopPreview  === undefined) {
+          console.log('undefined desktop view')
+          axios.get(`/article/${props.match.params._id}`)
+          .then(res => {
+            setArticle(res.data)
+              if(res.data.article  !== undefined) {
+                setArticleContent(res.data.article)
+              }
+          })
+          .catch(err => {
+            console.error(err)
+          })
+        } 
+        else {
+          
+        }
+          document.title = article.title
+        }
 
+      const getDesktopPreview = () => {
+          if(props.desktopPreview !== undefined) {
+            setArticle(props.desktopPreview)
+            if(props.desktopPreview.article !== undefined) {
+              setArticleContent(props.desktopPreview.article)
+            }
+          }
+      }
 
-
-  const {_id } = props.match.params
-
-  let lowerCase;
-  if(article.catagory !== undefined) {
-    lowerCase = article.catagory.toLowerCase()
-  }
-  
-  useEffect( () => {
-    axios.get(`/article/${props.match.params._id}`)
-    .then(res => {
-      setArticle(res.data)
-      setArticleContent(res.data.article)
-      document.title = article.title
-    })
-    return () => {
-      setArticleContent([])
-    }
-  }, [])
+      useEffect( () => {
+        getArticle()
+        
+      }, [])
+      useEffect( () => {
+        getDesktopPreview()
+      }, [props.desktopPreview])
 
 
   return (
     <>
       <ArticleStyle>
-      <div key={article._id}>
-        <Link id='catagory-link' to={'/articles/' + lowerCase}>{article.catagory}</Link>
+      <div id="article" key={article._id}>
+        <Link id='catagory-link' to={'/articles/' + article.catagory}>{article.catagory}</Link>
         {typeof article.user === 'object' && 
         <Author article={article} />
       }
         <h1 data-testid="article-title" >{article.title}</h1>
-        {console.log(article.user)}
               <p id='date'>{article.displayDate}</p>
         <h4 id="description">{article.description}</h4>
           <img src={article.displayImage} />
@@ -72,6 +97,11 @@ const OneArticle = (props) => {
 };
 
 const ArticleStyle = styled.div`
+
+#article {
+    width: fit-content;
+    position: relative;
+}
 
 #catagory-link {
   display: flex;

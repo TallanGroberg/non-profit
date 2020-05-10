@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactPlayer from 'react-player'
+import styled from 'styled-components'
+
+
 const Content = (props) => {
 
   const {content, article} = props
@@ -14,9 +17,9 @@ const Content = (props) => {
     } else if(content.video) {
 
       return <ReactPlayer 
+      id="video"
       style={{margin: 'auto', left: 0, right: 0, }}
-      width={videoWidth}
-      height={videoHeight}
+      
       url={content.video} 
       controls
         />
@@ -28,9 +31,23 @@ const Content = (props) => {
 
   return (
     <>
+      <ContentStyle>
       {displayContent()}
+      </ContentStyle>
     </>
   );
 };
+
+const ContentStyle = styled.div`
+  @media screen and (min-width: 768px) {
+    position: relative;
+    
+
+  #video {
+    
+  }
+  }
+  
+`;
 
 export default Content;
