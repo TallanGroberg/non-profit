@@ -6,11 +6,13 @@ import {Elements, StripeProvider, injectStripe} from 'react-stripe-elements';
 
 import {authContext} from './component/providers/AuthProvider'
 import ProtectedRoute from './component/authentication/ProtectedRoute'
+import AdminRoute from './component/authentication/AdminRoute'
 import NavBar from './component/navBar/NavBar'
 
 import Signup from './component/authentication/Signup'
 import Signin from './component/authentication/Signin'
 import Profile from './component/authentication/userFeatures/Profile'
+import Admin from "./component/authentication/userFeatures/admin/Admin";
 import UserInfo from './component/authentication/userFeatures/UserInfo'
 import ChangePassword from './component/authentication/userFeatures/ChangePassword'
 import SendEmailForPasswordChange from './component/authentication/userFeatures/SendEmailForPasswordChange'
@@ -42,6 +44,7 @@ function App(props) {
         
         <Route exact path="/signup"> <Signup /> </Route>
         <Route exact path="/signin"> <Signin /> </Route>
+        <AdminRoute exact path='/admin-view'> <Admin /> </AdminRoute>
         <ProtectedRoute exact path="/profile"> <Profile /> </ProtectedRoute>
         <ProtectedRoute exact path='/profile-settings'> <UserInfo /> </ProtectedRoute>
         <ProtectedRoute exact path="/article/edit/:_id"> <EditAfterPublished /> </ProtectedRoute>

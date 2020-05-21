@@ -13,11 +13,11 @@ const Content = (props) => {
   const displayContent = () => {
     if(content.image && content.image !== article.displayImage) {
 
-      return <img src={content.image} />
+      return <img data-testid='image' src={content.image} />
     } else if(content.video) {
 
       return <ReactPlayer 
-      id="video"
+      data-testid="video"
       style={{margin: 'auto', left: 0, right: 0, }}
       
       url={content.video} 
@@ -25,7 +25,7 @@ const Content = (props) => {
         />
     } else if(content.textarea) {
 
-      return <p>{content.textarea}</p>
+      return <p data-testid='paragraph'>{content.textarea}</p>
     }
   }
 

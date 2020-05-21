@@ -2,12 +2,12 @@ import React, {useContext} from 'react';
 import {Route, Redirect, withRouter} from 'react-router-dom'
 import {authContext} from '../providers/AuthProvider'
 
-const ProtectedRoute = (props) => {
+const AdminRoute = (props) => {
   const {component: Component, ...rest } = props
-  const { token } = useContext(authContext)
+  const { token, user: {isAdmin, } } = useContext(authContext)
   //make to require a token 
   return (
-    token === localStorage.getItem('token') && token !== '' 
+    token === localStorage.getItem('token') && token !== '' && isAdmin === true
       ? 
         <Route { ...rest} component={Component} /> 
       :
@@ -15,4 +15,4 @@ const ProtectedRoute = (props) => {
   );
 };
 
-export default withRouter(ProtectedRoute);
+export default withRouter(AdminRoute);

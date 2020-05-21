@@ -15,6 +15,9 @@ const AllArticles = (props) => {
       catagory = useParams().catagory
       user = useParams().user
       _id = useParams()._id
+
+      console.log(props, catagory)
+
       if(catagory === undefined && user === undefined) {
         catagory = 'admin'
         document.title = 'Home'

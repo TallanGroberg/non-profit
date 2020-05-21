@@ -36,6 +36,10 @@ app.use('/contactseller', require('./routes/siteMailers/contactSellerRouter'))
 app.use('/feedback', require('./routes/siteMailers/contactFeedbackRouter'))
 app.use('/charge', require('./routes/paymentRouter'))
 
+app.use('/report', require('./routes/reportsRouter'))
+
+
+
 app.use('/article', require('./routes/articleQueries/articleRouter'))
 app.use('/article', require('./routes/articleQueries/articleCrud'))
 app.use('/article', require('./routes/articleQueries/articleSearch'))

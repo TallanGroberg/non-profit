@@ -15,6 +15,9 @@ const ArticleProvider = (props) => {
   const [articleForWriter, setArticleForWriter] = useState([])
   const [count, setCount] = useState(0)
 
+  const [articleContent, setArticleContent] = useState([])
+  const [article, setArticle] = useState({})
+
   console.log(catagory)
 
   
@@ -145,6 +148,11 @@ const ArticleProvider = (props) => {
       setArticles,
       catagory, 
       setCatagory,
+
+      articleContent,
+      setArticleContent,
+      article,
+      setArticle
 
     }}>
       {props.children}

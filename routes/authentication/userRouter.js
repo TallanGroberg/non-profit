@@ -49,7 +49,6 @@ userRouter.post('/signup', (req,res,next) => {
     }
     if(existingUser !== null) {
       res.status(400)
-    
       return next(new Error("user already exists"))
     }
     const newUser = new User(req.body)
