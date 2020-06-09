@@ -8,6 +8,14 @@ const PORT = process.env.PORT || 4444
 const secret = process.env.SECRET || 'super secret sly stuffs'
 const expressJwt = require('express-jwt')
 const cors = require('cors')
+
+var corsOptions = {
+  origin: 'http://eiej.org',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+
+app.use(cors(corsOptions))
+
 app.use(express.static(path.join(__dirname, "client", "build")))
 
 
@@ -36,7 +44,7 @@ app.use('/contactseller', require('./routes/siteMailers/contactSellerRouter'))
 app.use('/feedback', require('./routes/siteMailers/contactFeedbackRouter'))
 app.use('/charge', require('./routes/paymentRouter'))
 
-app.use('/report', require('./routes/reportsRouter'))
+app.use('/article/report', require('./routes/reportsRouter'))
 
 
 

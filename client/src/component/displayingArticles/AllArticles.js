@@ -11,6 +11,7 @@ const AllArticles = (props) => {
       const {articles, setArticles, setCatagory} = useContext(articleContext)
       let catagory;
       let user;
+      let abuseReports = props.abuseReports;
       let _id
       catagory = useParams().catagory
       user = useParams().user
@@ -18,30 +19,41 @@ const AllArticles = (props) => {
 
       console.log(props, catagory)
 
-      if(catagory === undefined && user === undefined) {
+      if(abuseReports !== undefined) {
+        catagory = 'report'
+        document.title = 'reports'
+      } else if (catagory === undefined && user === undefined) {
+
         catagory = 'admin'
         document.title = 'Home'
-      } else if (user !== undefined) {
+      } else if(user !== undefined) {
         catagory = user + "/" + _id
         console.log(catagory)
       }
 
   
   useEffect(() => {
-    document.title = catagory
-    setCatagory(catagory)
-    axios.get('/article/' + catagory)
-    .then(async res => {
-      await setArticles(prev => (res.data))
-      setDesktopPreview(res.data[0])
-    })
-    .catch(err => {
-      console.log(err)
-    })
+
+    if(abuseReports === undefined) {
+      
+      document.title = catagory
+      setCatagory(catagory)
+      axios.get('/article/' + catagory)
+      .then(async res => {
+        await setArticles(prev => (res.data))
+        setDesktopPreview(res.data[0])
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    } 
     return () => {
-      setArticles([])
+      // setArticles([])
       setDesktopPreview({})
-    }
+    
+  }
+
+
   }, [catagory])
 
   

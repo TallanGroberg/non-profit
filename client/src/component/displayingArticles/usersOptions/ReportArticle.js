@@ -12,7 +12,7 @@ const ReportArticle = () => {
   console.log(status)
   const reportAbuse = () => {
     setStatus('report sent')
-    Axios.post('/report', {article: article._id,
+    Axios.post('/article/report', {article: article._id,
                             user: article.user._id, 
                               reportedBy: user._id})
     .then(res => {

@@ -37,7 +37,10 @@ const OneArticle = (props) => {
           console.log('undefined desktop view')
           axios.get(`/article/${props.match.params._id}`)
           .then(res => {
-            setArticle(res.data)
+            if(res.data.published === true) {
+
+              setArticle(res.data)
+            }
               if(res.data.article  !== undefined) {
                 setArticleContent(res.data.article)
               }
